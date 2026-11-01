@@ -29,7 +29,7 @@ export async function proxy(request: NextRequest) {
 
   let response = NextResponse.next({ request });
   const rest = pathname.slice(segment.length + 1);
-  if (!isSupabaseConfigured() || !/^\/(book|bookings|login)(\/|$)/.test(rest)) return response;
+  if (!isSupabaseConfigured() || !/^\/(book|bookings|login|admin)(\/|$)/.test(rest)) return response;
 
   const supabase = createServerClient(supabaseUrl, supabaseKey, {
     cookies: {
