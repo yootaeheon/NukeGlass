@@ -2,17 +2,22 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { parseBookingForm, reservationErrorMessage, type FieldErrors } from "@/lib/booking-form";
+import { parseBookingForm, reservationErrorCode, type ErrorCode, type FieldErrors } from "@/lib/booking-form";
+import { DEFAULT_LOCALE, isLocale } from "@/i18n/config";
 
-export type BookingState = { errors?: FieldErrors; formError?: string };
+/** Error codes only; the form shows them in the visitor's language. */
+export type BookingState = { errors?: FieldErrors; formError?: ErrorCode };
 
 export async function requestBooking(_prev: BookingState, formData: FormData): Promise<BookingState> {
+  const langField = formData.get("lang");
+  const lang = typeof langField === "string" && isLocale(langField) ? langField : DEFAULT_LOCALE;
+
   const supabase = await createClient();
-  if (!supabase) return { formError: "Bookings are not open yet." };
+  if (!supabase) return { formError: "not_open" };
 
   // Authorization is checked here, not only on the page.
   const { data: auth } = await supabase.auth.getUser();
-  if (!auth.user) return { formError: reservationErrorMessage("not_authenticated") };
+  if (!auth.user) return { formError: "not_authenticated" };
 
   const parsed = parseBookingForm(formData);
   if (!parsed.ok) return { errors: parsed.errors };
@@ -32,9 +37,9 @@ export async function requestBooking(_prev: BookingState, formData: FormData): P
   if (error) {
     // Never log the form: it holds the customer's name and contact.
     console.error("request_reservation failed", { code: error.code, message: error.message });
-    return { formError: reservationErrorMessage(error.message) };
+    return { formError: reservationErrorCode(error.message) };
   }
 
   const code = (data as { reservation_code: string }[] | null)?.[0]?.reservation_code;
-  redirect(code ? `/bookings?new=${encodeURIComponent(code)}` : "/bookings");
+  redirect(code ? `/${lang}/bookings?new=${encodeURIComponent(code)}` : `/${lang}/bookings`);
 }

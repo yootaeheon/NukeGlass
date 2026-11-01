@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { localePath, type Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionaries/en";
 
 // Until the hero footage is shot (docs/design/DESIGN.md §8), the hero plays these
 // type-only scenes: the Korean the traveller sees, and the kind of answer they hear.
@@ -9,12 +11,8 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 // When the files exist, set HERO_VIDEO and the same captions run over the video.
 const HERO_VIDEO: { webm: string; mp4: string; poster: string } | null = null;
 
-const SCENES = [
-  { place: "Gyeongbokgung Palace, 9:40 am", ko: "근정전", heard: "“Geunjeongjeon, the throne hall of the palace.”" },
-  { place: "A local restaurant, Jongno", ko: "된장찌개 9,000원", heard: "“Doenjang-jjigae, soybean paste stew. 9,000 won.”" },
-  { place: "A café in Seongsu", ko: "아이스 아메리카노", heard: "“Iced Americano.”" },
-  { place: "An alley in Bukchon, your map app speaking", ko: "북촌로", heard: "Walking directions from your phone, in your ear." },
-];
+// The Korean the traveller sees stays Korean in every language; what they hear comes from the dictionary.
+const SCENE_KO = ["근정전", "된장찌개 9,000원", "아이스 아메리카노", "북촌로"];
 
 const SCENE_MS = 4800;
 
@@ -25,7 +23,7 @@ function subscribeReducedMotion(cb: () => void) {
   return () => mq.removeEventListener("change", cb);
 }
 
-export function HeroScenes() {
+export function HeroScenes({ lang, t }: { lang: Locale; t: Dictionary["hero"] }) {
   const [index, setIndex] = useState(0);
   const reduceMotion = useSyncExternalStore(
     subscribeReducedMotion,
@@ -43,7 +41,7 @@ export function HeroScenes() {
 
   useEffect(() => {
     if (!playing) return;
-    const id = window.setInterval(() => setIndex((i) => (i + 1) % SCENES.length), SCENE_MS);
+    const id = window.setInterval(() => setIndex((i) => (i + 1) % SCENE_KO.length), SCENE_MS);
     return () => window.clearInterval(id);
   }, [playing]);
 
@@ -61,7 +59,7 @@ export function HeroScenes() {
     else v.pause();
   }, [playing]);
 
-  const scene = SCENES[index];
+  const scene = { ko: SCENE_KO[index], ...t.scenes[index] };
 
   return (
     <section aria-labelledby="hero-title" className="on-dark relative flex min-h-svh flex-col overflow-hidden bg-field-dark text-white">
@@ -85,6 +83,7 @@ export function HeroScenes() {
         <div aria-hidden="true" className="absolute inset-0 flex items-end justify-center pb-[18svh]">
           <p
             key={scene.ko}
+            lang="ko"
             className="ko animate-[scene_4800ms_var(--ease-out)_both] whitespace-nowrap text-[clamp(4rem,18vw,16rem)] leading-none text-white/[0.14] motion-reduce:animate-none"
           >
             {scene.ko}
@@ -94,13 +93,13 @@ export function HeroScenes() {
 
       <div className="relative mx-auto flex w-full max-w-[1440px] flex-1 flex-col px-margin pb-8 pt-28">
         <h1 id="hero-title" className="display text-center text-display font-normal">
-          Seoul, in
+          {t.titleA}
           <br />
-          plain English.
+          {t.titleB}
         </h1>
         <div className="mx-auto mt-8 grid max-w-[1100px] gap-2 text-center text-lead text-white/90 md:mt-12 md:grid-cols-2 md:gap-16 md:text-left">
-          <p>Rent Ray-Ban Meta or Oakley Meta AI glasses by the day.</p>
-          <p className="md:text-right">Ask about signs and menus. Hear your map’s directions without looking down.</p>
+          <p>{t.subA}</p>
+          <p className="md:text-right">{t.subB}</p>
         </div>
 
         <div className="mt-auto flex flex-col gap-6 pt-16">
@@ -112,23 +111,20 @@ export function HeroScenes() {
             </p>
           </div>
           <div className="flex items-center justify-between gap-4">
-            <Link href="/glasses" className="btn btn-light w-full sm:w-auto">
-              Choose your glasses
+            <Link href={localePath(lang, "/glasses")} className="btn btn-light w-full sm:w-auto">
+              {t.cta}
             </Link>
             <button
               type="button"
               onClick={() => setPlaying((p) => !p)}
               className="min-h-12 shrink-0 px-2 text-small underline"
             >
-              {playing ? "Pause" : "Play"}
+              {playing ? t.pause : t.play}
             </button>
           </div>
         </div>
       </div>
-      <p className="sr-only">
-        Example scenes of a traveller in Seoul: at Gyeongbokgung Palace, a restaurant, a café and a Bukchon alley, asking
-        about signs and menus and hearing walking directions.
-      </p>
+      <p className="sr-only">{t.srDescription}</p>
     </section>
   );
 }

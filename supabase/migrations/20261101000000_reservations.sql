@@ -198,7 +198,10 @@ begin
       ) values (
         v_code, v_user, p_model_slug, v_device, p_start_date, p_end_date,
         v_start_at, v_end_at, v_blocked, p_pickup_location, p_pickup_slot,
-        v_daily, v_daily * v_days, p_contact_name, p_contact_channel, p_contact_value
+        v_daily,
+        -- long-stay discount, same as discountPct() in src/lib/booking.ts
+        round(v_daily * v_days * (100 - case when v_days >= 7 then 20 when v_days >= 4 then 10 else 0 end) / 100.0)::integer,
+        p_contact_name, p_contact_channel, p_contact_value
       );
       return query select v_code;
       return;

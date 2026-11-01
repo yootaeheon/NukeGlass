@@ -3,10 +3,17 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { DEFAULT_LOCALE, isLocale } from "@/i18n/config";
+
+function langOf(formData: FormData) {
+  const value = formData.get("lang");
+  return typeof value === "string" && isLocale(value) ? value : DEFAULT_LOCALE;
+}
 
 export async function cancelBooking(formData: FormData): Promise<void> {
   const code = formData.get("code");
   if (typeof code !== "string" || !/^[A-Z0-9]{8}$/.test(code)) return;
+  const lang = langOf(formData);
 
   const supabase = await createClient();
   if (!supabase) return;
@@ -15,10 +22,10 @@ export async function cancelBooking(formData: FormData): Promise<void> {
 
   // The RPC only cancels the caller's own reservation while it is still "requested".
   const { error } = await supabase.rpc("cancel_reservation", { p_code: code });
-  revalidatePath("/bookings");
+  revalidatePath(`/${lang}/bookings`);
   if (error) {
     console.error("cancel_reservation failed", { code: error.code });
-    redirect("/bookings?cancel=failed");
+    redirect(`/${lang}/bookings?cancel=failed`);
   }
 }
 
