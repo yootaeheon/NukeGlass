@@ -12,6 +12,8 @@ insert into auth.users (id, email) values
   ('00000000-0000-0000-0000-00000000000a', 'a@example.com'),
   ('00000000-0000-0000-0000-00000000000b', 'b@example.com');
 
+-- Start from a known stock: ignore the seed inventory (rolled back at the end).
+update public.devices set active = false;
 insert into public.devices (model_slug, label) values ('ray-ban-meta-wayfarer', 'TEST-01');
 
 create function pg_temp.act_as(uid uuid) returns void language sql as $$
