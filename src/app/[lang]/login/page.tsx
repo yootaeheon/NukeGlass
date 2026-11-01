@@ -4,12 +4,12 @@ import { getCurrentUser } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { safeNextPath } from "@/lib/safe-redirect";
 import { localePath } from "@/i18n/config";
-import { resolveLang } from "@/i18n/server";
+import { pageAlternates, resolveLang } from "@/i18n/server";
 import { SignInButtons } from "./sign-in-buttons";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/login">): Promise<Metadata> {
-  const { dict } = await resolveLang(params);
-  return { title: dict.login.metaTitle };
+  const { lang, dict } = await resolveLang(params);
+  return { title: dict.login.metaTitle, alternates: pageAlternates(lang, "/login"), robots: { index: false } };
 }
 
 export default async function LoginPage({ params, searchParams }: PageProps<"/[lang]/login">) {

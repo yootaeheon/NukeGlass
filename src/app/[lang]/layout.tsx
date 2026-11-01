@@ -25,10 +25,17 @@ const hanken = Hanken_Grotesk({
 // use the visitor's system fonts to keep pages light (see :lang() rules in globals.css).
 const notoKr = Noto_Sans_KR({
   variable: "--font-noto-kr",
-  weight: ["500"],
+  weight: ["400", "500", "700"],
   preload: false,
   display: "swap",
 });
+
+/** Absolute base for canonical/hreflang links. Set NEXT_PUBLIC_SITE_URL in production. */
+function siteUrl() {
+  if (process.env.NEXT_PUBLIC_SITE_URL) return new URL(process.env.NEXT_PUBLIC_SITE_URL);
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) return new URL(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`);
+  return new URL("http://localhost:3000");
+}
 
 export function generateStaticParams() {
   return LOCALES.map((l) => ({ lang: l.code }));
@@ -39,7 +46,7 @@ export const dynamicParams = false;
 export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Promise<Metadata> {
   const { lang, dict } = await resolveLang(params);
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+    metadataBase: siteUrl(),
     title: { default: dict.meta.title, template: "%s · NukeGlass" },
     description: dict.meta.description,
     alternates: pageAlternates(lang, "/"),

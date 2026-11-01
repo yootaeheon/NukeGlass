@@ -11,6 +11,14 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const segment = pathname.split("/")[1];
 
+  // /EN/glasses -> /en/glasses
+  const lower = segment.toLowerCase();
+  if (lower !== segment && isLocale(lower)) {
+    const url = request.nextUrl.clone();
+    url.pathname = `/${lower}${pathname.slice(segment.length + 1)}`;
+    return NextResponse.redirect(url);
+  }
+
   if (!isLocale(segment)) {
     const saved = request.cookies.get(LOCALE_COOKIE)?.value;
     const locale = isLocale(saved) ? saved : matchLocale(request.headers.get("accept-language"));

@@ -7,12 +7,12 @@ import { GLASSES, getGlasses } from "@/lib/glasses";
 import { BOOKING_RULES, addDays, seoulToday } from "@/lib/booking";
 import { localePath } from "@/i18n/config";
 import { fmt } from "@/i18n/format";
-import { resolveLang } from "@/i18n/server";
+import { pageAlternates, resolveLang } from "@/i18n/server";
 import { BookingForm } from "./booking-form";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/book">): Promise<Metadata> {
-  const { dict } = await resolveLang(params);
-  return { title: dict.book.metaTitle };
+  const { lang, dict } = await resolveLang(params);
+  return { title: dict.book.metaTitle, alternates: pageAlternates(lang, "/book"), robots: { index: false } };
 }
 
 export default async function BookPage({ params, searchParams }: PageProps<"/[lang]/book">) {

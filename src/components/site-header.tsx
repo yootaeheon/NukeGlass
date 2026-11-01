@@ -63,7 +63,7 @@ export function SiteHeader({ lang, nav }: { lang: Locale; nav: Dictionary["nav"]
           <LanguageSwitcher lang={lang} label={nav.language} />
           <button
             type="button"
-            className="min-h-12 px-2 font-medium"
+            className="min-h-12 whitespace-nowrap px-1 font-medium"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}

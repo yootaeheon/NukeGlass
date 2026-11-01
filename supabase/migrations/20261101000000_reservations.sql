@@ -1,5 +1,6 @@
 -- NukeGlass: rental inventory and reservations.
 -- Not applied anywhere yet: DB structure changes need CEO approval (gate 3).
+-- Until its first apply this file is edited in place; after that, every change is a new migration.
 --
 -- Rules (CLAUDE.md):
 --   * Double booking of a device is blocked by an exclusion constraint, not by app code.

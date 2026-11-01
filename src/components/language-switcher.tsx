@@ -10,7 +10,11 @@ export function LanguageSwitcher({ lang, label }: { lang: Locale; label: string 
 
   function change(next: Locale) {
     document.cookie = `${LOCALE_COOKIE}=${next}; path=/; max-age=31536000; samesite=lax`;
-    router.push(switchLocalePath(pathname, next) + window.location.search + window.location.hash);
+    const params = new URLSearchParams(window.location.search);
+    const after = params.get("next");
+    if (after?.startsWith("/")) params.set("next", switchLocalePath(after, next));
+    const query = params.toString();
+    router.push(switchLocalePath(pathname, next) + (query ? `?${query}` : "") + window.location.hash);
   }
 
   return (
@@ -19,7 +23,7 @@ export function LanguageSwitcher({ lang, label }: { lang: Locale; label: string 
       <svg
         aria-hidden="true"
         viewBox="0 0 24 24"
-        className="pointer-events-none absolute left-1 size-5"
+        className="pointer-events-none absolute left-0.5 size-5"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
@@ -30,7 +34,7 @@ export function LanguageSwitcher({ lang, label }: { lang: Locale; label: string 
       <select
         value={lang}
         onChange={(e) => change(e.target.value as Locale)}
-        className="min-h-12 cursor-pointer appearance-none bg-transparent py-2 pl-8 pr-1 font-medium text-current hover:underline"
+        className="min-h-12 max-w-[9.5rem] cursor-pointer appearance-none truncate bg-transparent py-2 pl-7 pr-4 text-[0.9375rem] font-medium text-current hover:underline"
       >
         {LOCALES.map((l) => (
           <option key={l.code} value={l.code} lang={l.htmlLang} className="text-ink">
@@ -38,6 +42,9 @@ export function LanguageSwitcher({ lang, label }: { lang: Locale; label: string 
           </option>
         ))}
       </select>
+      <svg aria-hidden="true" viewBox="0 0 12 12" className="pointer-events-none absolute right-0 size-3" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="m3 4.5 3 3 3-3" />
+      </svg>
     </label>
   );
 }

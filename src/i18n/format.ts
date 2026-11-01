@@ -7,7 +7,7 @@ export function fmt(template: string, vars: Record<string, string | number>): st
 
 const DATE_ONLY = /^(\d{4})-(\d{2})-(\d{2})$/;
 
-/** A Seoul calendar date ("2026-11-04") in the visitor's language, e.g. "Wed 4 Nov 2026" / "2026年11月4日(水)". */
+/** A Seoul calendar date ("2026-11-04") in the visitor's language, e.g. "Wed, 4 Nov 2026" / "2026年11月4日(水)". */
 export function formatSeoulDate(date: string, locale: Locale): string {
   const m = DATE_ONLY.exec(date);
   if (!m) return date;

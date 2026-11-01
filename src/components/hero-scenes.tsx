@@ -23,7 +23,7 @@ function subscribeReducedMotion(cb: () => void) {
   return () => mq.removeEventListener("change", cb);
 }
 
-export function HeroScenes({ lang, t }: { lang: Locale; t: Dictionary["hero"] }) {
+export function HeroScenes({ lang, t, exampleAnswer }: { lang: Locale; t: Dictionary["hero"]; exampleAnswer: string }) {
   const [index, setIndex] = useState(0);
   const reduceMotion = useSyncExternalStore(
     subscribeReducedMotion,
@@ -105,7 +105,10 @@ export function HeroScenes({ lang, t }: { lang: Locale; t: Dictionary["hero"] })
         <div className="mt-auto flex flex-col gap-6 pt-16">
           {/* What the traveller hears */}
           <div className="max-w-[40ch]">
-            <p className="text-small text-field-dark-muted">{scene.place}</p>
+            <p className="text-small text-field-dark-muted">
+              {scene.place}
+              {index < 3 && ` · ${exampleAnswer}`}
+            </p>
             <p key={scene.heard} className="mt-1 text-lead animate-[fade_600ms_var(--ease-out)_both] motion-reduce:animate-none">
               {scene.heard}
             </p>

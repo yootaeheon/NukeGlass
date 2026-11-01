@@ -28,8 +28,8 @@ const zhCn: Dictionary = {
     kst: "所有日期和时间均为首尔时间（KST）。",
   },
   hero: {
-    titleA: "首尔，",
-    titleB: "用中文读懂。",
+    titleA: "首尔旅行，",
+    titleB: "更轻松。",
     subA: "按天租用 Ray-Ban Meta 或 Oakley Meta AI 眼镜。",
     subB: "询问招牌和菜单。不用低头，也能听到地图导航。",
     cta: "选择眼镜",
@@ -37,9 +37,9 @@ const zhCn: Dictionary = {
     play: "播放",
     srDescription: "首尔旅行示例场景：在景福宫、餐馆、咖啡馆和北村小巷，询问招牌与菜单，并收听步行导航。",
     scenes: [
-      { place: "景福宫，上午 9:40", heard: "“勤政殿，宫殿的正殿。”" },
-      { place: "钟路的本地餐馆", heard: "“大酱汤，韩式豆酱汤。9,000 韩元。”" },
-      { place: "圣水洞的咖啡馆", heard: "“冰美式。”" },
+      { place: "景福宫，上午 9:40", heard: "“Geunjeongjeon, the throne hall of the palace.”" },
+      { place: "钟路的本地餐馆", heard: "“Doenjang-jjigae, soybean paste stew. 9,000 won.”" },
+      { place: "圣水洞的咖啡馆", heard: "“Iced Americano.”" },
       { place: "北村小巷，地图应用在导航", heard: "手机里的步行导航，在耳边播放。" },
     ],
   },
@@ -53,7 +53,8 @@ const zhCn: Dictionary = {
     translateTitle: "看着它，问一问。",
     translateBody:
       "看着宫殿告示、菜单或地铁标识，向 Meta AI 提问。答案在耳边响起，双手始终空闲。点击招牌查看示例。",
-    tryNote: "以下为各招牌含义的示例。Meta AI 对韩语的支持会不断变化，我们在交付前逐台检查，并告诉您当天可用的功能。",
+    tryNote: "以下为各招牌含义的示例。Meta AI 能识别和回答的语言会不断变化，我们在交付前逐台检查，并告诉您当天可用的功能。",
+    exampleAnswer: "回答示例（英语）",
     howTitle: "使用流程",
     steps: [
       { line: "首先，选择眼镜和日期。", detail: "按天预订。用 Google 登录，之后可随时查看预订。" },
@@ -85,7 +86,7 @@ const zhCn: Dictionary = {
         q: "眼镜会提供步行导航吗？",
         a: "导航由手机提供。在 Naver 地图或 Google 地图中开始步行导航，语音会通过眼镜的开放式扬声器播放，语言取决于应用设置。",
       },
-      { q: "我戴近视眼镜。", a: "我们的镜框配有平光或太阳镜片，不含度数。配合隐形眼镜使用效果很好。" },
+      { q: "我戴有度数的眼镜。", a: "我们的镜框配有平光或太阳镜片，不含度数。配合隐形眼镜使用效果很好。" },
       {
         q: "可以随处拍摄吗？",
         a: "在韩国，未经同意拍摄他人可能违法。录像时镜框上的指示灯会亮起。部分宫殿建筑禁止拍照。",
@@ -196,7 +197,7 @@ const zhCn: Dictionary = {
   features: [
     {
       title: "问问眼前是什么。",
-      body: "说“Hey Meta，看看这是什么”。眼镜通过摄像头快速查看，并在耳边回答。适用于宫殿告示、博物馆说明和店铺招牌。",
+      body: "说“Hey Meta, look and tell me what this is”。眼镜通过摄像头快速查看，并在耳边回答。适用于宫殿告示、博物馆说明和店铺招牌。",
     },
     {
       title: "听导航，手机放口袋。",
@@ -223,7 +224,7 @@ const zhCn: Dictionary = {
     },
     {
       title: "询问招牌或菜单。",
-      body: "看着它说“Hey Meta，看看并翻译这个”。语言支持由 Meta 提供并会变化，我们在交付前逐台测试。",
+      body: "看着它说“Hey Meta, look and translate this”。语言支持由 Meta 提供并会变化，我们在交付前逐台测试。",
     },
     {
       title: "收听步行导航。",
@@ -269,7 +270,7 @@ const zhCn: Dictionary = {
     fixOne: "请修改下方 1 处内容。",
     fixMany: "请修改下方 {n} 处内容。",
     totalHint: "选择日期后显示总价。",
-    discount: "长租优惠 {pct}%",
+    discount: "长租减 {pct}%",
     day: "{n} 天",
     days: "{n} 天",
     send: "提交申请",

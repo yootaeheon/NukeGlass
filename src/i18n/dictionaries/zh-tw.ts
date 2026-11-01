@@ -28,8 +28,8 @@ const zhTw: Dictionary = {
     kst: "所有日期與時間皆為首爾時間（KST）。",
   },
   hero: {
-    titleA: "首爾，",
-    titleB: "用中文看懂。",
+    titleA: "首爾旅行，",
+    titleB: "更輕鬆。",
     subA: "按日租用 Ray-Ban Meta 或 Oakley Meta AI 眼鏡。",
     subB: "詢問招牌和菜單。不用低頭，也能聽到地圖導航。",
     cta: "挑選眼鏡",
@@ -37,9 +37,9 @@ const zhTw: Dictionary = {
     play: "播放",
     srDescription: "首爾旅行示範場景：在景福宮、餐廳、咖啡廳和北村巷弄，詢問招牌與菜單，並收聽步行導航。",
     scenes: [
-      { place: "景福宮，上午 9:40", heard: "「勤政殿，宮殿的正殿。」" },
-      { place: "鍾路的在地餐廳", heard: "「大醬湯，韓式豆醬湯。9,000 韓元。」" },
-      { place: "聖水洞的咖啡廳", heard: "「冰美式。」" },
+      { place: "景福宮，上午 9:40", heard: "“Geunjeongjeon, the throne hall of the palace.”" },
+      { place: "鍾路的在地餐廳", heard: "“Doenjang-jjigae, soybean paste stew. 9,000 won.”" },
+      { place: "聖水洞的咖啡廳", heard: "“Iced Americano.”" },
       { place: "北村巷弄，地圖 App 正在導航", heard: "手機裡的步行導航，在耳邊播放。" },
     ],
   },
@@ -53,7 +53,8 @@ const zhTw: Dictionary = {
     translateTitle: "看著它，問一問。",
     translateBody:
       "看著宮殿告示、菜單或地鐵標示，向 Meta AI 提問。答案在耳邊響起，雙手始終空出來。點選招牌查看範例。",
-    tryNote: "以下為各招牌意思的範例。Meta AI 對韓文的支援會持續變動，我們在交付前逐台檢查，並告訴您當天可用的功能。",
+    tryNote: "以下為各招牌意思的範例。Meta AI 能辨識與回答的語言會持續變動，我們在交付前逐台檢查，並告訴您當天可用的功能。",
+    exampleAnswer: "回答範例（英文）",
     howTitle: "使用流程",
     steps: [
       { line: "首先，挑選眼鏡和日期。", detail: "按日預約。用 Google 登入，之後隨時可以查看預約。" },
@@ -196,7 +197,7 @@ const zhTw: Dictionary = {
   features: [
     {
       title: "問問眼前是什麼。",
-      body: "說「Hey Meta，看看這是什麼」。眼鏡透過鏡頭快速查看，並在耳邊回答。適用於宮殿告示、博物館說明與店家招牌。",
+      body: "說「Hey Meta, look and tell me what this is」。眼鏡透過鏡頭快速查看，並在耳邊回答。適用於宮殿告示、博物館說明與店家招牌。",
     },
     { title: "聽導航，手機放口袋。", body: "手機地圖 App 的步行導航透過開放式喇叭播放，您可以看街道而不是螢幕。" },
     { title: "空出雙手拍宮殿。", body: "按下拍攝按鈕拍照，長按錄影。鏡框上的指示燈會讓周圍的人知道您正在錄影。" },
@@ -215,7 +216,7 @@ const zhTw: Dictionary = {
     { title: "安裝 Meta AI App。", body: "從 App Store 或 Google Play 下載 Meta AI，並用 Meta 帳號登入。完全免費。" },
     { title: "配對眼鏡。", body: "在 App 中點選「新增裝置」。將眼鏡放在打開的眼鏡盒裡靠近手機，依照提示操作，約五分鐘。" },
     { title: "學會三種操作。", body: "說「Hey Meta」提問。輕觸或滑動右側鏡腳的觸控板控制音樂與音量。按拍攝按鈕拍照。" },
-    { title: "詢問招牌或菜單。", body: "看著它說「Hey Meta，看看並翻譯這個」。語言支援由 Meta 提供並會變動，我們在交付前逐台測試。" },
+    { title: "詢問招牌或菜單。", body: "看著它說「Hey Meta, look and translate this」。語言支援由 Meta 提供並會變動，我們在交付前逐台測試。" },
     {
       title: "收聽步行導航。",
       body: "在手機上用 Naver 地圖或 Google 地圖開始步行導航，語音會透過眼鏡喇叭播放，語言依 App 設定而定。",
@@ -257,7 +258,7 @@ const zhTw: Dictionary = {
     fixOne: "請修改下方 1 處內容。",
     fixMany: "請修改下方 {n} 處內容。",
     totalHint: "選擇日期後顯示總金額。",
-    discount: "長租優惠 {pct}%",
+    discount: "長租減 {pct}%",
     day: "{n} 天",
     days: "{n} 天",
     send: "送出申請",

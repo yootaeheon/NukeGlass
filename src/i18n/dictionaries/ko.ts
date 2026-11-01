@@ -28,8 +28,8 @@ const ko: Dictionary = {
     kst: "모든 날짜와 시간은 서울 시간(KST)입니다.",
   },
   hero: {
-    titleA: "서울을,",
-    titleB: "묻고 듣는 여행.",
+    titleA: "서울 여행,",
+    titleB: "더 가볍게.",
     subA: "Ray-Ban Meta, Oakley Meta AI 글래스를 하루 단위로 빌리세요.",
     subB: "간판과 메뉴를 물어보고, 고개 숙이지 않고 지도 앱의 길 안내를 들으세요.",
     cta: "글래스 고르기",
@@ -37,15 +37,15 @@ const ko: Dictionary = {
     play: "재생",
     srDescription: "서울 여행 예시 장면: 경복궁, 식당, 카페, 북촌 골목에서 간판과 메뉴를 묻고 길 안내를 듣는 모습.",
     scenes: [
-      { place: "경복궁, 오전 9시 40분", heard: "“근정전, 궁궐의 정전입니다.”" },
-      { place: "종로의 동네 식당", heard: "“된장찌개, 9,000원.”" },
-      { place: "성수동 카페", heard: "“아이스 아메리카노.”" },
+      { place: "경복궁, 오전 9시 40분", heard: "“Geunjeongjeon, the throne hall of the palace.”" },
+      { place: "종로의 동네 식당", heard: "“Doenjang-jjigae, soybean paste stew. 9,000 won.”" },
+      { place: "성수동 카페", heard: "“Iced Americano.”" },
       { place: "북촌 골목, 지도 앱 안내 중", heard: "휴대폰의 도보 안내가 귓가에 들립니다." },
     ],
   },
   tryIt: [
     { where: "궁궐 안내판", meaning: "관람 시간: 오전 9시~오후 6시" },
-    { where: "메뉴", meaning: "된장찌개" },
+    { where: "메뉴", meaning: "Doenjang-jjigae, soybean paste stew. (외국인 여행자가 듣는 영어 예시)" },
     { where: "지하철 표지", meaning: "여기서 다른 노선으로 갈아탑니다." },
     { where: "카페", meaning: "주문은 카운터에서 해 주세요." },
   ],
@@ -53,7 +53,8 @@ const ko: Dictionary = {
     translateTitle: "보면서, 물어보세요.",
     translateBody:
       "궁궐 안내판, 메뉴, 지하철 표지를 보며 Meta AI에게 물어보세요. 답은 귓가에 들리고 두 손은 자유롭습니다. 간판을 누르면 예시가 보입니다.",
-    tryNote: "각 간판의 뜻을 보여 주는 예시입니다. Meta AI의 한국어 지원은 계속 바뀌므로, 건네드리기 전에 모든 기기를 확인하고 그날 쓸 수 있는 기능을 알려 드립니다.",
+    tryNote: "각 간판의 뜻을 보여 주는 예시입니다. Meta AI가 읽고 답하는 언어는 계속 바뀌므로, 건네드리기 전에 모든 기기를 확인하고 그날 쓸 수 있는 기능을 알려 드립니다.",
+    exampleAnswer: "답변 예시 (영어)",
     howTitle: "이용 방법",
     steps: [
       { line: "먼저, 글래스와 날짜를 고르세요.", detail: "하루 단위로 예약합니다. Google로 로그인하면 나중에 예약을 다시 볼 수 있습니다." },
@@ -193,7 +194,7 @@ const ko: Dictionary = {
   features: [
     {
       title: "보고 있는 걸 물어보세요.",
-      body: "“Hey Meta, 이게 뭔지 봐 줘”라고 말하면 카메라로 살펴보고 귓가에 답합니다. 궁궐 안내판, 박물관 설명, 가게 간판에서 유용합니다.",
+      body: "“Hey Meta, look and tell me what this is”라고 말하면 카메라로 살펴보고 귓가에 답합니다. 궁궐 안내판, 박물관 설명, 가게 간판에서 유용합니다.",
     },
     { title: "길 안내는 귀로, 휴대폰은 주머니에.", body: "휴대폰 지도 앱의 도보 안내가 오픈형 스피커로 나와서, 화면 대신 거리를 보며 걸을 수 있습니다." },
     { title: "두 손 자유롭게 궁궐 촬영.", body: "촬영 버튼을 누르면 사진, 길게 누르면 영상. 녹화 중에는 프레임 불빛이 주변 사람에게 알려 줍니다." },
@@ -209,7 +210,7 @@ const ko: Dictionary = {
     { title: "Meta AI 앱 설치.", body: "App Store나 Google Play에서 Meta AI를 받고 Meta 계정으로 로그인하세요. 무료입니다." },
     { title: "글래스 연결.", body: "앱에서 기기 추가를 누르세요. 케이스를 연 채 휴대폰 옆에 두고 안내를 따르면 약 5분 걸립니다." },
     { title: "세 가지 조작 익히기.", body: "“Hey Meta”로 질문. 오른쪽 다리의 터치패드를 탭·밀어서 음악과 볼륨. 촬영 버튼으로 사진." },
-    { title: "간판이나 메뉴 물어보기.", body: "보면서 “Hey Meta, 이거 번역해 줘”라고 말하세요. 언어 지원은 Meta가 제공하며 바뀔 수 있어, 건네드리기 전에 모든 기기를 시험합니다." },
+    { title: "간판이나 메뉴 물어보기.", body: "보면서 “Hey Meta, look and translate this”라고 말하세요. 언어 지원은 Meta가 제공하며 바뀔 수 있어, 건네드리기 전에 모든 기기를 시험합니다." },
     { title: "길 안내 듣기.", body: "휴대폰에서 네이버 지도나 구글 지도로 도보 안내를 시작하면, 음성이 글래스 스피커로 나옵니다(언어는 앱 설정을 따름)." },
   ],
   etiquette: [
@@ -259,7 +260,7 @@ const ko: Dictionary = {
     model: "글래스를 골라 주세요.",
     invalid_date: "받는 날과 반납하는 날을 골라 주세요.",
     end_before_start: "반납하는 날은 받는 날과 같거나 그 뒤여야 합니다.",
-    too_soon: "받는 날은 오늘로부터 {n}일 이후여야 합니다(서울 시간).",
+    too_soon: "받는 날은 오늘부터 최소 {n}일 뒤여야 합니다(서울 시간).",
     too_far: "{n}일 뒤까지 예약할 수 있습니다.",
     too_long: "최대 대여 기간은 {n}일입니다.",
     location: "받는 곳을 골라 주세요.",
@@ -327,7 +328,7 @@ const ko: Dictionary = {
       cancelled: "취소됨.",
     },
     glasses: "글래스",
-    pickup: "받는 때 (KST)",
+    pickup: "받는 날짜 (KST)",
     returnBy: "반납 기한 (KST)",
     endOfDay: "당일 자정 전",
     where: "장소",

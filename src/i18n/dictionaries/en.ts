@@ -57,7 +57,8 @@ const en = {
     translateBody:
       "Look at a palace notice, a menu or a subway sign and ask Meta AI about it. The answer comes in your ear while your hands stay free. Tap a sign for an example.",
     tryNote:
-      "Examples of what each sign says. Meta AI’s support for Korean changes over time, so we check it on every pair before hand-over and tell you what works on the day.",
+      "Examples of what each sign says. Which languages Meta AI reads and answers in changes over time, so we check every pair before hand-over and tell you what works on the day.",
+    exampleAnswer: "Example answer (English)",
     howTitle: "How it works",
     steps: [
       {
@@ -382,7 +383,7 @@ const en = {
         body: "If the glasses are lost, stolen or cannot be repaired, the fee is $400–$520 depending on the model. A lost charging case is $80–$90, and a lost cable is $10.",
       },
       {
-        title: "Careless or intentional damage",
+        title: "Intentional damage or gross negligence",
         body: "If damage is on purpose, or comes from opening, modifying or swimming with the glasses, the limits above do not apply.",
       },
       {

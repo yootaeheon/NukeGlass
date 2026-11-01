@@ -5,12 +5,12 @@ import { createClient } from "@/lib/supabase/server";
 import { getGlasses, getPickupLocation, type PickupLocationId } from "@/lib/glasses";
 import { localePath } from "@/i18n/config";
 import { fmt, formatSeoulDate } from "@/i18n/format";
-import { resolveLang } from "@/i18n/server";
+import { pageAlternates, resolveLang } from "@/i18n/server";
 import { cancelBooking, signOut } from "./actions";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/bookings">): Promise<Metadata> {
-  const { dict } = await resolveLang(params);
-  return { title: dict.bookings.metaTitle };
+  const { lang, dict } = await resolveLang(params);
+  return { title: dict.bookings.metaTitle, alternates: pageAlternates(lang, "/bookings"), robots: { index: false } };
 }
 
 type Row = {

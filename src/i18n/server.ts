@@ -18,7 +18,7 @@ export function pageAlternates(lang: Locale, path: string): Metadata["alternates
     canonical: `/${lang}${suffix}`,
     languages: {
       ...Object.fromEntries(LOCALES.map((l) => [l.htmlLang, `/${l.code}${suffix}`])),
-      "x-default": `/en${suffix}`,
+      "x-default": suffix || "/",
     },
   };
 }

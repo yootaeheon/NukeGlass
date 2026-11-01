@@ -14,7 +14,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
   return (
     <>
-      <HeroScenes lang={lang} t={dict.hero} />
+      <HeroScenes lang={lang} t={dict.hero} exampleAnswer={t.exampleAnswer} />
 
       {/* Translation: look at it, ask */}
       <section aria-labelledby="translate-title" className="mx-auto max-w-[1440px] px-margin pt-section">
