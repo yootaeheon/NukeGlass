@@ -28,6 +28,9 @@ booking show "opening soon". To enable them, set these in `.env.local` (never co
 | `NEXT_PUBLIC_SUPABASE_URL` | Supabase → Project Settings → API |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Supabase → Project Settings → API keys (publishable) |
 
+Shortcut after `npx supabase login`: `node scripts/write-env-local.mjs <project-ref>` writes both values
+(publishable key only; the value is never printed). Never put a secret key in `.env.local`.
+
 ## Enabling sign-in and bookings
 
 1. Create a Supabase project (cost gate: needs CEO approval).
