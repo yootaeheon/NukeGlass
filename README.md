@@ -18,6 +18,17 @@ npm test
 npm run build
 ```
 
+## CI
+
+GitHub Actions (`.github/workflows/ci.yml`) runs on every pull request to `main` and every push to `main`:
+
+- `app`: `npm ci`, lint, typecheck, Vitest, `next build` (Node 26, no keys: builds in catalog-only mode).
+- `db`: starts a local Supabase Postgres (`supabase db start`, applies `supabase/migrations/` and
+  `supabase/seed.sql`), then runs the pgTAP tests in `supabase/tests/` (`supabase test db`).
+
+The workflow holds no secrets and has read-only repo access. Keep the `supabase/setup-cli` version in step
+with the `supabase` devDependency.
+
 ## Environment
 
 The site runs without any keys in catalog-only mode: every product page works, sign-in and
