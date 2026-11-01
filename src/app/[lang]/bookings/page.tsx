@@ -57,6 +57,8 @@ export default async function BookingsPage({ params, searchParams }: PageProps<"
     .select("code, model_slug, start_date, end_date, pickup_location, pickup_slot, total_usd, status")
     .eq("user_id", auth.user.id) // RLS already limits this; kept as a second guard
     .order("start_date", { ascending: false });
+  // Error code and message only; never rows (they hold names and contacts).
+  if (error) console.error("load reservations failed", { code: error.code, message: error.message });
   const rows = (data ?? []) as Row[];
   const active = rows.filter((r) => r.status !== "returned" && r.status !== "cancelled");
   const past = rows.filter((r) => r.status === "returned" || r.status === "cancelled");
