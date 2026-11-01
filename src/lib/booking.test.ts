@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
   BOOKING_RULES,
-  kstWindowToUtc,
   rentalDays,
   seoulToday,
   totalPriceUsd,
@@ -59,15 +58,6 @@ describe("validateBookingDates", () => {
     const max = BOOKING_RULES.maxDays;
     expect(validateBookingDates("2026-11-03", "2026-11-16", NOW)).toMatchObject({ ok: true, days: max });
     expect(validateBookingDates("2026-11-03", "2026-11-17", NOW)).toMatchObject({ ok: false, error: "too_long" });
-  });
-});
-
-describe("kstWindowToUtc", () => {
-  it("converts the pick-up slot and end of return day from KST to UTC", () => {
-    const w = kstWindowToUtc("2026-11-04", "2026-11-06", "10:00");
-    expect(w.startAt.toISOString()).toBe("2026-11-04T01:00:00.000Z");
-    // return is due by the end of the return day in Seoul (00:00 KST next day)
-    expect(w.endAt.toISOString()).toBe("2026-11-06T15:00:00.000Z");
   });
 });
 

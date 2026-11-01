@@ -201,6 +201,11 @@ a {
   transform: none;
 }
 
+/* Pages with a fixed bottom bar: keep the footer's last line above it */
+body:has([data-bottom-bar]) footer {
+  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+}
+
 @keyframes scene {
   0% {
     opacity: 0;

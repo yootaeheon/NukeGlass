@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState, useEffect, useRef, useState } from "react";
-import { BOOKING_RULES, DATE_ERROR_MESSAGES, PICKUP_SLOTS, addDays, formatSeoulDate, seoulToday, validateBookingDates } from "@/lib/booking";
+import { BOOKING_RULES, DATE_ERROR_MESSAGES, PICKUP_SLOTS, formatSeoulDate, totalPriceUsd, validateBookingDates } from "@/lib/booking";
 import { CONTACT_CHANNELS } from "@/lib/booking-form";
 import { GLASSES, PICKUP_LOCATIONS, getGlasses } from "@/lib/glasses";
 import { requestBooking, type BookingState } from "./actions";
@@ -17,7 +17,15 @@ function FieldError({ id, message }: { id: string; message?: string }) {
 
 const legend = "head text-[clamp(1.5rem,1.2rem+1vw,2rem)]";
 
-export function BookingForm({ initialModel, defaultName }: { initialModel: string; defaultName: string }) {
+type Props = {
+  initialModel: string;
+  defaultName: string;
+  /** Computed once on the server so SSR and hydration agree on the date bounds. */
+  minStart: string;
+  maxStart: string;
+};
+
+export function BookingForm({ initialModel, defaultName, minStart, maxStart }: Props) {
   const [state, formAction, pending] = useActionState<BookingState, FormData>(requestBooking, {});
   const [model, setModel] = useState(initialModel);
   const [start, setStart] = useState("");
@@ -30,12 +38,9 @@ export function BookingForm({ initialModel, defaultName }: { initialModel: strin
   const [contact, setContact] = useState("");
   const [consent, setConsent] = useState(false);
 
-  const today = seoulToday();
-  const minStart = addDays(today, BOOKING_RULES.leadDays);
-  const maxStart = addDays(today, BOOKING_RULES.horizonDays);
   const glasses = getGlasses(model);
   const range = start && end ? validateBookingDates(start, end) : null;
-  const total = glasses && range?.ok ? glasses.dailyUsd * range.days : null;
+  const total = glasses && range?.ok ? totalPriceUsd(glasses.dailyUsd, start, end) : null;
   const e = state.errors ?? {};
   const errorCount = Object.keys(e).length;
   const summaryRef = useRef<HTMLDivElement>(null);
@@ -237,7 +242,7 @@ export function BookingForm({ initialModel, defaultName }: { initialModel: strin
 
 
       {/* Summary bar */}
-      <div className="fixed inset-x-0 bottom-0 z-30 bg-bg shadow-[0_-8px_24px_rgba(18,20,22,0.10)]">
+      <div data-bottom-bar className="fixed inset-x-0 bottom-0 z-30 bg-bg shadow-[0_-8px_24px_rgba(18,20,22,0.10)]">
         <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-margin pb-[max(12px,env(safe-area-inset-bottom))] pt-3">
           <div aria-live="polite" className="min-w-0">
             {total !== null && range?.ok ? (

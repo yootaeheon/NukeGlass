@@ -34,21 +34,25 @@ export function HeroScenes() {
   );
   // null until the visitor presses Play/Pause; reduced motion starts paused
   const [choice, setChoice] = useState<boolean | null>(null);
-  const playing = choice ?? !reduceMotion;
+  const [tabHidden, setTabHidden] = useState(false);
+  const wantsPlay = choice ?? !reduceMotion;
+  const playing = wantsPlay && !tabHidden;
   const setPlaying = (next: boolean | ((p: boolean) => boolean)) =>
-    setChoice(typeof next === "function" ? next(playing) : next);
+    setChoice(typeof next === "function" ? next(wantsPlay) : next);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (!playing) return;
     const id = window.setInterval(() => setIndex((i) => (i + 1) % SCENES.length), SCENE_MS);
-    const onHide = () => document.hidden && setChoice(false);
-    document.addEventListener("visibilitychange", onHide);
-    return () => {
-      window.clearInterval(id);
-      document.removeEventListener("visibilitychange", onHide);
-    };
+    return () => window.clearInterval(id);
   }, [playing]);
+
+  // Pause while the tab is hidden; resume on return unless the visitor pressed Pause.
+  useEffect(() => {
+    const onVisibility = () => setTabHidden(document.hidden);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
+  }, []);
 
   useEffect(() => {
     const v = videoRef.current;

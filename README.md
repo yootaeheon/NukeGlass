@@ -34,8 +34,9 @@ booking show "opening soon". To enable them, set these in `.env.local` (never co
 2. Apply `supabase/migrations/` (DB gate: needs CEO approval). Add devices per model in the `devices` table.
 3. Supabase → Authentication → Providers → Google: add the OAuth client ID and secret from Google Cloud Console.
    Authorized redirect URI: `https://<project>.supabase.co/auth/v1/callback`.
-4. Supabase → Authentication → URL Configuration: add `http://localhost:3000/auth/callback` and the production
-   `/auth/callback` URL to the redirect allow list.
+4. Supabase → Authentication → URL Configuration: add `http://localhost:3000/auth/callback**` and the production
+   `https://<domain>/auth/callback**` to the redirect allow list. The trailing `**` matters: sign-in appends
+   `?next=…`, and an exact entry would not match.
 5. More providers (Apple, Kakao): enable them in Supabase, then flip `enabled` in `src/lib/auth-providers.ts`.
 
 ## Booking rules

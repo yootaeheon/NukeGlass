@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { GLASSES, getGlasses } from "@/lib/glasses";
+import { BOOKING_RULES, addDays, seoulToday } from "@/lib/booking";
 import { BookingForm } from "./booking-form";
 
 export const metadata: Metadata = { title: "Book glasses" };
@@ -35,7 +36,12 @@ export default async function BookPage({ searchParams }: PageProps<"/book">) {
       <h1 className="head text-title">Book glasses</h1>
       <p className="mt-3 text-muted">Signed in as {user.email ?? "your account"}.</p>
       <div className="mt-10">
-        <BookingForm initialModel={model} defaultName={user.name ?? ""} />
+        <BookingForm
+          initialModel={model}
+          defaultName={user.name ?? ""}
+          minStart={addDays(seoulToday(), BOOKING_RULES.leadDays)}
+          maxStart={addDays(seoulToday(), BOOKING_RULES.horizonDays)}
+        />
       </div>
     </div>
   );

@@ -78,19 +78,6 @@ export const DATE_ERROR_MESSAGES: Record<DateError, string> = {
   too_long: `The longest rental is ${BOOKING_RULES.maxDays} days.`,
 };
 
-/** Pick-up at the slot time (KST) until the end of the return day (KST), as UTC instants. */
-export function kstWindowToUtc(start: string, end: string, slot: string): { startAt: Date; endAt: Date } {
-  const s = parseDate(start);
-  const e = parseDate(end);
-  const m = /^(\d{2}):(\d{2})$/.exec(slot);
-  if (s === null || e === null || !m) throw new Error("Invalid booking window");
-  const slotMs = (Number(m[1]) * 60 + Number(m[2])) * 60_000;
-  return {
-    startAt: new Date(s + slotMs - KST_OFFSET_MS),
-    endAt: new Date(e + DAY_MS - KST_OFFSET_MS),
-  };
-}
-
 export function totalPriceUsd(dailyUsd: number, start: string, end: string): number {
   return dailyUsd * rentalDays(start, end);
 }

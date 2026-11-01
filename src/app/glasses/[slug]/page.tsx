@@ -42,7 +42,7 @@ export default async function GlassesDetail({ params }: PageProps<"/glasses/[slu
       </section>
 
       {/* Mobile booking bar */}
-      <div className="fixed inset-x-0 bottom-0 z-30 flex items-center justify-between gap-4 bg-bg px-margin pb-[max(12px,env(safe-area-inset-bottom))] pt-3 shadow-[0_-8px_24px_rgba(18,20,22,0.10)] lg:hidden">
+      <div data-bottom-bar className="fixed inset-x-0 bottom-0 z-30 flex items-center justify-between gap-4 bg-bg px-margin pb-[max(12px,env(safe-area-inset-bottom))] pt-3 shadow-[0_-8px_24px_rgba(18,20,22,0.10)] lg:hidden">
         <p className="nums font-semibold">${g.dailyUsd} a day</p>
         <Link href={`/book?model=${g.slug}`} className="btn btn-primary">
           Choose dates
