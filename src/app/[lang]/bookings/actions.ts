@@ -27,6 +27,8 @@ export async function cancelBooking(formData: FormData): Promise<void> {
     console.error("cancel_reservation failed", { code: error.code });
     redirect(`/${lang}/bookings?cancel=failed`);
   }
+  // Drop ?new=… so the "request sent" banner does not stay after cancelling.
+  redirect(`/${lang}/bookings`);
 }
 
 export async function signOut(): Promise<void> {
