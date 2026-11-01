@@ -1,0 +1,449 @@
+// Source dictionary. Every other locale must match this shape (checked by TypeScript).
+// Placeholders like {n} are filled by fmt() in src/i18n/format.ts.
+
+const en = {
+  meta: {
+    title: "NukeGlass · AI glasses for your Seoul trip",
+    description:
+      "Rent Ray-Ban Meta or Oakley Meta AI glasses by the day. Pick up at Incheon Airport, ask about signs and menus, hear walking directions, and drop them back before you fly.",
+  },
+  nav: {
+    glasses: "Glasses",
+    how: "How it works",
+    faq: "FAQ",
+    myBooking: "My booking",
+    book: "Book glasses",
+    menu: "Menu",
+    close: "Close",
+    language: "Language",
+    skip: "Skip to content",
+  },
+  footer: {
+    about:
+      "AI glasses for visitors to Korea. Picked up and returned at Incheon Airport. Every date and time on this site is Seoul time (KST).",
+    trademark: "Ray-Ban, Oakley and Meta are trademarks of their owners. NukeGlass is an independent rental service.",
+  },
+  common: {
+    perDay: "${price} / day",
+    aDay: "${price} a day",
+    lineDrawing: "{name}, line drawing",
+    kst: "All dates and times are Seoul time (KST).",
+  },
+  hero: {
+    titleA: "Seoul, in",
+    titleB: "plain English.",
+    subA: "Rent Ray-Ban Meta or Oakley Meta AI glasses by the day.",
+    subB: "Ask about signs and menus. Hear your map’s directions without looking down.",
+    cta: "Choose your glasses",
+    pause: "Pause",
+    play: "Play",
+    srDescription:
+      "Example scenes of a traveller in Seoul: at Gyeongbokgung Palace, a restaurant, a café and a Bukchon alley, asking about signs and menus and hearing walking directions.",
+    scenes: [
+      { place: "Gyeongbokgung Palace, 9:40 am", heard: "“Geunjeongjeon, the throne hall of the palace.”" },
+      { place: "A local restaurant, Jongno", heard: "“Doenjang-jjigae, soybean paste stew. 9,000 won.”" },
+      { place: "A café in Seongsu", heard: "“Iced Americano.”" },
+      { place: "An alley in Bukchon, your map app speaking", heard: "Walking directions from your phone, in your ear." },
+    ],
+  },
+  tryIt: [
+    { where: "Palace notice", meaning: "Visiting hours: 9 am to 6 pm." },
+    { where: "Menu", meaning: "Doenjang-jjigae, soybean paste stew." },
+    { where: "Subway sign", meaning: "Transfer to another line here." },
+    { where: "Café", meaning: "Please order at the counter." },
+  ],
+  home: {
+    translateTitle: "Look at it. Ask what it says.",
+    translateBody:
+      "Look at a palace notice, a menu or a subway sign and ask Meta AI about it. The answer comes in your ear while your hands stay free. Tap a sign for an example.",
+    tryNote:
+      "Examples of what each sign says. Which languages Meta AI reads and answers in changes over time, so we check every pair before hand-over and tell you what works on the day.",
+    exampleAnswer: "Example answer (English)",
+    howTitle: "How it works",
+    steps: [
+      {
+        line: "First, pick a pair and your dates.",
+        detail: "Book by the day. Sign in with Google so you can find your booking later.",
+      },
+      {
+        line: "Then collect them at Incheon Airport.",
+        detail: "We meet you at Terminal 1 or 2 at the time you chose. The exact meeting point comes with your confirmation.",
+      },
+      {
+        line: "Pair them with your phone in five minutes.",
+        detail: "Install the free Meta AI app, open the case next to your phone and follow the prompts.",
+      },
+      {
+        line: "Drop them back before you fly.",
+        detail: "Hand the case back at the airport on your return day. We clean, charge and reset every pair.",
+      },
+    ],
+    modelsTitle: "Five pairs, one day at a time.",
+    priceBefore: "Glasses from",
+    priceAfter: "a day.",
+    priceBody:
+      "Every rental comes with the charging case and a USB-C cable. You pay per calendar day, pick-up and return day included, with 10% off for 4–6 days and 20% off for 7 days or more. Prices are in US dollars.",
+    seeAll: "See all five",
+    faqTitle: "Before you ask",
+    faq: [
+      {
+        q: "Do I need my own phone?",
+        a: "Yes. The glasses pair with the free Meta AI app on iPhone or Android, and use your phone’s data or Wi-Fi.",
+      },
+      {
+        q: "How long does the battery last?",
+        a: "Most of a sightseeing day. Ray-Ban Meta Gen 2 runs up to 8 hours, and a short break in the charging case adds more.",
+      },
+      {
+        q: "Will they understand Korean signs and speech?",
+        a: "Translation comes from Meta AI, and its language support changes over time. We test the current Korean support on every pair before hand-over and tell you what works on the day.",
+      },
+      {
+        q: "Do the glasses give walking directions?",
+        a: "Your phone does. Start walking directions in a map app such as Naver Map or Google Maps and its voice plays through the glasses’ open-ear speakers, in the language the app is set to.",
+      },
+      {
+        q: "I wear prescription glasses.",
+        a: "Our frames come with clear or sun lenses, not your prescription. Contact lenses work well with them.",
+      },
+      {
+        q: "Can I film anywhere?",
+        a: "Filming people without their consent can be illegal in Korea. A light on the frame shows when you are recording. Some palace halls do not allow photos.",
+      },
+      {
+        q: "What if I lose or break them?",
+        a: "Tell us straight away. Small scratches are free; repairs and losses have fixed limits, and there is a refundable deposit. See our prices and rental terms.",
+      },
+    ],
+    closingA: "Your first sign",
+    closingB: "is waiting.",
+    closingBody: "Book today, collect at Incheon Airport, and read Seoul from the first afternoon.",
+  },
+  glassesPage: {
+    metaTitle: "The five pairs",
+    metaDescription: "Ray-Ban Meta and Oakley Meta AI glasses to rent by the day in Seoul.",
+    title: "The five pairs",
+    intro: "Every pair has a camera, open-ear speakers and Meta AI. Pick the frame that suits your face and your trip.",
+    book: "Book this pair",
+    details: "Features and guide",
+    compareTitle: "Side by side",
+    spec: "Spec",
+    bestFor: "Best for",
+    perDayRow: "Per day",
+  },
+  detail: {
+    includes: "Charging case and USB-C cable included.",
+    chooseDates: "Choose dates",
+    featuresTitle: "What it does in Seoul",
+    specsTitle: "Specs",
+    guideTitle: "Set up in five minutes",
+    etiquetteTitle: "Good to know in Seoul",
+    returnTitle: "Before you return it",
+    faqTitle: "Questions about this pair",
+    othersTitle: "The other four",
+  },
+  specLabels: {
+    camera: "Camera",
+    battery: "Battery",
+    audio: "Audio",
+    control: "Control",
+    lenses: "Lenses",
+    water: "Water and dust",
+    app: "App",
+  },
+  catalog: {
+    "ray-ban-meta-wayfarer": {
+      tagline: "The classic shape. The one most people pick.",
+      bestFor: "Everyday sightseeing",
+      facts: ["Up to 8 hours of battery", "12 MP ultra-wide camera", "Clear or sun lenses"],
+      specs: {
+        camera: "12 MP ultra-wide, 3K video",
+        battery: "Up to 8 hours, plus the charging case",
+        audio: "Open-ear speakers, multi-mic array",
+        control: "“Hey Meta”, touchpad, capture button",
+        app: "Meta AI (iOS and Android)",
+      },
+    },
+    "ray-ban-meta-skyler": {
+      tagline: "A softer cat-eye frame for smaller faces.",
+      bestFor: "Cafés and city walks",
+      facts: ["Up to 8 hours of battery", "12 MP ultra-wide camera", "Clear or sun lenses"],
+      specs: {
+        camera: "12 MP ultra-wide, 3K video",
+        battery: "Up to 8 hours, plus the charging case",
+        audio: "Open-ear speakers, multi-mic array",
+        control: "“Hey Meta”, touchpad, capture button",
+        app: "Meta AI (iOS and Android)",
+      },
+    },
+    "ray-ban-meta-blayzer-optics": {
+      tagline: "A square optical frame that looks like normal glasses.",
+      bestFor: "Museums and long days",
+      facts: ["Up to 8 hours of battery", "12 MP ultra-wide camera", "Clear optical lenses"],
+      specs: {
+        camera: "12 MP ultra-wide, 3K video",
+        battery: "Up to 8 hours, plus the charging case",
+        audio: "Open-ear speakers, multi-mic array",
+        control: "“Hey Meta”, touchpad, capture button",
+        app: "Meta AI (iOS and Android)",
+      },
+    },
+    "oakley-meta-hstn": {
+      tagline: "A bolder sport-lifestyle frame for sunny days out.",
+      bestFor: "Han River and day trips",
+      facts: ["3K video camera", "Open-ear speakers", "PRIZM lenses on some styles"],
+      specs: {
+        camera: "Ultra-wide, 3K video",
+        battery: "All-day use with the charging case",
+        audio: "Open-ear speakers",
+        lenses: "Sun lenses, PRIZM on some styles",
+        app: "Meta AI (iOS and Android)",
+      },
+    },
+    "oakley-meta-vanguard": {
+      tagline: "A wraparound performance shield for hiking and running.",
+      bestFor: "Bukhansan hikes and runs",
+      facts: ["IP67 water and dust resistance", "12 MP ultra-wide camera", "Wind-noise reduction"],
+      specs: {
+        camera: "12 MP ultra-wide",
+        water: "IP67",
+        audio: "Open-ear speakers, wind-noise reduction",
+        lenses: "PRIZM shield",
+        app: "Meta AI (iOS and Android)",
+      },
+    },
+  },
+  features: [
+    {
+      title: "Ask what you are looking at.",
+      body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look through the camera and answer in your ear. Useful at palace signs, museum labels and shop fronts.",
+    },
+    {
+      title: "Hear directions, keep your phone away.",
+      body: "Your phone’s map app speaks its walking directions through the open-ear speakers, so you can look at the street instead of the screen.",
+    },
+    {
+      title: "Snap the palace hands-free.",
+      body: "Press the capture button for a photo, hold it for video. A light on the frame tells people nearby that you are recording.",
+    },
+    {
+      title: "Music and calls, open-ear.",
+      body: "Speakers sit just above your ears. You hear your music and calls and still hear the crossing signal.",
+    },
+  ],
+  modelFaq: [
+    {
+      title: "Do I need my own phone?",
+      body: "Yes. The glasses pair with the free Meta AI app on iPhone or Android. Mobile data or Wi-Fi on your phone is needed for AI answers.",
+    },
+    {
+      title: "Can I wear them with my prescription?",
+      body: "These frames come with clear or sun lenses, not your prescription. If you wear contact lenses you are all set.",
+    },
+  ],
+  vanguardFaq: {
+    title: "Can I sweat in them?",
+    body: "Yes. Vanguard is rated IP67 against water and dust. Rinse with fresh water and dry before you return it.",
+  },
+  guide: [
+    {
+      title: "Check the charge.",
+      body: "Open the case. The light in front turns green when the glasses are charged. We hand them over fully charged.",
+    },
+    {
+      title: "Install the Meta AI app.",
+      body: "Download Meta AI from the App Store or Google Play and sign in with a Meta account. It is free.",
+    },
+    {
+      title: "Pair the glasses.",
+      body: "In the app, tap Add device. Keep the glasses in the open case near your phone and follow the prompts. It takes about five minutes.",
+    },
+    {
+      title: "Learn the three controls.",
+      body: "Say “Hey Meta” to ask. Tap or swipe the touchpad on the right arm for music and volume. Press the capture button for photos.",
+    },
+    {
+      title: "Ask about a sign or a menu.",
+      body: "Look at it and say “Hey Meta, look and translate this.” Language support comes from Meta and changes over time; we test every pair before hand-over.",
+    },
+    {
+      title: "Get walking directions.",
+      body: "Start walking directions in a map app on your phone, such as Naver Map or Google Maps. Its voice guidance plays through the glasses’ speakers, in the language the app is set to.",
+    },
+  ],
+  etiquette: [
+    {
+      title: "Ask before you film people.",
+      body: "Filming people without their consent can be illegal in Korea. The capture light is there for a reason; never cover it.",
+    },
+    {
+      title: "Palaces and the subway.",
+      body: "Photos are fine in palace grounds, but some halls and exhibitions forbid them. On the subway, keep the camera off around other passengers.",
+    },
+    {
+      title: "Make the battery last.",
+      body: "Put the glasses back in the case at lunch. Fifteen minutes in the case gives you a few more hours.",
+    },
+  ],
+  returnChecklist: [
+    "Back up your photos and videos in the Meta AI app.",
+    "Remove the glasses from your Meta AI app.",
+    "Put the glasses in the charging case.",
+    "Pack the cable with the case.",
+  ],
+  pickup: {
+    "icn-t1": { name: "Incheon Airport, Terminal 1", detail: "Exact meeting point is sent with your confirmation" },
+    "icn-t2": { name: "Incheon Airport, Terminal 2", detail: "Exact meeting point is sent with your confirmation" },
+  },
+  book: {
+    metaTitle: "Book glasses",
+    title: "Book glasses",
+    signedInAs: "Signed in as {email}.",
+    yourAccount: "your account",
+    notOpenTitle: "Bookings open soon",
+    notOpenBody: "We are getting the first pairs ready. Until then you can read about all five and how pick-up works.",
+    seeGlasses: "See the glasses",
+    glasses: "Glasses",
+    dates: "Dates",
+    pickupDate: "Pick-up date",
+    returnDate: "Return date",
+    datesHint: "Pick-up and return day both count. Up to {max} days. Return by the end of your return day.",
+    pickup: "Pick-up",
+    pickupTime: "Pick-up time",
+    details: "Your details",
+    name: "Name for pick-up",
+    contactBy: "Contact by",
+    contactValue: "Number, email or ID",
+    contactHint: "Phone numbers with the country code, like +1 415 555 0100.",
+    consent: "NukeGlass may use my name and contact details to arrange this rental.",
+    nothingCharged: "Nothing is charged now.",
+    nothingChargedBody:
+      "This sends a booking request. We confirm it by message, with how and when to pay, usually within a day.",
+    fixOne: "Please fix one thing below.",
+    fixMany: "Please fix {n} things below.",
+    totalHint: "Choose your dates to see the total.",
+    discount: "{pct}% long-stay discount",
+    day: "{n} day",
+    days: "{n} days",
+    send: "Send request",
+    sending: "Sending…",
+    channels: { whatsapp: "WhatsApp", email: "Email", kakaotalk: "KakaoTalk", line: "LINE", phone: "Phone (SMS)" },
+  },
+  errors: {
+    model: "Choose a pair of glasses.",
+    invalid_date: "Choose a pick-up date and a return date.",
+    end_before_start: "The return date has to be on or after the pick-up date.",
+    too_soon: "Pick-up has to be at least {n} days from today (Seoul time).",
+    too_far: "You can book up to {n} days ahead.",
+    too_long: "The longest rental is {n} days.",
+    location: "Choose where to collect the glasses.",
+    slot: "Choose a pick-up time.",
+    name: "Enter the name we should ask for at pick-up.",
+    channel: "Choose how we should reach you.",
+    contact_email: "Enter an email address like name@example.com.",
+    contact_phone: "Enter a phone number with the country code, like +1 415 555 0100.",
+    contact_id: "Enter your ID or phone number.",
+    consent: "Please agree so we can contact you about this booking.",
+    sold_out: "This pair is fully booked for those dates. Try other dates or another pair.",
+    too_many_requests: "You already have two booking requests waiting. Cancel one, or wait until we confirm them.",
+    not_authenticated: "Your sign-in expired. Please sign in again.",
+    not_open: "Bookings are not open yet.",
+    generic: "We could not save your booking. Please try again in a minute.",
+  },
+  login: {
+    metaTitle: "Sign in",
+    title: "Sign in to book and see your bookings",
+    body: "We only use your account to keep your bookings together. No password to remember.",
+    notOpen: "Sign-in opens with bookings. Until then you can browse all five pairs.",
+    failed: "Sign-in did not finish. Please try again.",
+    opening: "Opening sign-in…",
+    unreachable: "We could not reach the sign-in page. Check your connection and try again.",
+    providers: { google: "Continue with Google", apple: "Continue with Apple", kakao: "Continue with Kakao" },
+  },
+  policy: {
+    metaTitle: "Prices and rental terms",
+    title: "Prices and rental terms",
+    draft: "Draft terms. They may change before we open; the version sent with your confirmation is the one that applies.",
+    items: [
+      {
+        title: "Price",
+        body: "Prices are per day, and both pick-up and return days count. Rent 4–6 days and save 10%. Rent 7 days or more and save 20%.",
+      },
+      {
+        title: "Deposit",
+        body: "We place a hold of $200–$300 on your credit card at pick-up, depending on the model. We release it as soon as we check the glasses at return. Your bank may take a few business days to show it. We never keep your passport.",
+      },
+      { title: "Normal wear", body: "Small scratches from normal use are fine. You pay nothing." },
+      {
+        title: "Damage",
+        body: "Minor damage costs a flat $40–$50. If the glasses need repair, you pay the repair cost, up to $250–$350 depending on the model.",
+      },
+      {
+        title: "Loss or theft",
+        body: "If the glasses are lost, stolen or cannot be repaired, the fee is $400–$520 depending on the model. A lost charging case is $80–$90, and a lost cable is $10.",
+      },
+      {
+        title: "Intentional damage or gross negligence",
+        body: "If damage is on purpose, or comes from opening, modifying or swimming with the glasses, the limits above do not apply.",
+      },
+      {
+        title: "Cancellation",
+        body: "Free to cancel before we confirm. After confirmation you get a full refund up to 72 hours before pick-up, 50% up to 24 hours before, and no refund after that.",
+      },
+      {
+        title: "Flight problems",
+        body: "If your flight is cancelled or delayed, send us proof and we will refund you in full or move your booking.",
+      },
+      {
+        title: "No-show",
+        body: "If you do not come within 2 hours of your pick-up time and do not contact us, your booking is cancelled with no refund.",
+      },
+      {
+        title: "Late return",
+        body: "Each late day costs 1.5 times the daily price. If we cannot reach you for 72 hours, we treat the glasses as lost.",
+      },
+      {
+        title: "Leaving Korea without returning",
+        body: "Ship the glasses back to us at your cost within 14 days. Otherwise we charge the loss fee.",
+      },
+    ],
+    link: "Prices and rental terms",
+  },
+  bookings: {
+    metaTitle: "My bookings",
+    title: "My bookings",
+    signOut: "Sign out",
+    notOpen: "Bookings open soon.",
+    newCode: "Request sent. Your booking code is",
+    cancelFailed: "We could not cancel that request. It may already be confirmed. Please contact us.",
+    loadFailed: "We could not load your bookings. Please refresh the page.",
+    empty: "No bookings yet.",
+    choose: "Choose your glasses",
+    code: "Booking code",
+    status: {
+      requested: "Request received. We will confirm it by message.",
+      confirmed: "Confirmed. Ready for pick-up.",
+      picked_up: "With you now. Enjoy Seoul.",
+      returned: "Returned. Thank you.",
+      cancelled: "Cancelled.",
+    },
+    glasses: "Glasses",
+    pickup: "Pick-up (KST)",
+    returnBy: "Return by (KST)",
+    endOfDay: "end of day",
+    where: "Where",
+    total: "Total ${total}",
+    cancelSummary: "Cancel this request",
+    cancelFree: "Nothing has been charged, so cancelling a request is free.",
+    cancelYes: "Yes, cancel {code}",
+    earlier: "Earlier",
+    returned: "Returned",
+    cancelled: "Cancelled",
+    colCode: "Code",
+    colDates: "Dates",
+    colStatus: "Status",
+  },
+};
+
+export default en;
+export type Dictionary = typeof en;

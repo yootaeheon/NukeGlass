@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npm test*)",
+      "Bash(npx tsc *)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git branch*)"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(npm install *)",
+      "Bash(npx vercel *)",
+      "Bash(vercel *)",
+      "Bash(supabase db push*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Edit(./.env)",
+      "Edit(./.env.*)",
+      "Edit(**/.env)",
+      "Edit(**/.env.*)",
+      "Bash(cat *.env*)",
+      "Bash(git push *--force*)",
+      "Bash(git push * -f*)",
+      "Bash(git push * main*)",
+      "Bash(git push * HEAD:main*)",
+      "Bash(git reset --hard*)",
+      "Bash(rm -rf *)",
+      "Bash(vercel --prod*)",
+      "Bash(npx vercel --prod*)",
+      "Bash(vercel deploy --prod*)"
+    ]
+  }
+}

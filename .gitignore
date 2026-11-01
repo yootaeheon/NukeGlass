@@ -1,0 +1,27 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# dependencies / build
+node_modules/
+.next/
+dist/
+build/
+coverage/
+
+# logs / OS
+*.log
+.DS_Store
+Thumbs.db
+
+# next.js / tooling
+/out/
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+*.pem
+supabase/.temp/
+
+# design skill working files
+.taste-skill/
