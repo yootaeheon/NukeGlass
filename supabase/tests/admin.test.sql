@@ -2,7 +2,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 
-select plan(19);
+select plan(31);
 
 -- ---------------------------------------------------------------------------
 -- Fixtures: customer A, operator Z, one Wayfarer device
@@ -68,14 +68,28 @@ select lives_ok(format('select public.admin_set_status(%L, %L)', (select code fr
 select throws_ok(format('select public.admin_set_status(%L, %L)', (select code from codes where n = 1), 'cancelled'),
   'P0001', 'invalid_transition', 'a returned rental cannot be cancelled');
 
+select throws_ok(format('select public.admin_set_status(%L, %L)', (select code from codes where n = 2), 'picked_up'),
+  'P0001', 'invalid_transition', 'requested cannot skip confirmation');
+select throws_ok(format('select public.admin_set_status(%L, %L)', (select code from codes where n = 2), 'cancelled'),
+  '22023', 'reason_required', 'cancelling needs a reason');
+select throws_ok(format('select public.admin_set_status(%L, %L, %L)', (select code from codes where n = 2), 'cancelled', '   '),
+  '22023', 'reason_required', 'a blank reason is not a reason');
 select lives_ok(format('select public.admin_set_status(%L, %L, %L)', (select code from codes where n = 2), 'cancelled', 'No-show'),
   'requested -> cancelled with a reason');
+select throws_ok(format('select public.admin_set_status(%L, %L)', (select code from codes where n = 2), 'confirmed'),
+  'P0001', 'invalid_transition', 'a cancelled booking stays cancelled');
+select throws_ok($$ select public.admin_set_status('ZZZZZZZZ', 'confirmed') $$, 'P0002', 'not_found',
+  'unknown booking codes are reported');
 select is((select count(*)::int from public.admin_reservations('cancelled')), 1, 'the list can be filtered by status');
 
 -- ---------------------------------------------------------------------------
 -- Devices
 -- ---------------------------------------------------------------------------
 select isnt(public.admin_add_device('oakley-meta-vanguard', 'TEST-V1'), null, 'the operator can add a device');
+select throws_ok($$ select public.admin_add_device('oakley-meta-vanguard', 'TEST-V1') $$, '23505', null,
+  'device labels are unique');
+select throws_ok($$ select public.admin_add_device('oakley-meta-vanguard', 'A B!') $$, '22023', 'invalid_label',
+  'labels are letters, digits and hyphens only');
 select lives_ok(
   format('select public.admin_set_device_active(%L, false)', (select id from public.admin_devices() where label = 'TEST-V1')),
   'the operator can retire a device');
@@ -88,6 +102,25 @@ select is(
   (select reason from public.reservation_events e join public.reservations r on r.id = e.reservation_id
     where r.code = (select code from codes where n = 2) and e.to_status = 'cancelled'),
   'No-show', 'the cancellation reason is stored in the status history');
+select is(
+  (select reason from public.reservation_events e join public.reservations r on r.id = e.reservation_id
+    where r.code = (select code from codes where n = 1) and e.to_status = 'returned'),
+  null, 'a reason does not leak into later status changes');
+
+-- ---------------------------------------------------------------------------
+-- Anonymous visitors and the first-operator rule
+-- ---------------------------------------------------------------------------
+select set_config('role', 'anon', true);
+select throws_ok($$ select public.is_admin() $$, '42501', null, 'anonymous visitors cannot call operator functions');
+select throws_ok($$ select * from public.admin_reservations() $$, '42501', null, 'anonymous visitors cannot list reservations');
+reset role;
+
+-- An email/password account with the CEO's address must not become an operator
+insert into auth.users (id, email, raw_app_meta_data, email_confirmed_at)
+values ('00000000-0000-0000-0000-0000000000e1', 'ceo-test@example.com', '{"provider":"email"}', now());
+select is(public.grant_first_admin('ceo-test@example.com'), false, 'only a Google sign-in can become the first operator');
+update auth.users set raw_app_meta_data = '{"provider":"google"}' where id = '00000000-0000-0000-0000-0000000000e1';
+select is(public.grant_first_admin('ceo-test@example.com'), true, 'a verified Google account can become the first operator');
 
 select * from finish();
 rollback;

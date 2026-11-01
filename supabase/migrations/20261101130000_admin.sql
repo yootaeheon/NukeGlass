@@ -16,6 +16,7 @@ revoke all on public.admins from anon, authenticated;
 -- (older Supabase setups, including the local stack, grant everything by default).
 alter default privileges in schema public revoke all on tables from anon, authenticated;
 alter default privileges in schema public revoke all on sequences from anon, authenticated;
+alter default privileges in schema public revoke execute on functions from public, anon, authenticated;
 
 create function public.is_admin()
 returns boolean language sql stable security definer set search_path = '' as $$
@@ -61,6 +62,7 @@ returns table (
   status           public.reservation_status,
   model_slug       text,
   device_label     text,
+  device_active    boolean,
   start_date       date,
   end_date         date,
   pickup_location  text,
@@ -76,7 +78,7 @@ language plpgsql stable security definer set search_path = '' as $$
 begin
   perform public.assert_admin();
   return query
-    select r.code, r.status, r.model_slug, d.label, r.start_date, r.end_date, r.pickup_location, r.pickup_slot,
+    select r.code, r.status, r.model_slug, d.label, d.active, r.start_date, r.end_date, r.pickup_location, r.pickup_slot,
            r.total_usd, r.contact_name, r.contact_channel, r.contact_value, u.email::text, r.created_at
       from public.reservations r
       join public.devices d on d.id = r.device_id
@@ -113,6 +115,11 @@ begin
     raise exception 'invalid_transition' using errcode = 'P0001';
   end if;
 
+  -- Refunds depend on why a booking was cancelled (rental terms), so a reason is required.
+  if p_to = 'cancelled' and nullif(trim(coalesce(p_reason, '')), '') is null then
+    raise exception 'reason_required' using errcode = '22023';
+  end if;
+
   perform set_config('app.status_reason', coalesce(left(p_reason, 300), ''), true);
   update public.reservations set status = p_to where code = p_code;
   perform set_config('app.status_reason', '', true);
@@ -141,8 +148,11 @@ declare
   v_id uuid;
 begin
   perform public.assert_admin();
-  if char_length(trim(p_label)) not between 1 and 40 then
+  if p_label is null or trim(p_label) !~ '^[A-Za-z0-9-]{1,40}$' then
     raise exception 'invalid_label' using errcode = '22023';
+  end if;
+  if not exists (select 1 from public.glasses_models where slug = p_model_slug and active) then
+    raise exception 'unknown_model' using errcode = '22023';
   end if;
   insert into public.devices (model_slug, label) values (p_model_slug, upper(trim(p_label))) returning id into v_id;
   return v_id;
@@ -178,8 +188,29 @@ grant execute on function public.admin_add_device(text, text) to authenticated;
 grant execute on function public.admin_set_device_active(uuid, boolean) to authenticated;
 
 -- ---------------------------------------------------------------------------
--- First operator: the CEO's account (no-op where that account does not exist, e.g. locally)
+-- First operator
 -- ---------------------------------------------------------------------------
-insert into public.admins (user_id)
-select id from auth.users where email = 'yootaeheon00@gmail.com'
-on conflict do nothing;
+-- Only a verified Google sign-in qualifies: an email/password account created with the
+-- same address must never become an operator. Returns whether the account was found.
+-- If no operator exists yet (the CEO had not signed in when this ran), sign in with Google
+-- once and run: select public.grant_first_admin('<email>');  (SQL editor, as owner)
+create function public.grant_first_admin(p_email text)
+returns boolean
+language plpgsql security definer set search_path = '' as $$
+declare
+  v_id uuid;
+begin
+  select id into v_id from auth.users
+   where lower(email) = lower(p_email)
+     and email_confirmed_at is not null
+     and raw_app_meta_data ->> 'provider' = 'google';
+  if v_id is null then
+    return false;
+  end if;
+  insert into public.admins (user_id) values (v_id) on conflict do nothing;
+  return true;
+end $$;
+
+revoke all on function public.grant_first_admin(text) from public, anon, authenticated;
+
+select public.grant_first_admin('yootaeheon00@gmail.com');

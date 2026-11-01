@@ -38,12 +38,14 @@ export async function setStatus(formData: FormData): Promise<void> {
   const to = str(formData, "to");
   const reason = str(formData, "reason").slice(0, 300);
   if (!/^[A-Z0-9]{8}$/.test(code) || !(STATUSES as readonly string[]).includes(to)) done(path, "invalid");
+  if (to === "cancelled" && !reason) done(path, "reason_required");
 
   const supabase = await client();
   const { error } = await supabase.rpc("admin_set_status", { p_code: code, p_to: to, p_reason: reason || null });
   if (error) {
     console.error("admin_set_status failed", { code: error.code, message: error.message });
-    done(path, error.message === "invalid_transition" ? "invalid_transition" : "error");
+    const known = ["invalid_transition", "reason_required", "not_found"];
+    done(path, known.includes(error.message) ? error.message : "error");
   }
   done(path, `status:${to}`);
 }

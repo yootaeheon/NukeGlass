@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { GLASSES, getGlasses, getPickupLocation } from "@/lib/glasses";
+import { addDays, seoulToday } from "@/lib/booking";
 import { localePath } from "@/i18n/config";
 import { formatSeoulDate } from "@/i18n/format";
 import { resolveLang } from "@/i18n/server";
@@ -17,6 +18,7 @@ type Row = {
   status: Status;
   model_slug: string;
   device_label: string;
+  device_active: boolean;
   start_date: string;
   end_date: string;
   pickup_location: string;
@@ -50,22 +52,41 @@ const MESSAGES: Record<string, string> = {
   device_off: "기기를 사용 중지했습니다. 이미 잡힌 예약은 그대로 남습니다.",
   duplicate_device: "같은 라벨의 기기가 이미 있습니다.",
   invalid_device: "모델을 고르고 라벨은 영문·숫자·하이픈 40자 이내로 입력해 주세요.",
+  reason_required: "취소하려면 사유를 입력해 주세요. 환불 기준이 사유에 따라 달라집니다.",
+  not_found: "예약을 찾을 수 없습니다.",
   invalid: "잘못된 요청입니다.",
   error: "처리하지 못했습니다. 잠시 후 다시 시도해 주세요.",
 };
 
 const btn = "btn !min-h-11 px-4 text-small";
 
-function StatusButton({ lang, code, to, label, tone = "primary" }: { lang: string; code: string; to: Status; label: string; tone?: "primary" | "plain" }) {
+function StatusForm({ lang, code, to, label }: { lang: string; code: string; to: Status; label: string }) {
   return (
     <form action={setStatus}>
       <input type="hidden" name="lang" value={lang} />
       <input type="hidden" name="code" value={code} />
       <input type="hidden" name="to" value={to} />
-      <button type="submit" className={`${btn} ${tone === "primary" ? "btn-primary" : "border border-line bg-bg hover:bg-surface"}`}>
+      <button type="submit" aria-label={`${code} ${label}`} className={`${btn} btn-primary`}>
         {label}
       </button>
     </form>
+  );
+}
+
+/** Pick-up and return cannot be undone, so they need a second click. */
+function ConfirmStatus({ lang, code, to, label, note }: { lang: string; code: string; to: Status; label: string; note: string }) {
+  return (
+    <details>
+      <summary className={`${btn} btn-primary cursor-pointer list-none`} aria-label={`${code} ${label}`}>
+        {label}
+      </summary>
+      <div className="mt-2 bg-bg p-3">
+        <p className="text-small text-muted">{note} 되돌릴 수 없습니다.</p>
+        <div className="mt-2">
+          <StatusForm lang={lang} code={code} to={to} label={`${label} 확인`} />
+        </div>
+      </div>
+    </details>
   );
 }
 
@@ -98,6 +119,11 @@ function ReservationCard({ r, actions }: { r: Row; actions: React.ReactNode }) {
         <p className="nums text-lead font-semibold tracking-[0.04em]">{r.code}</p>
         <p className="nums text-small text-muted">${r.total_usd}</p>
       </div>
+      {!r.device_active && (r.status === "requested" || r.status === "confirmed") && (
+        <p className="mt-2 text-small text-danger">
+          배정된 기기 {r.device_label}이(가) 사용 중지 상태입니다. 같은 모델 기기를 준비하거나 고객과 일정을 다시 잡아 주세요.
+        </p>
+      )}
       <dl className="mt-3 grid gap-x-6 gap-y-2 text-small sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <dt className="text-muted">글래스 · 기기</dt>
@@ -163,7 +189,12 @@ export default async function AdminPage({ params, searchParams }: PageProps<"/[l
   const rows = (rowsData ?? []) as Row[];
   const devices = (devicesData ?? []) as Device[];
   const by = (s: Status) => rows.filter((r) => r.status === s);
-  const past = rows.filter((r) => r.status === "returned" || r.status === "cancelled").reverse();
+  // Past bookings: last 90 days only, to keep customer details out of view once they are no longer needed.
+  const cutoff = addDays(seoulToday(), -90);
+  const past = rows
+    .filter((r) => (r.status === "returned" || r.status === "cancelled") && r.end_date >= cutoff)
+    .reverse();
+  const loadFailed = Boolean(rowsError || devicesError);
 
   return (
     <div lang="ko" className="mx-auto max-w-[1440px] px-margin py-12 lg:py-16">
@@ -175,11 +206,12 @@ export default async function AdminPage({ params, searchParams }: PageProps<"/[l
           {msg}
         </p>
       )}
-      {(rowsError || devicesError) && (
+      {loadFailed ? (
         <p role="alert" className="mt-6 text-danger">
           데이터를 불러오지 못했습니다. 새로고침해 주세요.
         </p>
-      )}
+      ) : (
+        <>
 
       <Section title="확정 대기" count={by("requested").length}>
         {by("requested").map((r) => (
@@ -188,7 +220,7 @@ export default async function AdminPage({ params, searchParams }: PageProps<"/[l
             r={r}
             actions={
               <>
-                <StatusButton lang={lang} code={r.code} to="confirmed" label="확정" />
+                <StatusForm lang={lang} code={r.code} to="confirmed" label="확정" />
                 <CancelForm lang={lang} code={r.code} label="거절" />
               </>
             }
@@ -203,7 +235,7 @@ export default async function AdminPage({ params, searchParams }: PageProps<"/[l
             r={r}
             actions={
               <>
-                <StatusButton lang={lang} code={r.code} to="picked_up" label="수령 처리" />
+                <ConfirmStatus lang={lang} code={r.code} to="picked_up" label="수령 처리" note="고객에게 글래스를 건넸고 보증금을 받았을 때 누르세요." />
                 <CancelForm lang={lang} code={r.code} label="취소·노쇼" />
               </>
             }
@@ -216,14 +248,14 @@ export default async function AdminPage({ params, searchParams }: PageProps<"/[l
           <ReservationCard
             key={r.code}
             r={r}
-            actions={<StatusButton lang={lang} code={r.code} to="returned" label="반납 처리" />}
+            actions={<ConfirmStatus lang={lang} code={r.code} to="returned" label="반납 처리" note="글래스·케이스·케이블 상태를 확인한 뒤 누르세요." />}
           />
         ))}
       </Section>
 
       <section className="mt-12" aria-label="지난 예약">
         <h2 className="text-lead font-medium">
-          지난 예약 <span className="nums text-muted">({past.length})</span>
+          지난 예약 (최근 90일) <span className="nums text-muted">({past.length})</span>
         </h2>
         {past.length > 0 && (
           <div className="mt-4 overflow-x-auto" tabIndex={0} role="region" aria-label="지난 예약 표">
@@ -282,7 +314,7 @@ export default async function AdminPage({ params, searchParams }: PageProps<"/[l
                       <input type="hidden" name="lang" value={lang} />
                       <input type="hidden" name="id" value={d.id} />
                       <input type="hidden" name="active" value={d.active ? "false" : "true"} />
-                      <button type="submit" className="link min-h-11">
+                      <button type="submit" aria-label={`${d.label} ${d.active ? "사용 중지" : "다시 사용"}`} className="link min-h-11">
                         {d.active ? "사용 중지" : "다시 사용"}
                       </button>
                     </form>
@@ -314,6 +346,8 @@ export default async function AdminPage({ params, searchParams }: PageProps<"/[l
           </button>
         </form>
       </section>
+        </>
+      )}
     </div>
   );
 }
