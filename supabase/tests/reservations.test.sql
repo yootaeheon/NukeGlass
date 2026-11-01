@@ -3,7 +3,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 
-select plan(15);
+select plan(18);
 
 -- ---------------------------------------------------------------------------
 -- Fixtures: two customers, one Wayfarer device
@@ -54,7 +54,14 @@ select isnt(pg_temp.book('ray-ban-meta-wayfarer', pg_temp.day(14), pg_temp.day(1
 -- ---------------------------------------------------------------------------
 select is((select count(*)::int from public.reservations), 1, 'B sees only B''s reservation');
 
-select is((select count(*)::int from public.devices), 0, 'customers cannot read devices');
+select throws_ok($$ select count(*) from public.devices $$, '42501', null, 'customers cannot read devices at all');
+
+select throws_ok(
+  $$ insert into public.reservations (code, user_id, model_slug, device_id, start_date, end_date, start_at, end_at,
+       blocked_until, pickup_location, pickup_slot, daily_usd, total_usd, contact_name, contact_channel, contact_value)
+     values ('HACK0001', auth.uid(), 'ray-ban-meta-wayfarer', gen_random_uuid(), current_date, current_date, now(),
+       now() + interval '1 day', now() + interval '2 days', 'icn-t1', '10:00', 1, 1, 'x', 'email', 'x@x.co') $$,
+  '42501', null, 'customers cannot insert reservations directly (only through the RPC)');
 
 -- ---------------------------------------------------------------------------
 -- Cancelling
@@ -91,14 +98,16 @@ select is(
   (select total_usd from public.reservations where start_date = pg_temp.day(50)),
   162, '7 days at $29 with the 20% long-stay discount is $162 (same as totalPriceUsd)');
 
-select is(
-  (select count(*)::int from public.reservation_events),
-  0, 'customers cannot read the status history');
+select throws_ok($$ select count(*) from public.reservation_events $$, '42501', null,
+  'customers cannot read the status history');
 
 -- ---------------------------------------------------------------------------
 -- Anonymous visitors
 -- ---------------------------------------------------------------------------
 select set_config('role', 'anon', true);
+select throws_ok($$ select count(*) from public.reservations $$, '42501', null,
+  'anonymous visitors cannot read reservations');
+select is((select count(*)::int from public.glasses_models), 5, 'anonymous visitors can read the catalog');
 select throws_ok(
   $$ select pg_temp.book('ray-ban-meta-wayfarer', pg_temp.day(60), pg_temp.day(61)) $$,
   '42501', null, 'anonymous visitors cannot request reservations');
