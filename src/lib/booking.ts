@@ -70,30 +70,15 @@ export function validateBookingDates(start: string, end: string, now: Date = new
   return { ok: true, days };
 }
 
-export const DATE_ERROR_MESSAGES: Record<DateError, string> = {
-  invalid_date: "Choose a pick-up date and a return date.",
-  end_before_start: "The return date has to be on or after the pick-up date.",
-  too_soon: `Pick-up has to be at least ${BOOKING_RULES.leadDays} days from today (Seoul time).`,
-  too_far: `You can book up to ${BOOKING_RULES.horizonDays} days ahead.`,
-  too_long: `The longest rental is ${BOOKING_RULES.maxDays} days.`,
-};
-
-export function totalPriceUsd(dailyUsd: number, start: string, end: string): number {
-  return dailyUsd * rentalDays(start, end);
+/** Long-stay discount (draft rental terms): 4–6 days 10%, 7+ days 20%. Mirrors request_reservation in SQL. */
+export function discountPct(days: number): number {
+  if (days >= 7) return 20;
+  if (days >= 4) return 10;
+  return 0;
 }
 
-const KST_DATE_FMT = new Intl.DateTimeFormat("en-GB", {
-  timeZone: "Asia/Seoul",
-  weekday: "short",
-  day: "numeric",
-  month: "short",
-  year: "numeric",
-});
-
-/** "Wed 4 Nov 2026" for a Seoul calendar date. */
-export function formatSeoulDate(date: string): string {
-  const ms = parseDate(date);
-  if (ms === null) return date;
-  // noon KST keeps the formatted day stable
-  return KST_DATE_FMT.format(new Date(ms + 3 * 3_600_000)).replace(",", "");
+/** Whole US dollars, discount applied. */
+export function totalPriceUsd(dailyUsd: number, start: string, end: string): number {
+  const days = rentalDays(start, end);
+  return Math.round((dailyUsd * days * (100 - discountPct(days))) / 100);
 }

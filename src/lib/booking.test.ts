@@ -3,6 +3,7 @@ import {
   BOOKING_RULES,
   rentalDays,
   seoulToday,
+  discountPct,
   totalPriceUsd,
   validateBookingDates,
 } from "./booking";
@@ -61,8 +62,20 @@ describe("validateBookingDates", () => {
   });
 });
 
+describe("discountPct", () => {
+  it("gives 10% for 4–6 days and 20% from 7 days", () => {
+    expect([1, 3, 4, 6, 7, 14].map(discountPct)).toEqual([0, 0, 10, 10, 20, 20]);
+  });
+});
+
 describe("totalPriceUsd", () => {
   it("multiplies the daily rate by inclusive days", () => {
     expect(totalPriceUsd(29, "2026-11-04", "2026-11-06")).toBe(87);
+  });
+
+  it("applies the long-stay discount and rounds to whole dollars", () => {
+    expect(totalPriceUsd(29, "2026-11-04", "2026-11-07")).toBe(104); // 116 × 0.9 = 104.4
+    expect(totalPriceUsd(29, "2026-11-04", "2026-11-10")).toBe(162); // 203 × 0.8 = 162.4
+    expect(totalPriceUsd(35, "2026-11-04", "2026-11-17")).toBe(392); // 490 × 0.8
   });
 });

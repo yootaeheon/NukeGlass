@@ -111,7 +111,46 @@ a {
     text-wrap: balance;
   }
 
-  .ko {
+  /* CJK pages: Newsreader and Hanken have no CJK glyphs, so set system fallbacks per language
+   (no web font download) and relax the tight Latin display settings. */
+:root:lang(ja) {
+  --font-display: var(--font-newsreader), "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+  --font-sans: var(--font-hanken), "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif;
+}
+:root:lang(zh-Hans) {
+  --font-display: var(--font-newsreader), "Songti SC", "SimSun", serif;
+  --font-sans: var(--font-hanken), "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+:root:lang(zh-Hant) {
+  --font-display: var(--font-newsreader), "Songti TC", "PMingLiU", serif;
+  --font-sans: var(--font-hanken), "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
+:root:lang(ko) {
+  --font-display: var(--font-newsreader), "AppleMyungjo", "Batang", serif;
+  --font-sans: var(--font-hanken), var(--font-noto-kr), "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+:root:lang(ja) .display,
+:root:lang(ja) .head,
+:root:lang(zh-Hans) .display,
+:root:lang(zh-Hans) .head,
+:root:lang(zh-Hant) .display,
+:root:lang(zh-Hant) .head,
+:root:lang(ko) .display,
+:root:lang(ko) .head {
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+:root:lang(ja),
+:root:lang(zh-Hans),
+:root:lang(zh-Hant) {
+  line-break: strict;
+}
+:root:lang(ko) {
+  word-break: keep-all;
+}
+
+.ko {
     font-family: var(--font-ko);
     font-weight: 500;
     letter-spacing: 0;

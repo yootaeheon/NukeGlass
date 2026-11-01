@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseBookingForm, reservationErrorMessage } from "./booking-form";
+import { errorVars, parseBookingForm, reservationErrorCode } from "./booking-form";
 
 const NOW = new Date("2026-11-01T03:00:00Z"); // 12:00 KST
 
@@ -33,12 +33,13 @@ describe("parseBookingForm", () => {
 
   it("reports date problems on the dates field", () => {
     const r = parseBookingForm(form({ start: "2026-11-01" }), NOW);
-    expect(r).toMatchObject({ ok: false, errors: { dates: expect.stringContaining("at least") } });
+    expect(r).toMatchObject({ ok: false, errors: { dates: "too_soon" } });
+    expect(errorVars("too_soon")).toEqual({ n: 2 });
   });
 
   it("requires consent", () => {
     const r = parseBookingForm(form({ consent: undefined }), NOW);
-    expect(r).toMatchObject({ ok: false, errors: { consent: expect.any(String) } });
+    expect(r).toMatchObject({ ok: false, errors: { consent: "consent" } });
   });
 
   it("checks the contact format per channel", () => {
@@ -54,10 +55,11 @@ describe("parseBookingForm", () => {
   });
 });
 
-describe("reservationErrorMessage", () => {
-  it("explains sold-out dates and hides unknown errors", () => {
-    expect(reservationErrorMessage("sold_out")).toMatch(/fully booked/);
-    expect(reservationErrorMessage("too_many_requests")).toMatch(/two booking requests/);
-    expect(reservationErrorMessage("duplicate key value violates unique constraint")).toMatch(/could not save/);
+describe("reservationErrorCode", () => {
+  it("passes known RPC errors through and hides unknown ones", () => {
+    expect(reservationErrorCode("sold_out")).toBe("sold_out");
+    expect(reservationErrorCode("too_many_requests")).toBe("too_many_requests");
+    expect(reservationErrorCode("duplicate key value violates unique constraint")).toBe("generic");
+    expect(reservationErrorCode(undefined)).toBe("generic");
   });
 });
