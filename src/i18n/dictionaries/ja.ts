@@ -21,11 +21,14 @@ const ja: Dictionary = {
     about:
       "韓国を訪れる方のためのAIグラス。仁川空港で受け取り・返却。このサイトの日時はすべてソウル時間（KST）です。",
     trademark: "Ray-Ban、Oakley、Metaは各社の商標です。NukeGlassは独立したレンタルサービスです。",
+    explore: "見る",
+    help: "サポート",
+    credits: "写真クレジット",
+    illustrative: "製品・シーン画像のグラスと人物はイメージです。",
   },
   common: {
     perDay: "1日 ${price}",
     aDay: "1日 ${price}",
-    lineDrawing: "{name}の線画",
     kst: "日時はすべてソウル時間（KST）です。",
   },
   hero: {
@@ -36,6 +39,9 @@ const ja: Dictionary = {
     cta: "グラスを選ぶ",
     pause: "一時停止",
     play: "再生",
+    see: "見ているもの",
+    hear: "聞こえる答え",
+    scene: "シーン {n} を表示",
     srDescription:
       "ソウルを旅する人の例：景福宮、食堂、カフェ、北村の路地で、看板やメニューについて質問し、道案内を聞いています。",
     scenes: [
@@ -117,6 +123,20 @@ const ja: Dictionary = {
     closingA: "最初の看板が、",
     closingB: "待っています。",
     closingBody: "今日予約して仁川空港で受け取れば、到着した午後からソウルが読めます。",
+    lineupTitle: "あなたの一本を。",
+    lineupBody: "Ray-Ban MetaとOakley Metaから5つのフレーム。AIは同じ、似合う顔はそれぞれ。",
+    compare: "5モデルを比較",
+    bandLine: "メニューも看板も、耳もとで。",
+    bandBody: "7時の広蔵市場、9時の王宮、最終電車まで。歩きながら聞くだけ。",
+    calcTitle: "旅の料金を計算",
+    calcBody: "グラスと日数を選んでください。受け取り日と返却日も含みます。",
+    calcGlasses: "グラス",
+    calcDays: "日数",
+    calcTotal: "合計",
+    calcSave: "長期割引で${n}お得です。",
+    calcNoSave: "4日以上で10%割引になります。",
+    calcPerDay: "1日あたり平均${n}",
+    calcBook: "このグラスを予約",
   },
   glassesPage: {
     metaTitle: "5種類のグラス",

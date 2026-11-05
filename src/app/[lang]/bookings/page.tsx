@@ -43,7 +43,7 @@ export default async function BookingsPage({ params, searchParams }: PageProps<"
   if (!supabase) {
     return (
       <div className="mx-auto max-w-[1440px] px-margin py-16 lg:py-24">
-        <h1 className="head text-title">{t.title}</h1>
+        <h1 className="display text-[clamp(2.5rem,1.6rem+3vw,4.5rem)]">{t.title}</h1>
         <p className="mt-4 text-muted">{t.notOpen}</p>
       </div>
     );
@@ -66,7 +66,7 @@ export default async function BookingsPage({ params, searchParams }: PageProps<"
   return (
     <div className="mx-auto max-w-[1440px] px-margin py-12 lg:py-16">
       <div className="flex flex-wrap items-baseline justify-between gap-4">
-        <h1 className="head text-title">{t.title}</h1>
+        <h1 className="display text-[clamp(2.5rem,1.6rem+3vw,4.5rem)]">{t.title}</h1>
         <form action={signOut}>
           <button type="submit" className="link min-h-12">
             {t.signOut}

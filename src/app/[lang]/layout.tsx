@@ -70,7 +70,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
           {dict.nav.skip}
         </a>
         <SiteHeader lang={lang} nav={dict.nav} />
-        <main id="main" className="flex-1">
+        <main id="main" className="flex-1 pt-16 lg:pt-[72px]">
           {children}
         </main>
         <SiteFooter lang={lang} dict={dict} />
