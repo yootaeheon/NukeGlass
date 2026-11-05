@@ -18,7 +18,11 @@ export function ProductRail({ lang, dict, items = GLASSES }: { lang: Locale; dic
           style={{ "--d": `${i * 70}ms` } as React.CSSProperties}
         >
           <Link href={localePath(lang, `/glasses/${g.slug}`)} className="zoom group block">
-            <span className="relative block aspect-[4/3] overflow-hidden bg-product">
+            <span
+              className={`relative block overflow-hidden bg-product ${
+                i === 0 && items.length % 2 === 1 ? "aspect-[16/9] lg:aspect-[4/3]" : "aspect-[4/3]"
+              }`}
+            >
               <Image
                 src={PRODUCT_IMAGES[g.slug].src}
                 alt={g.name}
