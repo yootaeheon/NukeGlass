@@ -21,6 +21,15 @@ const commons = (file: string, width: number, height: number, title: string, by:
 });
 
 export const PHOTOS = {
+  throneHall: commons(
+    "gyeongbokgung-palace-geunjeongjeon-hall",
+    1920,
+    1280,
+    "Geunjeongjeon, Gyeongbokgung Palace",
+    "Brady Bellini",
+    "CC0",
+    "https://commons.wikimedia.org/wiki/File:Gyeongbokgung(palace)_Geunjeongjeon(hall).jpg",
+  ),
   palace: commons(
     "gyeonghoeru-royal-banquet-hall-at-gyeongbokgung-palace",
     1920,

@@ -13,7 +13,7 @@ const SIGNS = [
   { ko: "관람 시간 09:00–18:00", photo: PHOTOS.dancheong },
   { ko: "된장찌개", photo: PHOTOS.jeon },
   { ko: "갈아타는 곳", photo: PHOTOS.platform },
-  { ko: "주문은 카운터에서", photo: PHOTOS.insadong },
+  { ko: "주문은 카운터에서", photo: PHOTOS.myeongdong },
 ];
 
 // Without JS every pair stays readable: the meaning is in the markup, only hidden after hydration.

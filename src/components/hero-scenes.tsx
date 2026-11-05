@@ -12,9 +12,9 @@ import { PHOTOS } from "@/lib/media";
 // sees and types out the kind of answer they hear. Lines only say what the sign says;
 // Meta AI Korean support is still to be checked on a real pair.
 const SCENES = [
-  { ko: "근정전", photo: PHOTOS.palace },
+  { ko: "근정전", photo: PHOTOS.throneHall },
   { ko: "된장찌개 9,000원", photo: PHOTOS.market },
-  { ko: "아이스 아메리카노", photo: PHOTOS.myeongdong },
+  { ko: "아이스 아메리카노", photo: PHOTOS.insadong },
   { ko: "북촌로", photo: PHOTOS.bukchon },
 ];
 

@@ -82,7 +82,7 @@ export function PriceCalculator({ lang, dict }: { lang: Locale; dict: Dictionary
         <div className="mt-8 bg-surface p-6" aria-live="polite">
           <p className="text-small text-muted">{t.calcTotal}</p>
           <p className="nums head mt-1 text-[clamp(3rem,2rem+4vw,5.5rem)] leading-none">
-            ${sum}
+            <span key={sum} className="inline-block animate-[fade_360ms_var(--ease-out)_both] motion-reduce:animate-none">${sum}</span>
             {pct > 0 && <span className="ml-3 align-middle text-lead font-medium text-accent">−{pct}%</span>}
           </p>
           <p className="mt-3 text-ink">{fmt(t.calcPerDay, { n: (sum / days).toFixed(days > 1 && sum % days ? 2 : 0) })}</p>

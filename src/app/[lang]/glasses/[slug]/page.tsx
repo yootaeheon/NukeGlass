@@ -59,7 +59,7 @@ export default async function GlassesDetail({ params }: PageProps<"/[lang]/glass
         <div className="lg:col-span-4 lg:pt-6">
           <div className="lg:sticky lg:top-28">
             <h1 id="name" className="head text-[clamp(2.25rem,1.6rem+2vw,3.5rem)]" data-reveal>
-              {g.name}
+              {g.name.replace(/ \(Gen 2\)$/, "")}
             </h1>
             <p className="mt-4 text-lead" data-reveal style={d(120)}>
               {c.tagline}
