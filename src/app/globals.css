@@ -34,6 +34,9 @@
   --dur-enter: 640ms;
 }
 
+/* Wide and tall enough for the hero lens panel to float beside the headline */
+@custom-variant tall (@media (min-width: 1024px) and (min-height: 780px));
+
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
@@ -77,6 +80,13 @@
 
 .hero-title {
   font-size: var(--step-hero);
+}
+
+/* The wordmark stays in the Latin serif in every language */
+.brand-mark {
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
 }
 
 html {
@@ -391,7 +401,8 @@ details[open] .answer {
 
 @media (prefers-reduced-motion: reduce) {
   .drift,
-  .marquee {
+  .marquee,
+  details[open] .answer {
     animation: none;
   }
   :where(.reveal-ready [data-reveal="media"]) img,

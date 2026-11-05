@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { localePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/en";
-import { PHOTO_CREDITS } from "@/lib/media";
+import { LICENCE_URLS, PHOTO_CREDITS } from "@/lib/media";
 
 // Contact channel is a placeholder until the CEO picks one (WhatsApp / email / KakaoTalk).
 export function SiteFooter({ lang, dict }: { lang: Locale; dict: Dictionary }) {
@@ -31,12 +31,8 @@ export function SiteFooter({ lang, dict }: { lang: Locale; dict: Dictionary }) {
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="max-w-[44ch] text-lead">{f.about}</p>
-            <a
-              href="mailto:hello@nukeglass.example"
-              className="mt-8 inline-flex min-h-12 items-center text-lead underline decoration-white/40 underline-offset-4 hover:decoration-white"
-            >
-              hello@nukeglass.example
-            </a>
+            {/* Placeholder until the contact channel is chosen: not a link, so no mail goes nowhere */}
+            <p className="mt-8 text-lead">hello@nukeglass.example</p>
           </div>
           {columns.map((c) => (
             <nav key={c.title} aria-label={c.title} className="lg:col-span-2 lg:first-of-type:col-start-8">
@@ -54,7 +50,7 @@ export function SiteFooter({ lang, dict }: { lang: Locale; dict: Dictionary }) {
           ))}
         </div>
 
-        <p aria-hidden="true" className="head mt-24 select-none whitespace-nowrap text-[clamp(3.5rem,19.5vw,18rem)] leading-[0.8] tracking-[-0.04em]">
+        <p aria-hidden="true" className="brand-mark mt-24 select-none whitespace-nowrap text-[clamp(3.5rem,19.5vw,18rem)] leading-[0.8] tracking-[-0.04em]">
           NukeGlass
         </p>
 
@@ -65,13 +61,17 @@ export function SiteFooter({ lang, dict }: { lang: Locale; dict: Dictionary }) {
           </div>
           <details className="max-w-[640px]">
             <summary className="inline-flex min-h-11 items-center underline">{f.credits}</summary>
+            <p className="mt-2">{f.modified}</p>
             <ul className="mt-2 space-y-1">
               {PHOTO_CREDITS.map((c) => (
                 <li key={c.page}>
                   <a href={c.page} className="hover:underline" rel="noopener noreferrer">
                     {c.title}
                   </a>{" "}
-                  · {c.by} · {c.licence}
+                  · {c.by} ·{" "}
+                  <a href={LICENCE_URLS[c.licence]} className="hover:underline" rel="noopener noreferrer">
+                    {c.licence}
+                  </a>
                 </li>
               ))}
             </ul>

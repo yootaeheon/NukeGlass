@@ -140,4 +140,9 @@ export const PRODUCT_IMAGES: Record<GlassesSlug, Photo> = {
   "oakley-meta-vanguard": { src: "/products/oakley-meta-vanguard.jpg", width: 1536, height: 1024 },
 };
 
+export const LICENCE_URLS: Record<string, string> = {
+  CC0: "https://creativecommons.org/publicdomain/zero/1.0/",
+  "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
+};
+
 export const PHOTO_CREDITS = Object.values(PHOTOS).flatMap((p) => (p.credit ? [p.credit] : []));

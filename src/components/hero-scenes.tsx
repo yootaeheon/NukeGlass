@@ -39,6 +39,8 @@ export function HeroScenes({
 }) {
   const [index, setIndex] = useState(0);
   const [typed, setTyped] = useState(0);
+  // The scene being faded out; null on first paint so only two photos load at first
+  const [prev, setPrev] = useState<number | null>(null);
   const reduceMotion = useSyncExternalStore(
     subscribeReducedMotion,
     () => window.matchMedia(REDUCE_QUERY).matches,
@@ -52,12 +54,14 @@ export function HeroScenes({
 
   const scene = { ...SCENES[index], ...t.scenes[index] };
   const answer = scene.heard;
-  const shown = reduceMotion ? answer.length : typed;
+  // Paused or reduced motion: show the whole answer, no typing
+  const shown = reduceMotion || !wantsPlay ? answer.length : typed;
 
   useEffect(() => {
     if (!playing) return;
     const id = window.setTimeout(() => {
-      setIndex((i) => (i + 1) % SCENES.length);
+      setPrev(index);
+      setIndex((index + 1) % SCENES.length);
       setTyped(0);
     }, SCENE_MS);
     return () => window.clearTimeout(id);
@@ -81,6 +85,7 @@ export function HeroScenes({
   }, []);
 
   const go = (i: number) => {
+    setPrev(index);
     setIndex(i);
     setTyped(0);
   };
@@ -93,12 +98,8 @@ export function HeroScenes({
       {/* The places, crossfading with a slow drift */}
       <div aria-hidden="true" className="absolute inset-0">
         {SCENES.map((s, i) => {
-          // Only the current scene and its neighbours are mounted: the outgoing one
-          // finishes its fade, the next one is decoded before it is needed.
-          const near =
-            i === index ||
-            i === (index + 1) % SCENES.length ||
-            i === (index + SCENES.length - 1) % SCENES.length;
+          // Only the current scene, the one fading out and the next one are mounted
+          const near = i === index || i === prev || i === (index + 1) % SCENES.length;
           if (!near) return null;
           return (
             <div
@@ -126,7 +127,7 @@ export function HeroScenes({
         <div
           data-ui
           aria-live="off"
-          className="w-full max-w-[420px] self-end bg-[rgba(18,20,22,0.72)] p-5 sm:p-6 lg:absolute lg:right-[var(--margin)] lg:top-[22%]"
+          className="w-full max-w-[420px] self-end bg-[rgba(18,20,22,0.72)] p-5 sm:p-6 tall:absolute tall:right-[var(--margin)] tall:top-[22%]"
         >
           <p className="flex items-center justify-between text-small text-field-dark-muted">
             <span>{t.see}</span>
@@ -224,7 +225,7 @@ export function HeroScenes({
                           : "text-white/60 group-hover:text-white"
                       }`}
                     >
-                      {t.scenes[i].place.split(",")[0]}
+                      {t.scenes[i].place.split(/[,，、]/)[0]}
                     </span>
                   </button>
                 </li>

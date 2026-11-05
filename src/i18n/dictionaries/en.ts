@@ -25,6 +25,7 @@ const en = {
     explore: "Explore",
     help: "Help",
     credits: "Photo credits",
+    modified: "Photos are cropped and resized for this site.",
     illustrative: "Glasses and people shown in product and scene images are illustrations.",
   },
   common: {
@@ -48,7 +49,7 @@ const en = {
     scenes: [
       { place: "Gyeongbokgung Palace, 9:40 am", heard: "“Geunjeongjeon, the throne hall of the palace.”" },
       { place: "A local restaurant, Jongno", heard: "“Doenjang-jjigae, soybean paste stew. 9,000 won.”" },
-      { place: "A café in Seongsu", heard: "“Iced Americano.”" },
+      { place: "A café in Insadong", heard: "“Iced Americano.”" },
       { place: "An alley in Bukchon, your map app speaking", heard: "Walking directions from your phone, in your ear." },
     ],
   },

@@ -23,6 +23,7 @@ const ko: Dictionary = {
     explore: "둘러보기",
     help: "도움말",
     credits: "사진 출처",
+    modified: "사진은 사이트에 맞게 자르고 크기를 줄였습니다.",
     illustrative: "제품·장면 이미지 속 글래스와 인물은 연출 이미지입니다.",
   },
   common: {
@@ -45,7 +46,7 @@ const ko: Dictionary = {
     scenes: [
       { place: "경복궁, 오전 9시 40분", heard: "“Geunjeongjeon, the throne hall of the palace.”" },
       { place: "종로의 동네 식당", heard: "“Doenjang-jjigae, soybean paste stew. 9,000 won.”" },
-      { place: "성수동 카페", heard: "“Iced Americano.”" },
+      { place: "인사동 카페", heard: "“Iced Americano.”" },
       { place: "북촌 골목, 지도 앱 안내 중", heard: "휴대폰의 도보 안내가 귓가에 들립니다." },
     ],
   },

@@ -10,8 +10,16 @@ import { BOOKING_RULES, discountPct, priceForDays } from "@/lib/booking";
 import { GLASSES } from "@/lib/glasses";
 import { PRODUCT_IMAGES } from "@/lib/media";
 
-export function PriceCalculator({ lang, dict }: { lang: Locale; dict: Dictionary }) {
-  const t = dict.home;
+// Takes only the strings it shows, so the rest of the dictionary stays out of the client bundle
+export function PriceCalculator({
+  lang,
+  t,
+  dayLabels,
+}: {
+  lang: Locale;
+  t: Dictionary["home"];
+  dayLabels: Pick<Dictionary["book"], "day" | "days">;
+}) {
   const [slug, setSlug] = useState(GLASSES[0].slug);
   const [days, setDays] = useState(5);
   const g = GLASSES.find((x) => x.slug === slug) ?? GLASSES[0];
@@ -29,7 +37,7 @@ export function PriceCalculator({ lang, dict }: { lang: Locale; dict: Dictionary
             alt={x.slug === slug ? x.name : ""}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
-            className={`object-cover transition-[opacity,transform] duration-700 ease-[var(--ease-out)] ${
+            className={`object-cover transition-[opacity,transform] duration-700 motion-reduce:transition-none ease-[var(--ease-out)] ${
               x.slug === slug ? "scale-100 opacity-100" : "scale-95 opacity-0"
             }`}
           />
@@ -61,7 +69,7 @@ export function PriceCalculator({ lang, dict }: { lang: Locale; dict: Dictionary
         <div className="mt-8">
           <label htmlFor="calc-days" className="flex items-baseline justify-between font-medium">
             <span>{t.calcDays}</span>
-            <span className="nums text-lead">{fmt(days === 1 ? dict.book.day : dict.book.days, { n: days })}</span>
+            <span className="nums text-lead">{fmt(days === 1 ? dayLabels.day : dayLabels.days, { n: days })}</span>
           </label>
           <input
             id="calc-days"

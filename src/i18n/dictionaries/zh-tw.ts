@@ -23,6 +23,7 @@ const zhTw: Dictionary = {
     explore: "瀏覽",
     help: "說明",
     credits: "圖片來源",
+    modified: "圖片已為本網站裁切與縮放。",
     illustrative: "產品與場景圖片中的眼鏡與人物皆為示意圖。",
   },
   common: {
@@ -45,7 +46,7 @@ const zhTw: Dictionary = {
     scenes: [
       { place: "景福宮，上午 9:40", heard: "“Geunjeongjeon, the throne hall of the palace.”" },
       { place: "鍾路的在地餐廳", heard: "“Doenjang-jjigae, soybean paste stew. 9,000 won.”" },
-      { place: "聖水洞的咖啡廳", heard: "“Iced Americano.”" },
+      { place: "仁寺洞的咖啡廳", heard: "“Iced Americano.”" },
       { place: "北村巷弄，地圖 App 正在導航", heard: "手機裡的步行導航，在耳邊播放。" },
     ],
   },

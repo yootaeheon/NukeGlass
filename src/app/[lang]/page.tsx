@@ -73,7 +73,6 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         <StickySteps
           steps={t.steps}
           photos={[PRODUCT_IMAGES["ray-ban-meta-wayfarer"], SCENES.airportPickup, SCENES.pairPhone, SCENES.returnDesk]}
-          alts={t.steps.map((s) => s.line)}
         />
       </section>
 
@@ -101,7 +100,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             {t.calcBody}
           </p>
         </div>
-        <PriceCalculator lang={lang} dict={dict} />
+        <PriceCalculator lang={lang} t={t} dayLabels={{ day: dict.book.day, days: dict.book.days }} />
         <div className="mt-12 grid gap-4 lg:grid-cols-12">
           <p className="max-w-[60ch] lg:col-span-7">{t.priceBody}</p>
           <Link href={localePath(lang, "/policy")} className="link inline-flex min-h-12 items-center font-medium lg:col-span-4 lg:col-start-9">

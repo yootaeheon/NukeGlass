@@ -43,7 +43,7 @@ export default async function LoginPage({ params, searchParams }: PageProps<"/[l
         </div>
       </div>
       <div className="relative hidden aspect-[4/5] max-h-[calc(100svh-10rem)] w-full overflow-hidden bg-surface lg:col-span-6 lg:col-start-7 lg:block" data-reveal="media">
-        <Image src={PHOTOS.hanokDoors.src} alt="" fill priority sizes="50vw" className="object-cover" />
+        <Image src={PHOTOS.hanokDoors.src} alt="" fill sizes="50vw" className="object-cover" />
       </div>
     </div>
   );

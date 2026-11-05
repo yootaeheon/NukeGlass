@@ -24,6 +24,7 @@ const ja: Dictionary = {
     explore: "見る",
     help: "サポート",
     credits: "写真クレジット",
+    modified: "写真はサイト用にトリミング・縮小しています。",
     illustrative: "製品・シーン画像のグラスと人物はイメージです。",
   },
   common: {
@@ -47,7 +48,7 @@ const ja: Dictionary = {
     scenes: [
       { place: "景福宮、午前9時40分", heard: "“Geunjeongjeon, the throne hall of the palace.”" },
       { place: "鍾路の食堂", heard: "“Doenjang-jjigae, soybean paste stew. 9,000 won.”" },
-      { place: "聖水のカフェ", heard: "“Iced Americano.”" },
+      { place: "仁寺洞のカフェ", heard: "“Iced Americano.”" },
       { place: "北村の路地、地図アプリの案内", heard: "スマホの道案内が、耳元で聞こえます。" },
     ],
   },
