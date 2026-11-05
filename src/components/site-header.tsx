@@ -14,6 +14,7 @@ export function SiteHeader({ lang, nav }: { lang: Locale; nav: Dictionary["nav"]
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const lastY = useRef(0);
+  const header = useRef<HTMLElement>(null);
 
   const links = [
     { href: localePath(lang, "/glasses"), label: nav.glasses },
@@ -27,7 +28,9 @@ export function SiteHeader({ lang, nav }: { lang: Locale; nav: Dictionary["nav"]
     const onScroll = () => {
       const y = window.scrollY;
       setScrolled(y > 48);
-      setHidden(y > 320 && y > lastY.current + 4);
+      // Never slide away while a header control has keyboard focus
+      const focusInside = header.current?.contains(document.activeElement) ?? false;
+      setHidden(!focusInside && y > 320 && y > lastY.current + 4);
       if (y < lastY.current - 4 || y <= 320) setHidden(false);
       lastY.current = y;
     };
@@ -55,6 +58,8 @@ export function SiteHeader({ lang, nav }: { lang: Locale; nav: Dictionary["nav"]
 
   return (
     <header
+      ref={header}
+      onFocus={() => setHidden(false)}
       className={`fixed inset-x-0 top-0 z-40 transition-[background-color,color,transform] duration-500 ease-[var(--ease-out)] ${
         transparent ? "on-dark bg-transparent text-white" : "bg-bg text-ink"
       } ${hidden && !open ? "-translate-y-full" : "translate-y-0"}`}

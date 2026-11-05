@@ -258,11 +258,11 @@ a {
 .reveal-ready [data-reveal="media"] {
   transform: none;
 }
-.reveal-ready [data-reveal="media"] img {
+:where(.reveal-ready [data-reveal="media"]) img {
   transform: scale(1.12);
   transition: transform 1600ms var(--ease-out);
 }
-.reveal-ready [data-reveal="media"].is-in img {
+:where(.reveal-ready [data-reveal="media"].is-in) img {
   transform: scale(1);
 }
 .reveal-ready [data-reveal].is-in {
@@ -394,8 +394,9 @@ details[open] .answer {
   .marquee {
     animation: none;
   }
-  .reveal-ready [data-reveal="media"] img,
-  .zoom img {
+  :where(.reveal-ready [data-reveal="media"]) img,
+  .zoom img,
+  .zoom:hover img {
     transform: none;
     transition: none;
   }

@@ -25,7 +25,7 @@ export function ProductRail({ lang, dict, items = GLASSES }: { lang: Locale; dic
             >
               <Image
                 src={PRODUCT_IMAGES[g.slug].src}
-                alt={g.name}
+                alt=""
                 fill
                 sizes="(min-width: 1024px) 20vw, 50vw"
                 className="object-cover object-center"

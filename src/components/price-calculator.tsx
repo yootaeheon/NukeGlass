@@ -6,21 +6,16 @@ import { useState } from "react";
 import { localePath, type Locale } from "@/i18n/config";
 import { fmt } from "@/i18n/format";
 import type { Dictionary } from "@/i18n/dictionaries/en";
-import { BOOKING_RULES, discountPct } from "@/lib/booking";
+import { BOOKING_RULES, discountPct, priceForDays } from "@/lib/booking";
 import { GLASSES } from "@/lib/glasses";
 import { PRODUCT_IMAGES } from "@/lib/media";
-
-// Same arithmetic as the booking total (src/lib/booking.ts totalPriceUsd) and the database.
-function total(daily: number, days: number) {
-  return Math.round((daily * days * (100 - discountPct(days))) / 100);
-}
 
 export function PriceCalculator({ lang, dict }: { lang: Locale; dict: Dictionary }) {
   const t = dict.home;
   const [slug, setSlug] = useState(GLASSES[0].slug);
   const [days, setDays] = useState(5);
   const g = GLASSES.find((x) => x.slug === slug) ?? GLASSES[0];
-  const sum = total(g.dailyUsd, days);
+  const sum = priceForDays(g.dailyUsd, days);
   const saved = g.dailyUsd * days - sum;
   const pct = discountPct(days);
 

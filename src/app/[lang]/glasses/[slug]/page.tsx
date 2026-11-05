@@ -108,7 +108,7 @@ export default async function GlassesDetail({ params }: PageProps<"/[lang]/glass
                 className={`relative aspect-[3/2] overflow-hidden bg-surface lg:col-span-7 ${i % 2 ? "lg:order-2 lg:col-start-6" : ""}`}
                 data-reveal="media"
               >
-                <Image src={FEATURE_PHOTOS[i].src} alt="" fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
+                <Image src={FEATURE_PHOTOS[i % FEATURE_PHOTOS.length].src} alt="" fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
               </div>
               <div className={`lg:col-span-4 ${i % 2 ? "lg:order-1 lg:col-start-1" : "lg:col-start-9"}`}>
                 <h3 className="head text-[clamp(1.75rem,1.2rem+2vw,3rem)]" data-reveal>

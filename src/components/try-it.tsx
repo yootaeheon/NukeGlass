@@ -26,7 +26,7 @@ export function TryIt({ signs }: { signs: Dictionary["tryIt"] }) {
       {SIGNS.map((s, i) => {
         const open = !hydrated || active === i;
         return (
-          <div key={s.ko} data-reveal="media" style={{ "--d": `${i * 80}ms` } as React.CSSProperties}>
+          <div key={s.ko} className="relative" data-reveal="media" style={{ "--d": `${i * 80}ms` } as React.CSSProperties}>
             <button
               type="button"
               aria-expanded={open}
@@ -57,14 +57,15 @@ export function TryIt({ signs }: { signs: Dictionary["tryIt"] }) {
                   +
                 </span>
               </span>
-              <span
-                id={`try-${i}`}
-                hidden={!open}
-                className="absolute inset-x-0 bottom-0 animate-[fade_420ms_var(--ease-out)_both] bg-accent px-5 py-5 text-lead text-white motion-reduce:animate-none"
-              >
-                {signs[i].meaning}
-              </span>
             </button>
+            {/* The answer sits beside the button (not inside it) and over the tile's foot */}
+            <p
+              id={`try-${i}`}
+              hidden={!open}
+              className="pointer-events-none absolute inset-x-0 bottom-0 animate-[fade_420ms_var(--ease-out)_both] bg-accent px-5 py-5 text-lead text-white motion-reduce:animate-none"
+            >
+              {signs[i].meaning}
+            </p>
           </div>
         );
       })}

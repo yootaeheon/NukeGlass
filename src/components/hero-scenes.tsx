@@ -28,7 +28,15 @@ function subscribeReducedMotion(cb: () => void) {
   return () => mq.removeEventListener("change", cb);
 }
 
-export function HeroScenes({ lang, t, exampleAnswer }: { lang: Locale; t: Dictionary["hero"]; exampleAnswer: string }) {
+export function HeroScenes({
+  lang,
+  t,
+  exampleAnswer,
+}: {
+  lang: Locale;
+  t: Dictionary["hero"];
+  exampleAnswer: string;
+}) {
   const [index, setIndex] = useState(0);
   const [typed, setTyped] = useState(0);
   const reduceMotion = useSyncExternalStore(
@@ -58,7 +66,10 @@ export function HeroScenes({ lang, t, exampleAnswer }: { lang: Locale; t: Dictio
   // Type the answer out once the Korean has appeared
   useEffect(() => {
     if (reduceMotion || typed >= answer.length) return;
-    const id = window.setTimeout(() => setTyped((n) => n + 1), typed === 0 ? 700 : TYPE_MS);
+    const id = window.setTimeout(
+      () => setTyped((n) => n + 1),
+      typed === 0 ? 700 : TYPE_MS,
+    );
     return () => window.clearTimeout(id);
   }, [typed, answer, reduceMotion]);
 
@@ -75,26 +86,37 @@ export function HeroScenes({ lang, t, exampleAnswer }: { lang: Locale; t: Dictio
   };
 
   return (
-    <section aria-labelledby="hero-title" className="on-dark relative -mt-16 flex min-h-svh flex-col overflow-hidden bg-field-dark text-white lg:-mt-[72px]">
+    <section
+      aria-labelledby="hero-title"
+      className="on-dark relative -mt-16 flex min-h-svh flex-col overflow-hidden bg-field-dark text-white lg:-mt-[72px]"
+    >
       {/* The places, crossfading with a slow drift */}
       <div aria-hidden="true" className="absolute inset-0">
-        {SCENES.map((s, i) => (
-          <div
-            key={s.ko}
-            className={`absolute inset-0 transition-opacity duration-[1400ms] ease-[var(--ease-out)] ${i === index ? "opacity-100" : "opacity-0"}`}
-          >
-            <Image
-              key={i === index ? `on-${index}` : `off-${i}`}
-              src={s.photo.src}
-              alt=""
-              fill
-              priority={i === 0}
-              sizes="100vw"
-              className={`object-cover ${i === index ? "drift" : ""}`}
-              style={{ animationPlayState: playing ? "running" : "paused" }}
-            />
-          </div>
-        ))}
+        {SCENES.map((s, i) => {
+          // Only the current scene and its neighbours are mounted: the outgoing one
+          // finishes its fade, the next one is decoded before it is needed.
+          const near =
+            i === index ||
+            i === (index + 1) % SCENES.length ||
+            i === (index + SCENES.length - 1) % SCENES.length;
+          if (!near) return null;
+          return (
+            <div
+              key={s.ko}
+              className={`absolute inset-0 transition-opacity duration-[1400ms] ease-[var(--ease-out)] ${i === index ? "opacity-100" : "opacity-0"}`}
+            >
+              <Image
+                src={s.photo.src}
+                alt=""
+                fill
+                priority={i === 0}
+                sizes="100vw"
+                className={`object-cover ${i === index ? "drift" : ""}`}
+                style={{ animationPlayState: playing ? "running" : "paused" }}
+              />
+            </div>
+          );
+        })}
         {/* Neutral scrim so the white type reads on any picture */}
         <div className="absolute inset-0 bg-[rgba(18,20,22,0.42)]" />
       </div>
@@ -133,15 +155,30 @@ export function HeroScenes({ lang, t, exampleAnswer }: { lang: Locale; t: Dictio
         </div>
 
         <div className="mt-auto pt-10">
-          <h1 id="hero-title" className="display hero-title max-w-[14ch]" data-reveal>
+          <h1
+            id="hero-title"
+            className="display hero-title max-w-[14ch]"
+            data-reveal
+          >
             {t.titleA} {t.titleB}
           </h1>
-          <p className="mt-6 max-w-[46ch] text-lead text-white" data-reveal style={{ "--d": "90ms" } as React.CSSProperties}>
+          <p
+            className="mt-6 max-w-[46ch] text-lead text-white"
+            data-reveal
+            style={{ "--d": "90ms" } as React.CSSProperties}
+          >
             {t.subA} {t.subB}
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row" data-reveal style={{ "--d": "180ms" } as React.CSSProperties}>
+          <div
+            className="mt-8 flex flex-col gap-3 sm:flex-row"
+            data-reveal
+            style={{ "--d": "180ms" } as React.CSSProperties}
+          >
             <Link href={localePath(lang, "/glasses")} className="btn btn-light">
-              {t.cta} <span className="arrow ml-3" aria-hidden="true">→</span>
+              {t.cta}{" "}
+              <span className="arrow ml-3" aria-hidden="true">
+                →
+              </span>
             </Link>
           </div>
 
@@ -159,16 +196,32 @@ export function HeroScenes({ lang, t, exampleAnswer }: { lang: Locale; t: Dictio
                   >
                     <span className="relative block h-[3px] overflow-hidden bg-white/25">
                       <span
-                        key={i === index ? `bar-${index}-${playing}` : `bar-${i}`}
+                        key={
+                          i === index ? `bar-${index}-${playing}` : `bar-${i}`
+                        }
                         className={`absolute inset-0 origin-left bg-white ${
-                          i < index ? "scale-x-100" : i === index ? (playing ? "" : "scale-x-100") : "scale-x-0"
+                          i < index
+                            ? "scale-x-100"
+                            : i === index
+                              ? playing
+                                ? ""
+                                : "scale-x-100"
+                              : "scale-x-0"
                         }`}
-                        style={i === index && playing ? { animation: `progress ${SCENE_MS}ms linear both` } : undefined}
+                        style={
+                          i === index && playing
+                            ? {
+                                animation: `progress ${SCENE_MS}ms linear both`,
+                              }
+                            : undefined
+                        }
                       />
                     </span>
                     <span
                       className={`mt-3 hidden truncate text-small transition-colors sm:block ${
-                        i === index ? "text-white" : "text-white/60 group-hover:text-white"
+                        i === index
+                          ? "text-white"
+                          : "text-white/60 group-hover:text-white"
                       }`}
                     >
                       {t.scenes[i].place.split(",")[0]}
