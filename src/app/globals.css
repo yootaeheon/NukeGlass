@@ -14,6 +14,8 @@
   --field-dark: #121416;
   --field-dark-muted: #a9b0b3;
   --field-accent-muted: #d4dcd9;
+  /* Ground of the product renders, so pictures sit seamlessly in their tiles */
+  --product: #edeee9;
 
   --step-small: 0.875rem;
   --step-body: clamp(1rem, 0.95rem + 0.25vw, 1.1875rem);
@@ -21,6 +23,7 @@
   --step-title: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
   --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
   --step-display: clamp(2.75rem, 0.9rem + 8.2vw, 8.5rem);
+  --step-hero: clamp(2.75rem, 1rem + 7vw, 7.5rem);
 
   --margin: clamp(1.25rem, 3vw, 2rem);
   --section-gap: clamp(6rem, 4rem + 8vw, 12.5rem);
@@ -30,6 +33,9 @@
   --dur-base: 320ms;
   --dur-enter: 640ms;
 }
+
+/* Wide and tall enough for the hero lens panel to float beside the headline */
+@custom-variant tall (@media (min-width: 1024px) and (min-height: 780px));
 
 @theme inline {
   --color-bg: var(--bg);
@@ -44,6 +50,7 @@
   --color-field-dark: var(--field-dark);
   --color-field-dark-muted: var(--field-dark-muted);
   --color-field-accent-muted: var(--field-accent-muted);
+  --color-product: var(--product);
 
   --font-display: var(--font-newsreader), Georgia, serif;
   --font-sans: var(--font-hanken), system-ui, sans-serif;
@@ -59,6 +66,27 @@
   --spacing-margin: var(--margin);
   --spacing-section: var(--section-gap);
   --ease-out-soft: var(--ease-out);
+}
+
+/* Bold CJK display reads larger than the light Latin serif at the same size.
+   Outside the component layer so it beats the :root tokens above. */
+:root:lang(ja),
+:root:lang(zh-Hans),
+:root:lang(zh-Hant),
+:root:lang(ko) {
+  --step-display: clamp(2.25rem, 0.9rem + 5.4vw, 6rem);
+  --step-hero: clamp(2.25rem, 0.9rem + 5.4vw, 6rem);
+}
+
+.hero-title {
+  font-size: var(--step-hero);
+}
+
+/* The wordmark stays in the Latin serif in every language */
+.brand-mark {
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
 }
 
 html {
@@ -114,19 +142,19 @@ a {
   /* CJK pages: Newsreader and Hanken have no CJK glyphs, so set system fallbacks per language
    (no web font download) and relax the tight Latin display settings. */
 :root:lang(ja) {
-  --font-display: var(--font-newsreader), "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+  --font-display: "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", "Meiryo", sans-serif;
   --font-sans: var(--font-hanken), "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif;
 }
 :root:lang(zh-Hans) {
-  --font-display: var(--font-newsreader), "Songti SC", "SimSun", serif;
+  --font-display: "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-sans: var(--font-hanken), "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 :root:lang(zh-Hant) {
-  --font-display: var(--font-newsreader), "Songti TC", "PMingLiU", serif;
+  --font-display: "PingFang TC", "Microsoft JhengHei", sans-serif;
   --font-sans: var(--font-hanken), "PingFang TC", "Microsoft JhengHei", sans-serif;
 }
 :root:lang(ko) {
-  --font-display: var(--font-newsreader), "AppleMyungjo", "Batang", serif;
+  --font-display: var(--font-noto-kr), "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   --font-sans: var(--font-hanken), var(--font-noto-kr), "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
 }
 :root:lang(ja) .display,
@@ -137,9 +165,9 @@ a {
 :root:lang(zh-Hant) .head,
 :root:lang(ko) .display,
 :root:lang(ko) .head {
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: 0;
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.035em;
 }
 :root:lang(ja),
 :root:lang(zh-Hans),
@@ -230,10 +258,22 @@ a {
 /* Entrance: content is visible by default; JS adds .reveal-ready to animate */
 .reveal-ready [data-reveal] {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(28px);
   transition:
     opacity var(--dur-enter) var(--ease-out),
-    transform var(--dur-enter) var(--ease-out);
+    transform 900ms var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+/* Pictures open from a slight zoom as they enter */
+.reveal-ready [data-reveal="media"] {
+  transform: none;
+}
+:where(.reveal-ready [data-reveal="media"]) img {
+  transform: scale(1.12);
+  transition: transform 1600ms var(--ease-out);
+}
+:where(.reveal-ready [data-reveal="media"].is-in) img {
+  transform: scale(1);
 }
 .reveal-ready [data-reveal].is-in {
   opacity: 1;
@@ -271,7 +311,106 @@ body:has([data-bottom-bar]) footer {
   }
 }
 
+/* Slow drift on full-bleed photographs */
+@keyframes drift {
+  from {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.14) translate3d(-1.5%, -1%, 0);
+  }
+}
+.drift {
+  animation: drift 14s linear both;
+}
+
+/* Scene progress in the hero */
+@keyframes progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Typed answer in the hero lens */
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Endless band of Korean words and what they mean */
+@keyframes marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.marquee {
+  animation: marquee 60s linear infinite;
+}
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Picture zoom on hover for linked tiles */
+.zoom img {
+  transition: transform 900ms var(--ease-out);
+}
+.zoom:hover img,
+.zoom:focus-visible img {
+  transform: scale(1.05);
+}
+
+/* Arrow that moves on hover */
+.arrow {
+  display: inline-block;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+a:hover .arrow,
+button:hover .arrow {
+  transform: translateX(6px);
+}
+
+/* FAQ disclosure */
+details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details .plus {
+  transition: transform var(--dur-base) var(--ease-out);
+}
+details[open] .plus {
+  transform: rotate(45deg);
+}
+details[open] .answer {
+  animation: fade 480ms var(--ease-out) both;
+}
+
+/* Range input in the price calculator */
+.range {
+  width: 100%;
+  height: 44px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .drift,
+  .marquee,
+  details[open] .answer {
+    animation: none;
+  }
+  :where(.reveal-ready [data-reveal="media"]) img,
+  .zoom img,
+  .zoom:hover img {
+    transform: none;
+    transition: none;
+  }
   .btn:active {
     transform: none;
   }

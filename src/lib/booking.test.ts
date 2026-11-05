@@ -4,6 +4,7 @@ import {
   rentalDays,
   seoulToday,
   discountPct,
+  priceForDays,
   totalPriceUsd,
   validateBookingDates,
 } from "./booking";
@@ -77,5 +78,19 @@ describe("totalPriceUsd", () => {
     expect(totalPriceUsd(29, "2026-11-04", "2026-11-07")).toBe(104); // 116 × 0.9 = 104.4
     expect(totalPriceUsd(29, "2026-11-04", "2026-11-10")).toBe(162); // 203 × 0.8 = 162.4
     expect(totalPriceUsd(35, "2026-11-04", "2026-11-17")).toBe(392); // 490 × 0.8
+  });
+});
+
+describe("priceForDays", () => {
+  it("matches the date-based total for every length a booking allows", () => {
+    for (let days = 1; days <= BOOKING_RULES.maxDays; days++) {
+      const end = new Date(Date.UTC(2026, 10, 3 + days)).toISOString().slice(0, 10);
+      for (const daily of [29, 32, 35]) expect(priceForDays(daily, days)).toBe(totalPriceUsd(daily, "2026-11-04", end));
+    }
+  });
+
+  it("rounds the discounted total to whole dollars", () => {
+    expect(priceForDays(29, 4)).toBe(104);
+    expect(priceForDays(32, 7)).toBe(179); // 224 × 0.8 = 179.2
   });
 });

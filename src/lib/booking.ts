@@ -77,8 +77,12 @@ export function discountPct(days: number): number {
   return 0;
 }
 
+/** Whole US dollars for a rental of `days` days, discount applied. Same rounding as the database. */
+export function priceForDays(dailyUsd: number, days: number): number {
+  return Math.round((dailyUsd * days * (100 - discountPct(days))) / 100);
+}
+
 /** Whole US dollars, discount applied. */
 export function totalPriceUsd(dailyUsd: number, start: string, end: string): number {
-  const days = rentalDays(start, end);
-  return Math.round((dailyUsd * days * (100 - discountPct(days))) / 100);
+  return priceForDays(dailyUsd, rentalDays(start, end));
 }

@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { useActionState, useEffect, useRef, useState } from "react";
 import { BOOKING_RULES, PICKUP_SLOTS, discountPct, totalPriceUsd, validateBookingDates } from "@/lib/booking";
 import { CONTACT_CHANNELS, errorVars, type ErrorCode } from "@/lib/booking-form";
 import { GLASSES, PICKUP_LOCATIONS, getGlasses } from "@/lib/glasses";
+import { PRODUCT_IMAGES } from "@/lib/media";
 import type { Locale } from "@/i18n/config";
 import { fmt, formatSeoulDate } from "@/i18n/format";
 import type { Dictionary } from "@/i18n/dictionaries/en";
@@ -83,7 +85,7 @@ export function BookingForm({ lang, dict, initialModel, defaultName, minStart, m
         <legend className={legend}>{t.glasses}</legend>
         <div className="mt-6 grid gap-px bg-surface">
           {GLASSES.map((g) => (
-            <label key={g.slug} className="flex min-h-16 cursor-pointer items-center gap-4 bg-bg px-4 py-3 has-[:checked]:bg-accent-tint">
+            <label key={g.slug} className="flex min-h-16 cursor-pointer items-center gap-4 bg-bg px-4 py-3 transition-colors hover:bg-surface has-[:checked]:bg-accent-tint">
               <input
                 type="radio"
                 name="model"
@@ -92,6 +94,9 @@ export function BookingForm({ lang, dict, initialModel, defaultName, minStart, m
                 onChange={() => setModel(g.slug)}
                 className="size-5 accent-accent"
               />
+              <span className="relative aspect-[3/2] w-20 shrink-0 overflow-hidden bg-product sm:w-24">
+                <Image src={PRODUCT_IMAGES[g.slug].src} alt="" fill sizes="96px" className="object-cover" />
+              </span>
               <span className="flex-1 font-medium">{g.name}</span>
               <span className="nums">{fmt(dict.common.perDay, { price: g.dailyUsd })}</span>
             </label>

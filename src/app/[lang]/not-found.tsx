@@ -20,7 +20,7 @@ export default function NotFound() {
 
   return (
     <div className="mx-auto max-w-[1440px] px-margin py-16 lg:py-24">
-      <h1 className="head text-title">{t.title}</h1>
+      <h1 className="display text-[clamp(2.5rem,1.6rem+3vw,4.5rem)]">{t.title}</h1>
       <p className="mt-4 text-muted">{t.body}</p>
       <Link href={localePath(lang, "/")} className="btn btn-primary mt-8">
         {t.home}

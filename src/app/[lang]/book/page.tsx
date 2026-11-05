@@ -40,8 +40,8 @@ export default async function BookPage({ params, searchParams }: PageProps<"/[la
   const today = seoulToday();
   return (
     <div className="mx-auto max-w-[760px] px-margin pt-12 lg:pt-16">
-      <h1 className="head text-title">{t.title}</h1>
-      <p className="mt-3 text-muted">{fmt(t.signedInAs, { email: user.email ?? t.yourAccount })}</p>
+      <h1 className="display text-[clamp(2.5rem,1.6rem+3vw,4.5rem)]">{t.title}</h1>
+      <p className="mt-4 text-muted">{fmt(t.signedInAs, { email: user.email ?? t.yourAccount })}</p>
       <div className="mt-10">
         <BookingForm
           lang={lang}

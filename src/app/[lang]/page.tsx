@@ -1,137 +1,153 @@
 import Link from "next/link";
 import { HeroScenes } from "@/components/hero-scenes";
 import { TryIt } from "@/components/try-it";
-import { FrameDrawing } from "@/components/frame-drawing";
-import { GLASSES } from "@/lib/glasses";
+import { ProductRail } from "@/components/product-rail";
+import { StickySteps } from "@/components/sticky-steps";
+import { ParallaxBand } from "@/components/parallax-band";
+import { PriceCalculator } from "@/components/price-calculator";
+import { PHOTOS, PRODUCT_IMAGES, SCENES } from "@/lib/media";
 import { localePath } from "@/i18n/config";
-import { fmt } from "@/i18n/format";
 import { resolveLang } from "@/i18n/server";
+
+const KO_WORDS = ["근정전", "된장찌개", "갈아타는 곳", "아이스 아메리카노", "주문은 카운터에서", "북촌로", "관람 시간", "출구"];
+
+const d = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
 export default async function Home({ params }: PageProps<"/[lang]">) {
   const { lang, dict } = await resolveLang(params);
   const t = dict.home;
-  const fromPrice = Math.min(...GLASSES.map((g) => g.dailyUsd));
 
   return (
     <>
       <HeroScenes lang={lang} t={dict.hero} exampleAnswer={t.exampleAnswer} />
 
+      {/* The five pairs */}
+      <section aria-labelledby="lineup-title" className="mx-auto max-w-[1440px] px-margin pt-section">
+        <div className="mb-12 grid gap-6 lg:grid-cols-12 lg:items-end">
+          <h2 id="lineup-title" className="display text-display lg:col-span-7" data-reveal>
+            {t.lineupTitle}
+          </h2>
+          <div className="lg:col-span-4 lg:col-start-9" data-reveal style={d(90)}>
+            <p className="text-lead">{t.lineupBody}</p>
+            <Link href={localePath(lang, "/glasses")} className="link mt-4 inline-flex min-h-12 items-center font-medium">
+              {t.compare} <span className="arrow ml-2" aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </div>
+        <ProductRail lang={lang} dict={dict} />
+      </section>
+
       {/* Translation: look at it, ask */}
       <section aria-labelledby="translate-title" className="mx-auto max-w-[1440px] px-margin pt-section">
-        <div className="grid gap-10 lg:grid-cols-12">
+        <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
           <h2 id="translate-title" className="display text-display lg:col-span-7" data-reveal>
             {t.translateTitle}
           </h2>
-          <p className="max-w-[46ch] self-end text-lead text-muted lg:col-span-5" data-reveal>
+          <p className="max-w-[46ch] text-lead lg:col-span-4 lg:col-start-9" data-reveal style={d(90)}>
             {t.translateBody}
           </p>
         </div>
-        <div className="mt-12" data-reveal>
+        <div className="mt-12">
           <TryIt signs={dict.tryIt} />
-          <p className="mt-4 max-w-[60ch] text-small text-muted">{t.tryNote}</p>
+          <p className="mt-5 max-w-[70ch] text-small text-muted">{t.tryNote}</p>
         </div>
       </section>
+
+      {/* Korean you will meet, running past */}
+      <div aria-hidden="true" className="mt-section overflow-hidden bg-accent py-6 text-white">
+        <div className="marquee flex w-max gap-12 whitespace-nowrap">
+          {[...KO_WORDS, ...KO_WORDS].map((w, i) => (
+            <span key={i} lang="ko" className="ko flex items-center gap-12 text-[clamp(1.5rem,1rem+2vw,2.75rem)]">
+              {w}
+              <span className="size-2 rounded-full bg-white/60" />
+            </span>
+          ))}
+        </div>
+      </div>
 
       {/* How it works */}
       <section id="how-it-works" aria-labelledby="how-title" className="mx-auto max-w-[1440px] scroll-mt-20 px-margin pt-section">
-        <h2 id="how-title" className="sr-only">
+        <h2 id="how-title" className="display mb-12 text-display lg:mb-4" data-reveal>
           {t.howTitle}
         </h2>
-        <ol className="space-y-14">
-          {t.steps.map((s, i) => (
-            <li key={s.line} style={{ paddingLeft: `calc(${i} * min(6vw, 8rem))` }} data-reveal>
-              <p className="head text-head">{s.line}</p>
-              <p className="mt-3 max-w-[52ch] text-muted">{s.detail}</p>
-            </li>
-          ))}
-        </ol>
+        <StickySteps
+          steps={t.steps}
+          photos={[PRODUCT_IMAGES["ray-ban-meta-wayfarer"], SCENES.airportPickup, SCENES.pairPhone, SCENES.returnDesk]}
+        />
       </section>
 
-      {/* Models */}
-      <section aria-labelledby="models-title" className="mx-auto max-w-[1440px] px-margin pt-section">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <h2 id="models-title" className="display text-display" data-reveal>
-              {t.modelsTitle}
+      {/* One picture, one line */}
+      <section aria-labelledby="band-title" className="mt-section">
+        <ParallaxBand photo={SCENES.marketDusk} alt="" className="min-h-[85svh]">
+          <div className="mt-auto max-w-[1320px]">
+            <h2 id="band-title" className="display text-display" data-reveal>
+              {t.bandLine}
             </h2>
-            <div className="mt-10 hidden bg-surface p-10 text-ink lg:block" data-reveal>
-              <FrameDrawing
-                shape="wayfarer"
-                label={fmt(dict.common.lineDrawing, { name: GLASSES[0].name })}
-                className="w-full"
-              />
-            </div>
+            <p className="mt-8 max-w-[44ch] text-lead" data-reveal style={d(90)}>
+              {t.bandBody}
+            </p>
           </div>
-          <ul className="lg:col-span-7 lg:col-start-6">
-            {GLASSES.map((g) => (
-              <li key={g.slug}>
-                <Link
-                  href={localePath(lang, `/glasses/${g.slug}`)}
-                  className="group grid min-h-16 grid-cols-[1fr_auto] items-baseline gap-x-6 gap-y-1 border-b border-line py-5 transition-colors hover:bg-surface"
-                >
-                  <span className="text-lead font-medium group-hover:underline">{g.name}</span>
-                  <span className="nums font-semibold">{fmt(dict.common.perDay, { price: g.dailyUsd })}</span>
-                  <span className="text-muted">{dict.catalog[g.slug].bestFor}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        </ParallaxBand>
       </section>
 
       {/* Price */}
-      <section aria-labelledby="price-title" className="mt-section bg-surface">
-        <div className="mx-auto max-w-[1440px] px-margin py-section">
-          <h2 id="price-title" className="display text-display" data-reveal>
-            {t.priceBefore} <span className="nums inline-block bg-accent px-[0.12em] text-white">${fromPrice}</span>{" "}
-            {t.priceAfter}
+      <section aria-labelledby="price-title" className="mx-auto max-w-[1440px] px-margin pt-section">
+        <div className="mb-12 grid gap-6 lg:grid-cols-12 lg:items-end">
+          <h2 id="price-title" className="display text-display lg:col-span-7" data-reveal>
+            {t.calcTitle}
           </h2>
-          <div className="mt-12 grid gap-8 md:grid-cols-12">
-            <div className="max-w-[52ch] md:col-span-7">
-              <p>{t.priceBody}</p>
-              <Link href={localePath(lang, "/policy")} className="link mt-4 inline-flex min-h-12 items-center">
-                {dict.policy.link}
-              </Link>
-            </div>
-            <div className="md:col-span-4 md:col-start-9 md:justify-self-end">
-              <Link href={localePath(lang, "/glasses")} className="btn btn-primary w-full md:w-auto">
-                {t.seeAll}
-              </Link>
-            </div>
-          </div>
+          <p className="text-lead lg:col-span-4 lg:col-start-9" data-reveal style={d(90)}>
+            {t.calcBody}
+          </p>
+        </div>
+        <PriceCalculator lang={lang} t={t} dayLabels={{ day: dict.book.day, days: dict.book.days }} />
+        <div className="mt-12 grid gap-4 lg:grid-cols-12">
+          <p className="max-w-[60ch] lg:col-span-7">{t.priceBody}</p>
+          <Link href={localePath(lang, "/policy")} className="link inline-flex min-h-12 items-center font-medium lg:col-span-4 lg:col-start-9">
+            {dict.policy.link} <span className="arrow ml-2" aria-hidden="true">→</span>
+          </Link>
         </div>
       </section>
 
       {/* FAQ */}
       <section id="faq" aria-labelledby="faq-title" className="mx-auto max-w-[1440px] scroll-mt-20 px-margin py-section">
-        <h2 id="faq-title" className="head text-head">
-          {t.faqTitle}
-        </h2>
-        <dl className="mt-12 space-y-12">
-          {t.faq.map((f) => (
-            <div key={f.q} className="grid gap-3 lg:grid-cols-12">
-              <dt className="text-lead font-medium lg:col-span-6">{f.q}</dt>
-              <dd className="max-w-[52ch] text-muted lg:col-span-5 lg:col-start-8">{f.a}</dd>
-            </div>
-          ))}
-        </dl>
+        <div className="grid gap-10 lg:grid-cols-12">
+          <h2 id="faq-title" className="display text-display lg:sticky lg:top-24 lg:col-span-5 lg:self-start" data-reveal>
+            {t.faqTitle}
+          </h2>
+          <div className="lg:col-span-6 lg:col-start-7">
+            {t.faq.map((f, i) => (
+              <details key={f.q} className="group bg-surface/0 py-1" open={i === 0} data-reveal style={d(i * 50)}>
+                <summary className="flex min-h-16 items-center justify-between gap-6 py-4 text-lead font-medium transition-colors hover:text-accent">
+                  {f.q}
+                  <span className="plus grid size-10 shrink-0 place-items-center rounded-full bg-surface text-lead" aria-hidden="true">
+                    +
+                  </span>
+                </summary>
+                <p className="answer max-w-[56ch] pb-6 pr-14">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Closing */}
-      <section aria-labelledby="closing-title" className="on-dark flex min-h-[80svh] bg-field-dark text-white lg:min-h-[90svh]">
-        <div className="mx-auto flex w-full max-w-[1440px] flex-col justify-between px-margin py-section">
-          <h2 id="closing-title" className="display text-display">
+      <section aria-labelledby="closing-title">
+        <ParallaxBand photo={PHOTOS.namsan} alt="" className="min-h-[90svh]">
+          <h2 id="closing-title" className="display text-display" data-reveal>
             {t.closingA}
             <br />
             {t.closingB}
           </h2>
-          <div className="mt-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <p className="max-w-[44ch] text-field-dark-muted">{t.closingBody}</p>
-            <Link href={localePath(lang, "/book")} className="btn btn-primary w-full md:w-auto">
-              {dict.nav.book}
+          <div className="mt-auto flex flex-col gap-6 pt-16 md:flex-row md:items-end md:justify-between">
+            <p className="max-w-[44ch] text-lead" data-reveal style={d(90)}>
+              {t.closingBody}
+            </p>
+            <Link href={localePath(lang, "/book")} className="btn btn-light w-full md:w-auto" data-reveal style={d(180)}>
+              {dict.nav.book} <span className="arrow ml-3" aria-hidden="true">→</span>
             </Link>
           </div>
-        </div>
+        </ParallaxBand>
       </section>
     </>
   );
