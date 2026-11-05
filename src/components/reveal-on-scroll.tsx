@@ -22,8 +22,16 @@ export function RevealOnScroll() {
       },
       { rootMargin: "0px 0px -10% 0px" },
     );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    // Anything already on the first screen enters right away (a moment later, so the
+    // hidden state paints first and it still animates); the -10% margin below would otherwise keep a hero button near the
+    // bottom edge hidden until the visitor scrolls.
+    const first = els.filter((el) => el.getBoundingClientRect().top < window.innerHeight);
+    const timer = window.setTimeout(() => first.forEach((el) => el.classList.add("is-in")), 60);
+    els.filter((el) => !first.includes(el)).forEach((el) => io.observe(el));
+    return () => {
+      window.clearTimeout(timer);
+      io.disconnect();
+    };
   }, [pathname]);
 
   return null;
