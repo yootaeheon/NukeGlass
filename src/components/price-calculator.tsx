@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ThemedImage } from "@/components/themed-image";
 import Link from "next/link";
 import { useState } from "react";
 import { localePath, type Locale } from "@/i18n/config";
@@ -29,11 +29,11 @@ export function PriceCalculator({
 
   return (
     <div className="grid gap-10 lg:grid-cols-12" data-ui>
-      <div className="rounded-2xl relative aspect-[3/2] self-start overflow-hidden light-scope bg-product lg:col-span-6">
+      <div className="rounded-2xl relative aspect-[3/2] self-start overflow-hidden bg-product lg:col-span-6">
         {GLASSES.map((x) => (
-          <Image
+          <ThemedImage
             key={x.slug}
-            src={PRODUCT_IMAGES[x.slug].src}
+            photo={PRODUCT_IMAGES[x.slug]}
             alt={x.slug === slug ? x.name : ""}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"

@@ -9,6 +9,8 @@ export type Photo = {
   src: string;
   width: number;
   height: number;
+  /** The same picture on a dark ground, shown in the dark theme */
+  dark?: string;
   /** Set for found photographs: shown in the footer credits */
   credit?: { title: string; by: string; licence: string; page: string };
 };
@@ -119,11 +121,11 @@ export const HERO_VIDEO = {
 
 /** Illustrative product renders (AI-generated), one per model, on the --product ground */
 export const PRODUCT_IMAGES: Record<GlassesSlug, Photo> = {
-  "ray-ban-meta-wayfarer": { src: "/products/ray-ban-meta-wayfarer.jpg", width: 1536, height: 1024 },
-  "ray-ban-meta-skyler": { src: "/products/ray-ban-meta-skyler.jpg", width: 1536, height: 1024 },
-  "ray-ban-meta-blayzer-optics": { src: "/products/ray-ban-meta-blayzer-optics.jpg", width: 1536, height: 1024 },
-  "oakley-meta-hstn": { src: "/products/oakley-meta-hstn.jpg", width: 1536, height: 1024 },
-  "oakley-meta-vanguard": { src: "/products/oakley-meta-vanguard.jpg", width: 1536, height: 1024 },
+  "ray-ban-meta-wayfarer": { src: "/products/ray-ban-meta-wayfarer.jpg", dark: "/products/ray-ban-meta-wayfarer.dark.jpg", width: 1536, height: 1024 },
+  "ray-ban-meta-skyler": { src: "/products/ray-ban-meta-skyler.jpg", dark: "/products/ray-ban-meta-skyler.dark.jpg", width: 1536, height: 1024 },
+  "ray-ban-meta-blayzer-optics": { src: "/products/ray-ban-meta-blayzer-optics.jpg", dark: "/products/ray-ban-meta-blayzer-optics.dark.jpg", width: 1536, height: 1024 },
+  "oakley-meta-hstn": { src: "/products/oakley-meta-hstn.jpg", dark: "/products/oakley-meta-hstn.dark.jpg", width: 1536, height: 1024 },
+  "oakley-meta-vanguard": { src: "/products/oakley-meta-vanguard.jpg", dark: "/products/oakley-meta-vanguard.dark.jpg", width: 1536, height: 1024 },
 };
 
 export const LICENCE_URLS: Record<string, string> = {

@@ -22,6 +22,7 @@ const REVISION: Record<GlassesSlug, string> = {
 
 const pic = (slug: GlassesSlug, key: CloserLookKey): Photo => ({
   src: `/features/${slug}/${key}.${REVISION[slug]}.jpg`,
+  dark: `/features/${slug}/${key}.${REVISION[slug]}.dark.jpg`,
   width: 1536,
   height: 1020,
 });

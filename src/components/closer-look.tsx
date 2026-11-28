@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ThemedImage } from "@/components/themed-image";
 import { useEffect, useId, useRef, useState } from "react";
 import type { CloserLookKey } from "@/lib/closer-look";
 import type { GlassesSlug } from "@/lib/glasses";
@@ -122,9 +122,9 @@ export function CloserLook({
                     className="px-4 pb-6 pl-[3.75rem]"
                   >
                     {/* Phone and tablet: the picture sits with its text */}
-                    <div className="rounded-xl relative mb-5 aspect-[3/2] overflow-hidden light-scope bg-product lg:hidden">
-                      <Image
-                        src={item.photo.src}
+                    <div className="rounded-xl relative mb-5 aspect-[3/2] overflow-hidden bg-product lg:hidden">
+                      <ThemedImage
+                        photo={item.photo}
                         alt={item.alt}
                         fill
                         sizes="100vw"
@@ -145,7 +145,7 @@ export function CloserLook({
 
           {/* Desktop: one picture frame, crossfading between features */}
           <div
-            className="rounded-2xl relative hidden aspect-[3/2] overflow-hidden light-scope bg-product lg:sticky lg:top-28 lg:col-span-8 lg:block"
+            className="rounded-2xl relative hidden aspect-[3/2] overflow-hidden bg-product lg:sticky lg:top-28 lg:col-span-8 lg:block"
             data-reveal="media"
           >
             {items.map((item, i) => (
@@ -159,8 +159,8 @@ export function CloserLook({
                 }`}
               >
                 {seen.has(i) && (
-                  <Image
-                    src={item.photo.src}
+                  <ThemedImage
+                    photo={item.photo}
                     alt={i === shown ? item.alt : ""}
                     fill
                     sizes="66vw"

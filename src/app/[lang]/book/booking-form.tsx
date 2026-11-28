@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ThemedImage } from "@/components/themed-image";
 import { useActionState, useEffect, useRef, useState } from "react";
 import { BOOKING_RULES, PICKUP_SLOTS, discountPct, totalPriceUsd, validateBookingDates } from "@/lib/booking";
 import { CONTACT_CHANNELS, errorVars, type ErrorCode } from "@/lib/booking-form";
@@ -94,8 +94,8 @@ export function BookingForm({ lang, dict, initialModel, defaultName, minStart, m
                 onChange={() => setModel(g.slug)}
                 className="size-5 accent-accent"
               />
-              <span className="rounded-lg relative aspect-[3/2] w-20 shrink-0 overflow-hidden light-scope bg-product sm:w-24">
-                <Image src={PRODUCT_IMAGES[g.slug].src} alt="" fill sizes="96px" className="object-cover" />
+              <span className="rounded-lg relative aspect-[3/2] w-20 shrink-0 overflow-hidden bg-product sm:w-24">
+                <ThemedImage photo={PRODUCT_IMAGES[g.slug]} alt="" fill sizes="96px" className="object-cover" />
               </span>
               <span className="flex-1 font-medium">{g.name}</span>
               <span className="nums">{fmt(dict.common.perDay, { price: g.dailyUsd })}</span>

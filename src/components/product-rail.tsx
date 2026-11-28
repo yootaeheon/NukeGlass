@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ThemedImage } from "@/components/themed-image";
 import Link from "next/link";
 import { localePath, type Locale } from "@/i18n/config";
 import { fmt } from "@/i18n/format";
@@ -19,12 +19,12 @@ export function ProductRail({ lang, dict, items = GLASSES }: { lang: Locale; dic
         >
           <Link href={localePath(lang, `/glasses/${g.slug}`)} className="zoom lift group block">
             <span
-              className={`rounded-2xl relative block overflow-hidden light-scope bg-product ${
+              className={`rounded-2xl relative block overflow-hidden bg-product ${
                 i === 0 && items.length % 2 === 1 ? "aspect-[16/9] lg:aspect-[4/3]" : "aspect-[4/3]"
               }`}
             >
-              <Image
-                src={PRODUCT_IMAGES[g.slug].src}
+              <ThemedImage
+                photo={PRODUCT_IMAGES[g.slug]}
                 alt=""
                 fill
                 sizes="(min-width: 1024px) 20vw, 50vw"

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { ThemedImage } from "@/components/themed-image";
 import Link from "next/link";
 import { GLASSES, type Glasses } from "@/lib/glasses";
 import { PRODUCT_IMAGES } from "@/lib/media";
@@ -70,12 +70,12 @@ export default async function GlassesPage({ params }: PageProps<"/[lang]/glasses
             <div className="mx-auto grid max-w-[1440px] items-center gap-10 px-margin pb-section lg:grid-cols-12">
               <Link
                 href={localePath(lang, `/glasses/${g.slug}`)}
-                className={`rounded-2xl zoom relative block aspect-[3/2] overflow-hidden light-scope bg-product lg:col-span-7 ${flip ? "lg:order-2 lg:col-start-6" : ""}`}
+                className={`rounded-2xl zoom relative block aspect-[3/2] overflow-hidden bg-product lg:col-span-7 ${flip ? "lg:order-2 lg:col-start-6" : ""}`}
                 data-reveal="media"
                 tabIndex={-1}
                 aria-hidden="true"
               >
-                <Image src={PRODUCT_IMAGES[g.slug].src} alt="" fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
+                <ThemedImage photo={PRODUCT_IMAGES[g.slug]} alt="" fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
               </Link>
               <div className={`lg:col-span-4 ${flip ? "lg:order-1 lg:col-start-1" : "lg:col-start-9"}`}>
                 <h2 id={`${g.slug}-name`} className="head text-[clamp(2rem,1.5rem+1.8vw,3.25rem)]" data-reveal>
@@ -123,8 +123,8 @@ export default async function GlassesPage({ params }: PageProps<"/[lang]/glasses
                   </th>
                   {GLASSES.map((g) => (
                     <th key={g.slug} scope="col" className="px-4 pb-4 align-bottom font-medium">
-                      <span className="rounded-xl relative mb-3 block aspect-[3/2] overflow-hidden light-scope bg-product">
-                        <Image src={PRODUCT_IMAGES[g.slug].src} alt="" fill sizes="180px" className="object-cover" />
+                      <span className="rounded-xl relative mb-3 block aspect-[3/2] overflow-hidden bg-product">
+                        <ThemedImage photo={PRODUCT_IMAGES[g.slug]} alt="" fill sizes="180px" className="object-cover" />
                       </span>
                       {g.name.replace(/^(Ray-Ban|Oakley) Meta /, "")}
                     </th>
