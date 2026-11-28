@@ -24,7 +24,7 @@ const zhCn: Dictionary = {
     help: "帮助",
     credits: "图片来源",
     modified: "图片已为本网站裁剪和缩放。",
-    illustrative: "产品和场景图片中的眼镜与人物均为示意图。",
+    illustrative: "产品图片、场景图片和视频中的眼镜与人物均为 AI 生成的示意画面。",
   },
   common: {
     perDay: "${price} / 天",
@@ -40,7 +40,7 @@ const zhCn: Dictionary = {
     pause: "暂停视频",
     play: "播放视频",
     srDescription: "一段短片：戴着眼镜的游客在首尔的一天，在宫殿拍照，在韩屋小巷听导航，在小摊询问食物，在电车上调高音量，在江边免手持通话，把眼镜放进充电盒。",
-    videoNote: "示意视频。",
+    videoNote: "AI 生成的示意视频。眼镜没有屏幕，回答以语音播放。",
   },
   tryIt: [
     { where: "宫殿告示", meaning: "参观时间：上午 9 点至下午 6 点。" },
@@ -151,7 +151,7 @@ const zhCn: Dictionary = {
         },
         ask: {
           label: "问 Meta AI",
-          body: "说 “Hey Meta, look and tell me what this is.”，眼镜会看一眼前方，在你耳边回答。适合宫殿指示牌、店铺招牌和博物馆说明。手机需要有流量或 Wi-Fi。能识别哪些语言，我们会在交付前确认，并在当天告诉你。",
+          body: "说 “Hey Meta, look and tell me what this is.”，眼镜会看一眼前方，在你耳边回答。Meta AI 能识别和回答的语言会不断变化，我们在交付前逐台检查，并告诉您当天可用的功能。手机需要有流量或 Wi-Fi。",
           alt: "眼镜正面，镜框角上的小灯亮着白光",
         },
         audio: {
@@ -188,7 +188,7 @@ const zhCn: Dictionary = {
         },
         ask: {
           label: "问 Meta AI",
-          body: "说 “Hey Meta, look and tell me what this is.”，眼镜会看一眼前方，在你耳边回答。适合宫殿指示牌、店铺招牌和博物馆说明。手机需要有流量或 Wi-Fi。能识别哪些语言，我们会在交付前确认，并在当天告诉你。",
+          body: "说 “Hey Meta, look and tell me what this is.”，眼镜会看一眼前方，在你耳边回答。Meta AI 能识别和回答的语言会不断变化，我们在交付前逐台检查，并告诉您当天可用的功能。手机需要有流量或 Wi-Fi。",
           alt: "眼镜正面，镜框角上的小灯亮着白光",
         },
         audio: {
@@ -225,7 +225,7 @@ const zhCn: Dictionary = {
         },
         ask: {
           label: "问 Meta AI",
-          body: "说 “Hey Meta, look and tell me what this is.”，眼镜会看一眼前方，在你耳边回答。适合宫殿指示牌、店铺招牌和博物馆说明。手机需要有流量或 Wi-Fi。能识别哪些语言，我们会在交付前确认，并在当天告诉你。",
+          body: "说 “Hey Meta, look and tell me what this is.”，眼镜会看一眼前方，在你耳边回答。Meta AI 能识别和回答的语言会不断变化，我们在交付前逐台检查，并告诉您当天可用的功能。手机需要有流量或 Wi-Fi。",
           alt: "眼镜正面，镜框角上的小灯亮着白光",
         },
         audio: {
@@ -262,7 +262,7 @@ const zhCn: Dictionary = {
         },
         ask: {
           label: "问 Meta AI",
-          body: "说 “Hey Meta, look and tell me what this is.”，眼镜会看一眼前方，在你耳边回答。适合宫殿指示牌、店铺招牌和博物馆说明。手机需要有流量或 Wi-Fi。能识别哪些语言，我们会在交付前确认，并在当天告诉你。",
+          body: "说 “Hey Meta, look and tell me what this is.”，眼镜会看一眼前方，在你耳边回答。Meta AI 能识别和回答的语言会不断变化，我们在交付前逐台检查，并告诉您当天可用的功能。手机需要有流量或 Wi-Fi。",
           alt: "眼镜正面，镜框角上的小灯亮着白光",
         },
         audio: {
@@ -299,7 +299,7 @@ const zhCn: Dictionary = {
         },
         ask: {
           label: "问 Meta AI",
-          body: "说 “Hey Meta, look and tell me what this is.”，眼镜会看一眼前方，在你耳边回答。适合宫殿指示牌、店铺招牌和博物馆说明。手机需要有流量或 Wi-Fi。能识别哪些语言，我们会在交付前确认，并在当天告诉你。",
+          body: "说 “Hey Meta, look and tell me what this is.”，眼镜会看一眼前方，在你耳边回答。Meta AI 能识别和回答的语言会不断变化，我们在交付前逐台检查，并告诉您当天可用的功能。手机需要有流量或 Wi-Fi。",
           alt: "眼镜正面，摄像头旁的小灯亮着白光",
         },
         audio: {

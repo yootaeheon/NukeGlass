@@ -26,7 +26,7 @@ const en = {
     help: "Help",
     credits: "Photo credits",
     modified: "Photos are cropped and resized for this site.",
-    illustrative: "Glasses and people shown in product and scene images are illustrations.",
+    illustrative: "Glasses and people shown in product images, scene images and the film are AI-generated illustrations.",
   },
   common: {
     perDay: "${price} / day",
@@ -43,7 +43,7 @@ const en = {
     play: "Play video",
     srDescription:
       "A short film of a traveller in Seoul wearing the glasses: taking a photo at a palace, following directions down a hanok lane, asking about food at a stall, turning the volume up on a train, talking hands-free by the river and putting the glasses in their charging case.",
-    videoNote: "Illustrative film.",
+    videoNote: "AI-generated illustrative film. The glasses have no screen: answers come as audio.",
   },
   tryIt: [
     { where: "Palace notice", meaning: "Visiting hours: 9 am to 6 pm." },
@@ -170,7 +170,7 @@ const en = {
         },
         ask: {
           label: "Ask Meta AI",
-          body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look and answer in your ear: palace signs, shop fronts, museum labels. Your phone needs data or Wi-Fi. We check which languages it reads before hand-over and tell you on the day.",
+          body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look and answer in your ear. Which languages Meta AI reads and answers in changes over time, so we check every pair before hand-over and tell you what works on the day. Your phone needs data or Wi-Fi.",
           alt: "The glasses from the front, the small light in the corner of the frame glowing white",
         },
         audio: {
@@ -207,7 +207,7 @@ const en = {
         },
         ask: {
           label: "Ask Meta AI",
-          body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look and answer in your ear: palace signs, shop fronts, museum labels. Your phone needs data or Wi-Fi. We check which languages it reads before hand-over and tell you on the day.",
+          body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look and answer in your ear. Which languages Meta AI reads and answers in changes over time, so we check every pair before hand-over and tell you what works on the day. Your phone needs data or Wi-Fi.",
           alt: "The glasses from the front, the small light in the corner of the frame glowing white",
         },
         audio: {
@@ -244,7 +244,7 @@ const en = {
         },
         ask: {
           label: "Ask Meta AI",
-          body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look and answer in your ear: palace signs, shop fronts, museum labels. Your phone needs data or Wi-Fi. We check which languages it reads before hand-over and tell you on the day.",
+          body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look and answer in your ear. Which languages Meta AI reads and answers in changes over time, so we check every pair before hand-over and tell you what works on the day. Your phone needs data or Wi-Fi.",
           alt: "The glasses from the front, the small light in the corner of the frame glowing white",
         },
         audio: {
@@ -281,7 +281,7 @@ const en = {
         },
         ask: {
           label: "Ask Meta AI",
-          body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look and answer in your ear: palace signs, shop fronts, museum labels. Your phone needs data or Wi-Fi. We check which languages it reads before hand-over and tell you on the day.",
+          body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look and answer in your ear. Which languages Meta AI reads and answers in changes over time, so we check every pair before hand-over and tell you what works on the day. Your phone needs data or Wi-Fi.",
           alt: "The glasses from the front, the small light in the corner of the frame glowing white",
         },
         audio: {
@@ -318,7 +318,7 @@ const en = {
         },
         ask: {
           label: "Ask Meta AI",
-          body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look and answer in your ear: palace signs, shop fronts, museum labels. Your phone needs data or Wi-Fi. We check which languages it reads before hand-over and tell you on the day.",
+          body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look and answer in your ear. Which languages Meta AI reads and answers in changes over time, so we check every pair before hand-over and tell you what works on the day. Your phone needs data or Wi-Fi.",
           alt: "The glasses from the front, the small light beside the camera glowing white",
         },
         audio: {
