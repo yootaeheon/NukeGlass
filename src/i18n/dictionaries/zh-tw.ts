@@ -49,11 +49,18 @@ const zhTw: Dictionary = {
     { where: "咖啡廳", meaning: "請在櫃檯點餐。" },
   ],
   home: {
+    momentsTitle: "戴上之後，就會忘了它的存在。",
+    moments: [
+      { line: "雙手插口袋，導航在耳邊。", alt: "雙手插在大衣口袋裡走在韓屋小巷的旅客" },
+      { line: "輕點或滑動鏡腳，控制音樂和音量。", alt: "在電車上輕觸眼鏡側面的男子" },
+      { line: "問問眼前的食物是什麼。", alt: "在小吃攤前看著串燒微笑的旅客" },
+      { line: "兩手都拿著咖啡，也能接電話。", alt: "在漢江邊拿著咖啡免手持通話的女子" },
+    ],
     translateTitle: "看著它，問一問。",
     translateBody:
       "看著宮殿告示、菜單或地鐵標示，向 Meta AI 提問。答案在耳邊響起，雙手始終空出來。點選招牌查看範例。",
     tryNote: "以下為各招牌意思的範例。Meta AI 能辨識與回答的語言會持續變動，我們在交付前逐台檢查，並告訴您當天可用的功能。",
-    howTitle: "使用流程",
+    howTitle: "這樣用就可以",
     steps: [
       { line: "首先，挑選眼鏡和日期。", detail: "按日預約。用 Google 登入，之後隨時可以查看預約。" },
       {
@@ -69,7 +76,7 @@ const zhTw: Dictionary = {
     priceBody:
       "每次租賃附充電盒與 USB-C 傳輸線。按日曆天計費，取貨日與歸還日都計算在內；租 4–6 天享 9 折，7 天以上享 8 折。價格以美元計。",
     seeAll: "查看全部五款",
-    faqTitle: "常見問題",
+    faqTitle: "你想問的，先回答你",
     faq: [
       { q: "需要自備手機嗎？", a: "需要。眼鏡與 iPhone 或 Android 上免費的 Meta AI App 配對，並使用手機的行動網路或 Wi-Fi。" },
       {

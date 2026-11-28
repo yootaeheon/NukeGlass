@@ -52,12 +52,19 @@ const en = {
     { where: "Café", meaning: "Please order at the counter." },
   ],
   home: {
+    momentsTitle: "Wear them. Then forget they’re there.",
+    moments: [
+      { line: "Walking directions in your ear, hands in your pockets.", alt: "A traveller walking up a hanok lane with her hands in her coat pockets" },
+      { line: "Tap or swipe the arm for music and volume.", alt: "A man on a train touching the side of his glasses" },
+      { line: "Ask about the food in front of you.", alt: "A traveller at a street-food stall looking at skewers and smiling" },
+      { line: "Take a call with a coffee in each hand.", alt: "A woman by the Han River talking hands-free, holding a coffee" },
+    ],
     translateTitle: "Look at it. Ask what it says.",
     translateBody:
       "Look at a palace notice, a menu or a subway sign and ask Meta AI about it. The answer comes in your ear while your hands stay free. Tap a sign for an example.",
     tryNote:
       "Examples of what each sign says. Which languages Meta AI reads and answers in changes over time, so we check every pair before hand-over and tell you what works on the day.",
-    howTitle: "How it works",
+    howTitle: "Here’s how it goes",
     steps: [
       {
         line: "First, pick a pair and your dates.",
@@ -82,7 +89,7 @@ const en = {
     priceBody:
       "Every rental comes with the charging case and a USB-C cable. You pay per calendar day, pick-up and return day included, with 10% off for 4–6 days and 20% off for 7 days or more. Prices are in US dollars.",
     seeAll: "See all five",
-    faqTitle: "Before you ask",
+    faqTitle: "Good questions, answered",
     faq: [
       {
         q: "Do I need my own phone?",
