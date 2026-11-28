@@ -25,7 +25,7 @@ const MOTION: Record<CloserLookKey, React.ReactNode> = {
   // The shutter closes on the lens, then a flash
   camera: (
     <>
-      <span className="fm-ring fm-shutter" style={at(43.7, 41.8, { "--s": "16%" })} />
+      <span className="fm-ring fm-shutter" style={at(43.7, 41.8, { "--s": "20%" })} />
       <span className="fm-flash" />
     </>
   ),
@@ -33,9 +33,9 @@ const MOTION: Record<CloserLookKey, React.ReactNode> = {
   // The corner light breathes while the glasses listen
   ask: (
     <>
-      <span className="fm-ring" style={at(91.4, 40.1, { "--s": "12%" })} />
-      <span className="fm-ring" style={at(91.4, 40.1, { "--s": "12%", "--dl": "1200ms" })} />
-      <span className="fm-dot" style={at(91.4, 40.1)} />
+      <span className="fm-ring" style={at(91.4, 40.1, { "--s": "17%" })} />
+      <span className="fm-ring" style={at(91.4, 40.1, { "--s": "17%", "--dl": "1200ms" })} />
+      <span className="fm-dot" style={at(91.4, 40.1, { "--s": "2.2%" })} />
       <span className="fm-voice" style={at(86, 26)}>
         <i />
         <i style={{ "--dl": "150ms" } as CSSProperties} />
@@ -48,17 +48,17 @@ const MOTION: Record<CloserLookKey, React.ReactNode> = {
   // Sound leaving the speaker
   audio: (
     <>
-      <span className="fm-ring" style={at(63.6, 70.2, { "--s": "22%" })} />
-      <span className="fm-ring" style={at(63.6, 70.2, { "--s": "22%", "--dl": "800ms" })} />
-      <span className="fm-ring" style={at(63.6, 70.2, { "--s": "22%", "--dl": "1600ms" })} />
+      <span className="fm-ring" style={at(63.6, 70.2, { "--s": "30%" })} />
+      <span className="fm-ring" style={at(63.6, 70.2, { "--s": "30%", "--dl": "800ms" })} />
+      <span className="fm-ring" style={at(63.6, 70.2, { "--s": "30%", "--dl": "1600ms" })} />
     </>
   ),
 
   // A fingertip slides along the touchpad; the capture button answers
   control: (
     <>
-      <span className="fm-swipe" style={at(42, 45.2, { "--dx": "760%", "--dy": "-45%" })} />
-      <span className="fm-ring" style={at(67.6, 35.5, { "--s": "8%", "--t": "3200ms", "--dl": "1900ms" })} />
+      <span className="fm-swipe" style={at(42, 45.2, { "--dx": "552%", "--dy": "-33%" })} />
+      <span className="fm-ring" style={at(67.6, 35.5, { "--s": "12%", "--t": "3200ms", "--dl": "1900ms" })} />
     </>
   ),
 
@@ -74,7 +74,7 @@ const MOTION: Record<CloserLookKey, React.ReactNode> = {
         <span
           key={left}
           className="fm-dot fm-charge"
-          style={at(left, top, { "--s": "0.7%", "--c": AMBER, "--dl": `${i * 320}ms` })}
+          style={at(left, top, { "--s": "0.95%", "--c": AMBER, "--dl": `${i * 320}ms` })}
         />
       ))}
     </>
