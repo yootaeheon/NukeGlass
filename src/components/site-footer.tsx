@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { localePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/en";
+import { CONTACT_EMAIL } from "@/lib/contact";
 import { LICENCE_URLS, PHOTO_CREDITS } from "@/lib/media";
 
-// Contact channel is a placeholder until the CEO picks one (WhatsApp / email / KakaoTalk).
+// Contact is the email in src/lib/contact.ts; a messenger channel may be added later.
 export function SiteFooter({ lang, dict }: { lang: Locale; dict: Dictionary }) {
   const f = dict.footer;
   const columns = [
@@ -31,8 +32,9 @@ export function SiteFooter({ lang, dict }: { lang: Locale; dict: Dictionary }) {
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="max-w-[44ch] text-lead">{f.about}</p>
-            {/* Placeholder until the contact channel is chosen: not a link, so no mail goes nowhere */}
-            <p className="mt-8 text-lead">hello@nukeglass.example</p>
+            <a href={`mailto:${CONTACT_EMAIL}`} className="mt-8 inline-flex min-h-12 items-center text-lead underline">
+              {CONTACT_EMAIL}
+            </a>
           </div>
           {columns.map((c) => (
             <nav key={c.title} aria-label={c.title} className="lg:col-span-2 lg:first-of-type:col-start-8">

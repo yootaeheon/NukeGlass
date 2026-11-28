@@ -62,7 +62,7 @@ export default async function GlassesDetail({ params }: PageProps<"/[lang]/glass
     <>
       {/* Product */}
       <section aria-labelledby="name" className="mx-auto grid max-w-[1440px] gap-10 px-margin pb-section pt-8 lg:grid-cols-12 lg:pt-12">
-        <div className="relative aspect-[3/2] overflow-hidden bg-product lg:col-span-8" data-reveal="media">
+        <div className="rounded-2xl relative aspect-[3/2] overflow-hidden bg-product lg:col-span-8" data-reveal="media">
           <Image src={PRODUCT_IMAGES[g.slug].src} alt={g.name} fill priority sizes="(min-width: 1024px) 66vw, 100vw" className="object-cover" />
         </div>
         <div className="lg:col-span-4 lg:pt-6">
@@ -81,7 +81,7 @@ export default async function GlassesDetail({ params }: PageProps<"/[lang]/glass
                 </li>
               ))}
             </ul>
-            <div className="mt-8 bg-surface p-6" data-reveal style={d(240)}>
+            <div className="rounded-2xl mt-8 bg-surface p-6" data-reveal style={d(240)}>
               <p className="nums text-[clamp(2rem,1.6rem+1.2vw,2.75rem)] font-semibold leading-none">
                 {fmt(dict.common.aDay, { price: g.dailyUsd })}
               </p>
@@ -106,7 +106,7 @@ export default async function GlassesDetail({ params }: PageProps<"/[lang]/glass
       </div>
 
       {/* Take a closer look: one feature at a time (models with feature pictures only) */}
-      {closerItems && <CloserLook title={dict.closerLook.title} items={closerItems} />}
+      {closerItems && <CloserLook slug={g.slug} title={dict.closerLook.title} items={closerItems} />}
 
       {/* What it does in Seoul */}
       <section
@@ -120,7 +120,7 @@ export default async function GlassesDetail({ params }: PageProps<"/[lang]/glass
           {dict.features.map((f, i) => (
             <div key={f.title} className="grid items-center gap-8 lg:grid-cols-12">
               <div
-                className={`relative aspect-[3/2] overflow-hidden bg-surface lg:col-span-7 ${i % 2 ? "lg:order-2 lg:col-start-6" : ""}`}
+                className={`rounded-2xl relative aspect-[3/2] overflow-hidden bg-surface lg:col-span-7 ${i % 2 ? "lg:order-2 lg:col-start-6" : ""}`}
                 data-reveal="media"
               >
                 <Image src={FEATURE_PHOTOS[i % FEATURE_PHOTOS.length].src} alt="" fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
@@ -165,7 +165,7 @@ export default async function GlassesDetail({ params }: PageProps<"/[lang]/glass
           </h2>
           <ol className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {dict.guide.map((s, i) => (
-              <li key={s.title} className="bg-bg p-8" data-reveal style={d((i % 3) * 80)}>
+              <li key={s.title} className="rounded-2xl bg-bg p-8" data-reveal style={d((i % 3) * 80)}>
                 <h3 className="text-lead font-medium">{s.title}</h3>
                 <p className="mt-3 max-w-[44ch]">{s.body}</p>
               </li>
@@ -191,7 +191,7 @@ export default async function GlassesDetail({ params }: PageProps<"/[lang]/glass
             </div>
           ))}
         </div>
-        <div className="bg-surface p-8 lg:col-span-5 lg:col-start-8" data-reveal>
+        <div className="rounded-2xl bg-surface p-8 lg:col-span-5 lg:col-start-8" data-reveal>
           <h2 className="head text-[clamp(1.75rem,1.2rem+2vw,2.75rem)]">{t.returnTitle}</h2>
           <ul className="mt-8 space-y-3">
             {dict.returnChecklist.map((item) => (

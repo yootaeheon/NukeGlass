@@ -53,7 +53,7 @@ export default async function GlassesPage({ params }: PageProps<"/[lang]/glasses
             <li key={g.slug}>
               <a
                 href={`#${g.slug}`}
-                className="inline-flex min-h-11 items-center bg-surface px-4 transition-colors hover:bg-ink hover:text-white"
+                className="rounded-full inline-flex min-h-11 items-center bg-surface px-4 transition-colors hover:bg-ink hover:text-white"
               >
                 {g.name.replace(/ \(Gen 2\)$/, "")}
               </a>
@@ -70,7 +70,7 @@ export default async function GlassesPage({ params }: PageProps<"/[lang]/glasses
             <div className="mx-auto grid max-w-[1440px] items-center gap-10 px-margin pb-section lg:grid-cols-12">
               <Link
                 href={localePath(lang, `/glasses/${g.slug}`)}
-                className={`zoom relative block aspect-[3/2] overflow-hidden bg-product lg:col-span-7 ${flip ? "lg:order-2 lg:col-start-6" : ""}`}
+                className={`rounded-2xl zoom relative block aspect-[3/2] overflow-hidden bg-product lg:col-span-7 ${flip ? "lg:order-2 lg:col-start-6" : ""}`}
                 data-reveal="media"
                 tabIndex={-1}
                 aria-hidden="true"
@@ -123,7 +123,7 @@ export default async function GlassesPage({ params }: PageProps<"/[lang]/glasses
                   </th>
                   {GLASSES.map((g) => (
                     <th key={g.slug} scope="col" className="px-4 pb-4 align-bottom font-medium">
-                      <span className="relative mb-3 block aspect-[3/2] overflow-hidden bg-product">
+                      <span className="rounded-xl relative mb-3 block aspect-[3/2] overflow-hidden bg-product">
                         <Image src={PRODUCT_IMAGES[g.slug].src} alt="" fill sizes="180px" className="object-cover" />
                       </span>
                       {g.name.replace(/^(Ray-Ban|Oakley) Meta /, "")}

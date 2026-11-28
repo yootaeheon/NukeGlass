@@ -64,11 +64,11 @@ export function BookingForm({ lang, dict, initialModel, defaultName, minStart, m
   return (
     <form action={formAction} className="pb-32 [&_input]:scroll-mb-32 [&_select]:scroll-mb-32" noValidate>
       <input type="hidden" name="lang" value={lang} />
-      <p className="mb-10 bg-surface p-4">{dict.common.kst}</p>
+      <p className="rounded-xl mb-10 bg-surface p-4">{dict.common.kst}</p>
 
       <div ref={summaryRef} tabIndex={-1} className="outline-none">
         {(errorCount > 0 || formError) && (
-          <div role="alert" className="mb-10 border-l-4 border-danger bg-surface p-4">
+          <div role="alert" className="rounded-r-xl mb-10 border-l-4 border-danger bg-surface p-4">
             <p className="font-medium">{formError ?? (errorCount === 1 ? t.fixOne : fmt(t.fixMany, { n: errorCount }))}</p>
             {errorCount > 0 && (
               <ul className="mt-2 list-disc pl-5 text-danger">
@@ -83,7 +83,7 @@ export function BookingForm({ lang, dict, initialModel, defaultName, minStart, m
 
       <fieldset>
         <legend className={legend}>{t.glasses}</legend>
-        <div className="mt-6 grid gap-px bg-surface">
+        <div className="overflow-hidden rounded-2xl mt-6 grid gap-px bg-surface">
           {GLASSES.map((g) => (
             <label key={g.slug} className="flex min-h-16 cursor-pointer items-center gap-4 bg-bg px-4 py-3 transition-colors hover:bg-surface has-[:checked]:bg-accent-tint">
               <input
@@ -94,7 +94,7 @@ export function BookingForm({ lang, dict, initialModel, defaultName, minStart, m
                 onChange={() => setModel(g.slug)}
                 className="size-5 accent-accent"
               />
-              <span className="relative aspect-[3/2] w-20 shrink-0 overflow-hidden bg-product sm:w-24">
+              <span className="rounded-lg relative aspect-[3/2] w-20 shrink-0 overflow-hidden bg-product sm:w-24">
                 <Image src={PRODUCT_IMAGES[g.slug].src} alt="" fill sizes="96px" className="object-cover" />
               </span>
               <span className="flex-1 font-medium">{g.name}</span>
@@ -145,7 +145,7 @@ export function BookingForm({ lang, dict, initialModel, defaultName, minStart, m
 
       <fieldset className="mt-14">
         <legend className={legend}>{t.pickup}</legend>
-        <div className="mt-6 grid gap-px bg-surface">
+        <div className="overflow-hidden rounded-2xl mt-6 grid gap-px bg-surface">
           {PICKUP_LOCATIONS.map((l) => (
             <label key={l.id} className="flex cursor-pointer items-start gap-4 bg-bg px-4 py-4 has-[:checked]:bg-accent-tint">
               <input
@@ -177,7 +177,7 @@ export function BookingForm({ lang, dict, initialModel, defaultName, minStart, m
           {PICKUP_SLOTS.map((s) => (
             <label key={s} className="cursor-pointer">
               <input type="radio" name="slot" value={s} checked={slot === s} onChange={() => setSlot(s)} className="peer sr-only" />
-              <span className="nums inline-flex min-h-12 min-w-24 items-center justify-center border border-line px-4 peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent">
+              <span className="rounded-full nums inline-flex min-h-12 min-w-24 items-center justify-center border border-line px-4 peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent">
                 {s}
               </span>
             </label>
@@ -249,7 +249,7 @@ export function BookingForm({ lang, dict, initialModel, defaultName, minStart, m
         </div>
       </fieldset>
 
-      <div className="mt-14 bg-surface p-5">
+      <div className="rounded-2xl mt-14 bg-surface p-5">
         <p className="font-medium">{t.nothingCharged}</p>
         <p className="mt-1 text-muted">{t.nothingChargedBody}</p>
       </div>
