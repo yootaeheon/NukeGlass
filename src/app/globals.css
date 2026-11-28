@@ -185,7 +185,7 @@ a {
     font-variant-numeric: tabular-nums;
   }
 
-  /* Buttons: one shape, square corners */
+  /* Buttons: one shape, fully rounded (pill) */
   .btn {
     display: inline-flex;
     align-items: center;
@@ -193,7 +193,7 @@ a {
     min-height: 52px;
     padding: 0 24px;
     font-weight: 500;
-    border-radius: 0;
+    border-radius: 9999px;
     transition:
       background-color var(--dur-fast) var(--ease-out),
       color var(--dur-fast) var(--ease-out),
@@ -244,7 +244,7 @@ a {
     padding: 12px 14px;
     background: #ffffff;
     border: 1px solid var(--line);
-    border-radius: 0;
+    border-radius: 14px;
     color: var(--ink);
   }
   .field:focus-visible {
@@ -470,8 +470,10 @@ details[open] .answer {
   font-weight: 600;
   box-shadow: 0 8px 24px rgb(18 20 22 / 0.22);
   white-space: nowrap;
+  border-radius: 9999px;
 }
 .fm-voice i {
+  border-radius: 2px;
   display: block;
   width: 4px;
   height: 20px;

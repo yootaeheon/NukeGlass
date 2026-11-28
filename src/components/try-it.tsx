@@ -32,7 +32,7 @@ export function TryIt({ signs }: { signs: Dictionary["tryIt"] }) {
               aria-expanded={open}
               aria-controls={`try-${i}`}
               onClick={() => setActive(active === i ? null : i)}
-              className="zoom group relative block aspect-[4/3] w-full sm:aspect-[4/5] overflow-hidden bg-field-dark text-left text-white"
+              className="rounded-2xl zoom group relative block aspect-[4/3] w-full sm:aspect-[4/5] overflow-hidden bg-field-dark text-left text-white"
             >
               <Image
                 src={s.photo.src}
