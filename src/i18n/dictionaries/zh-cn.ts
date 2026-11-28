@@ -49,6 +49,7 @@ const zhCn: Dictionary = {
     { where: "咖啡馆", meaning: "请在柜台点单。" },
   ],
   home: {
+    stageTitle: "一副眼镜，就能做到这些。",
     momentsTitle: "戴上之后，就会忘了它的存在。",
     moments: [
       { line: "双手插口袋，导航在耳边。", alt: "双手插在大衣口袋里走在韩屋小巷的游客" },

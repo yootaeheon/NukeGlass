@@ -52,6 +52,7 @@ const en = {
     { where: "Café", meaning: "Please order at the counter." },
   ],
   home: {
+    stageTitle: "One pair of glasses. All of this.",
     momentsTitle: "Wear them. Then forget they’re there.",
     moments: [
       { line: "Walking directions in your ear, hands in your pockets.", alt: "A traveller walking up a hanok lane with her hands in her coat pockets" },
