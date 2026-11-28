@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ThemedImage } from "@/components/themed-image";
 import { useEffect, useRef, useState } from "react";
 import type { Photo } from "@/lib/media";
 import { Icon, type IconName } from "./icons";
@@ -43,9 +43,9 @@ export function StickySteps({
       <div className="hidden lg:col-span-6 lg:block">
         <div className="rounded-2xl sticky top-24 aspect-[4/5] max-h-[calc(100svh-8rem)] w-full overflow-hidden bg-surface">
           {photos.map((p, i) => (
-            <Image
+            <ThemedImage
               key={p.src}
-              src={p.src}
+              photo={p}
               alt=""
               aria-hidden="true"
               fill
@@ -79,8 +79,8 @@ export function StickySteps({
               className="rounded-2xl relative mb-8 aspect-[3/2] overflow-hidden bg-surface lg:hidden"
               data-reveal="media"
             >
-              <Image
-                src={photos[i].src}
+              <ThemedImage
+                photo={photos[i]}
                 alt=""
                 fill
                 sizes="100vw"

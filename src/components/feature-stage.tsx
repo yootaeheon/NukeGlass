@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ThemedImage } from "@/components/themed-image";
 import { useEffect, useId, useRef, useState } from "react";
 import type { CloserLookKey } from "@/lib/closer-look";
 import type { GlassesSlug } from "@/lib/glasses";
@@ -88,7 +88,7 @@ export function FeatureStage({
     <section
       ref={section}
       aria-labelledby={`${id}-title`}
-      className="light-scope relative bg-stage"
+      className="relative bg-stage"
       style={{ height: `calc(${n * SCREENS_PER_FEATURE} * 100svh + 100svh)` }}
     >
       {/* On a short, wide screen the words sit beside the picture instead of above it */}
@@ -136,8 +136,8 @@ export function FeatureStage({
                 }`}
               >
                 {seen.has(i) && (
-                  <Image
-                    src={item.photo.src}
+                  <ThemedImage
+                    photo={item.photo}
                     alt={i === active ? item.alt : ""}
                     fill
                     sizes="(min-width: 1024px) 1152px, 100vw"

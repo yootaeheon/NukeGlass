@@ -1,9 +1,7 @@
 @import "tailwindcss";
 
-/* Tokens: docs/design/DESIGN.md. .light-scope keeps the daylight colours inside the dark
-   theme, for grounds that match a light product picture (the home stage). */
-:root,
-.light-scope {
+/* Tokens: docs/design/DESIGN.md */
+:root {
   /* Warm ivory ground and a sand surface: the page should feel like paper in daylight */
   --bg: #fbf8f2;
   --surface: #f3ede2;
@@ -50,7 +48,7 @@
 }
 
 /* Dark theme: chosen with the header switch (theme-toggle.tsx) and remembered. Only the
-   colours change. Photo bands, the footer and product pictures keep their own grounds. */
+   colours change, and product pictures swap to their dark-ground versions. */
 :root[data-theme="dark"] {
   color-scheme: dark;
   --bg: #101214;
@@ -66,11 +64,19 @@
   --danger: #ff8a80;
   --on-accent: #0b1512;
   --field-bg: #16181b;
+  /* The grounds of the dark product pictures */
+  --stage: #0c0f12;
+  --product: #0d1013;
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 12px rgb(0 0 0 / 0.3);
   --shadow-md: 0 2px 4px rgb(0 0 0 / 0.3), 0 14px 32px rgb(0 0 0 / 0.5);
 }
-.light-scope {
-  color: var(--ink);
+/* Pictures with a dark-theme version (themed-image.tsx) */
+.only-dark,
+:root[data-theme="dark"] .only-light {
+  display: none !important;
+}
+:root[data-theme="dark"] .only-dark {
+  display: block !important;
 }
 
 /* A wide but short screen, such as a phone on its side */
@@ -556,7 +562,7 @@ details[open] .answer {
   /* Scales with the picture, so the label stays in proportion inside a phone-sized frame */
   padding: 0.65em 1em;
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
   font-size: clamp(0.6875rem, 1.3vw, 1.0625rem);
   font-weight: 600;
   box-shadow: 0 8px 24px rgb(18 20 22 / 0.22);
@@ -568,7 +574,7 @@ details[open] .answer {
   display: block;
   width: 0.22em;
   height: 1.15em;
-  background: #fff;
+  background: currentColor;
   transform-origin: center;
   animation: fm-bar 900ms ease-in-out var(--dl, 0ms) infinite;
 }
