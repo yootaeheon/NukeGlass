@@ -26,7 +26,7 @@ const en = {
     help: "Help",
     credits: "Photo credits",
     modified: "Photos are cropped and resized for this site.",
-    illustrative: "Glasses and people shown in product and scene images are illustrations.",
+    illustrative: "Glasses and people shown in product images, scene images and the film are AI-generated illustrations.",
   },
   common: {
     perDay: "${price} / day",
@@ -42,8 +42,8 @@ const en = {
     pause: "Pause video",
     play: "Play video",
     srDescription:
-      "A short film of a traveller in Seoul wearing the glasses: ordering at a market stall, reading a restaurant menu and checking a price in Myeongdong.",
-    videoNote: "Illustrative film.",
+      "A short film of a traveller in Seoul wearing the glasses: ordering at a market stall, looking at a restaurant menu and checking a price in Myeongdong.",
+    videoNote: "AI-generated illustrative film. The glasses have no screen: answers come as audio.",
   },
   tryIt: [
     { where: "Palace notice", meaning: "Visiting hours: 9 am to 6 pm." },
@@ -170,7 +170,7 @@ const en = {
         },
         ask: {
           label: "Ask Meta AI",
-          body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look and answer in your ear: palace signs, shop fronts, museum labels. Your phone needs data or Wi-Fi.",
+          body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look and answer in your ear. Which languages Meta AI reads and answers in changes over time, so we check every pair before hand-over and tell you what works on the day. Your phone needs data or Wi-Fi.",
           alt: "A traveller in Insadong touching her glasses while looking up at a Korean shop sign",
         },
         audio: {

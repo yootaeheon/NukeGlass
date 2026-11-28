@@ -25,7 +25,7 @@ const ja: Dictionary = {
     help: "サポート",
     credits: "写真クレジット",
     modified: "写真はサイト用にトリミング・縮小しています。",
-    illustrative: "製品・シーン画像のグラスと人物はイメージです。",
+    illustrative: "製品・シーン画像と映像のグラスと人物は、AIで作成したイメージです。",
   },
   common: {
     perDay: "1日 ${price}",
@@ -40,8 +40,8 @@ const ja: Dictionary = {
     cta: "グラスを選ぶ",
     pause: "動画を一時停止",
     play: "動画を再生",
-    srDescription: "グラスをかけた旅行者のソウルでの一日を描いた短い映像：市場の屋台で注文し、食堂のメニューを読み、明洞で値段を確かめる様子。",
-    videoNote: "イメージ映像です。",
+    srDescription: "グラスをかけた旅行者のソウルでの一日を描いた短い映像：市場の屋台で注文し、食堂のメニューを眺め、明洞で値段を確かめる様子。",
+    videoNote: "AIで作成したイメージ映像です。グラスに画面はなく、答えは音声で届きます。",
   },
   tryIt: [
     { where: "王宮の案内板", meaning: "観覧時間：午前9時〜午後6時" },
@@ -168,7 +168,7 @@ const ja: Dictionary = {
         },
         ask: {
           label: "Meta AIに聞く",
-          body: "「Hey Meta, look and tell me what this is.」と話しかけると、グラスが前を見て耳元で答えます。宮殿の案内板、店の看板、博物館の説明などに。スマートフォンのデータ通信かWi-Fiが必要です。",
+          body: "「Hey Meta, look and tell me what this is.」と話しかけると、グラスが前を見て耳元で答えます。Meta AIが読める言語・答える言語は随時変わるため、お渡し前に全台で確認し、当日使える機能をご案内します。スマートフォンのデータ通信かWi-Fiが必要です。",
           alt: "仁寺洞でグラスに触れながら韓国語の看板を見上げる旅行者",
         },
         audio: {

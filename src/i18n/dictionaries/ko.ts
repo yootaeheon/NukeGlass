@@ -24,7 +24,7 @@ const ko: Dictionary = {
     help: "도움말",
     credits: "사진 출처",
     modified: "사진은 사이트에 맞게 자르고 크기를 줄였습니다.",
-    illustrative: "제품·장면 이미지 속 글래스와 인물은 연출 이미지입니다.",
+    illustrative: "제품·장면 이미지와 영상 속 글래스와 인물은 AI로 만든 연출 이미지입니다.",
   },
   common: {
     perDay: "하루 ${price}",
@@ -39,8 +39,8 @@ const ko: Dictionary = {
     cta: "글래스 고르기",
     pause: "영상 일시정지",
     play: "영상 재생",
-    srDescription: "글래스를 쓴 여행자의 서울 하루를 담은 짧은 영상: 시장 노점에서 주문하고, 식당 메뉴를 읽고, 명동에서 가격을 확인하는 모습.",
-    videoNote: "연출 영상입니다.",
+    srDescription: "글래스를 쓴 여행자의 서울 하루를 담은 짧은 영상: 시장 노점에서 주문하고, 식당 메뉴판을 보고, 명동에서 가격을 확인하는 모습.",
+    videoNote: "AI로 만든 연출 영상입니다. 글래스에는 화면이 없고, 답은 소리로 들립니다.",
   },
   tryIt: [
     { where: "궁궐 안내판", meaning: "관람 시간: 오전 9시~오후 6시" },
@@ -148,7 +148,7 @@ const ko: Dictionary = {
         },
         ask: {
           label: "Meta AI에게 묻기",
-          body: "“Hey Meta, look and tell me what this is.”라고 말하면 글래스가 앞을 잠깐 보고 귀에 대답해 줍니다. 궁궐 안내판, 가게 간판, 박물관 설명에 쓸 수 있습니다. 휴대폰에 데이터나 와이파이가 필요합니다.",
+          body: "“Hey Meta, look and tell me what this is.”라고 말하면 글래스가 앞을 잠깐 보고 귀에 대답해 줍니다. Meta AI가 읽고 답하는 언어는 계속 바뀌므로, 건네드리기 전에 모든 기기를 확인하고 그날 쓸 수 있는 기능을 알려 드립니다. 휴대폰에 데이터나 와이파이가 필요합니다.",
           alt: "인사동에서 글래스를 만지며 한글 간판을 올려다보는 여행자",
         },
         audio: {

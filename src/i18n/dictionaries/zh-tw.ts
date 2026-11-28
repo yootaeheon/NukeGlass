@@ -24,7 +24,7 @@ const zhTw: Dictionary = {
     help: "說明",
     credits: "圖片來源",
     modified: "圖片已為本網站裁切與縮放。",
-    illustrative: "產品與場景圖片中的眼鏡與人物皆為示意圖。",
+    illustrative: "產品圖片、場景圖片與影片中的眼鏡與人物皆為 AI 生成的示意畫面。",
   },
   common: {
     perDay: "${price} / 天",
@@ -39,8 +39,8 @@ const zhTw: Dictionary = {
     cta: "挑選眼鏡",
     pause: "暫停影片",
     play: "播放影片",
-    srDescription: "一段短片：戴著眼鏡的旅客在首爾的一天，在市場小攤點餐、看懂餐廳菜單、在明洞確認價格。",
-    videoNote: "示意影片。",
+    srDescription: "一段短片：戴著眼鏡的旅客在首爾的一天，在市場小攤點餐、看餐廳菜單、在明洞確認價格。",
+    videoNote: "AI 生成的示意影片。眼鏡沒有螢幕，回答以語音播放。",
   },
   tryIt: [
     { where: "宮殿告示", meaning: "參觀時間：上午 9 點至下午 6 點。" },
@@ -151,7 +151,7 @@ const zhTw: Dictionary = {
         },
         ask: {
           label: "問 Meta AI",
-          body: "說「Hey Meta, look and tell me what this is.」，眼鏡會看一眼前方，在你耳邊回答。適合宮殿指示牌、店家招牌和博物館說明。手機需要有行動數據或 Wi-Fi。",
+          body: "說「Hey Meta, look and tell me what this is.」，眼鏡會看一眼前方，在你耳邊回答。Meta AI 能辨識與回答的語言會持續變動，我們在交付前逐台檢查，並告訴您當天可用的功能。手機需要有行動數據或 Wi-Fi。",
           alt: "在仁寺洞一邊輕觸眼鏡一邊抬頭看韓文招牌的旅客",
         },
         audio: {
