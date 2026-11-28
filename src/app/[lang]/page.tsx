@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { HeroVideo } from "@/components/hero-video";
-import { CloserLook } from "@/components/closer-look";
+import { FeatureStage } from "@/components/feature-stage";
+import { ScrollStatement } from "@/components/scroll-statement";
 import { CLOSER_LOOK, type CloserLookKey } from "@/lib/closer-look";
 import { ProductRail } from "@/components/product-rail";
 import { StickySteps } from "@/components/sticky-steps";
@@ -72,6 +73,59 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
     <>
       <HeroVideo lang={lang} t={dict.hero} />
 
+      {/* A dark room after the film: one statement, then the features in ordinary use */}
+      <div className="on-dark bg-ink text-white">
+        <section
+          aria-label={t.momentsTitle}
+          className="mx-auto max-w-[1440px] px-margin py-section"
+        >
+          <ScrollStatement
+            phrases={t.statement}
+            joiner={lang === "ko" || lang === "en" ? " " : ""}
+            className={`display mx-auto max-w-[24ch] text-balance text-center text-[clamp(2rem,1.1rem+4.2vw,5rem)] leading-[1.16] ${lang === "ko" ? "break-keep" : ""}`}
+          />
+          <h2
+            className="display mx-auto mt-section max-w-[18ch] text-center text-display"
+            data-reveal
+          >
+            {t.momentsTitle}
+          </h2>
+          <ul className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:mt-16 lg:grid-cols-12 lg:gap-y-16">
+            {MOMENTS.map((m, i) => (
+              <li
+                key={m.photo.src}
+                className={m.className}
+                data-reveal
+                style={d((i % 2) * 90)}
+              >
+                <div
+                  className={`relative overflow-hidden rounded-2xl bg-white/5 ${m.aspect}`}
+                  data-reveal="media"
+                >
+                  <Image
+                    src={m.photo.src}
+                    alt={t.moments[i].alt}
+                    fill
+                    sizes="(min-width: 1024px) 58vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+                <p className="mt-4 max-w-[38ch] text-lead text-white/85">
+                  {t.moments[i].line}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+
+      {/* The glasses at work: the pair stays put while each feature scrolls past */}
+      <FeatureStage
+        slug={STAGE_MODEL}
+        title={t.stageTitle}
+        items={stageItems}
+      />
+
       {/* The five pairs */}
       <section
         aria-labelledby="lineup-title"
@@ -104,52 +158,6 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         </div>
         <ProductRail lang={lang} dict={dict} />
       </section>
-
-      {/* Moments: the features in ordinary use (stills from the hero film) */}
-      <section
-        aria-labelledby="moments-title"
-        className="mx-auto max-w-[1440px] px-margin pt-section"
-      >
-        <h2
-          id="moments-title"
-          className="display max-w-[18ch] text-display"
-          data-reveal
-        >
-          {t.momentsTitle}
-        </h2>
-        <ul className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-y-16">
-          {MOMENTS.map((m, i) => (
-            <li
-              key={m.photo.src}
-              className={m.className}
-              data-reveal
-              style={d((i % 2) * 90)}
-            >
-              <div
-                className={`relative overflow-hidden rounded-2xl bg-surface shadow-[var(--shadow-sm)] ${m.aspect}`}
-                data-reveal="media"
-              >
-                <Image
-                  src={m.photo.src}
-                  alt={t.moments[i].alt}
-                  fill
-                  sizes="(min-width: 1024px) 58vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-              <p className="mt-4 max-w-[38ch] text-lead">{t.moments[i].line}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* The glasses at work: one feature after another, on the pair itself */}
-      <CloserLook
-        slug={STAGE_MODEL}
-        title={t.stageTitle}
-        items={stageItems}
-        autoPlay
-      />
 
       {/* How it works */}
       <section

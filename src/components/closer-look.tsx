@@ -18,20 +18,15 @@ type Item = {
 // One feature open at a time; pressing the open one closes it. Desktop: the list on the
 // left, the picture on the right crossfades (it keeps the last one while all are closed).
 // Phone: the open row shows its own picture above its text.
-// autoPlay (home page, wide screens only): the features open one after another until the
-// visitor presses a row, so the glasses are seen doing each thing without any input.
-const AUTO_MS = 5200;
 
 export function CloserLook({
   slug,
   title,
   items,
-  autoPlay = false,
 }: {
   slug: GlassesSlug;
   title: string;
   items: Item[];
-  autoPlay?: boolean;
 }) {
   const [open, setOpen] = useState<number | null>(0);
   const [shown, setShown] = useState(0);
@@ -41,36 +36,6 @@ export function CloserLook({
   const id = useId();
   const buttons = useRef<(HTMLButtonElement | null)[]>([]);
   const touched = useRef(false);
-  const section = useRef<HTMLElement>(null);
-  const [auto, setAuto] = useState(autoPlay);
-  // The timer reads the picture on show without restarting each time it changes
-  const current = useRef(0);
-  useEffect(() => {
-    current.current = shown;
-  }, [shown]);
-
-  useEffect(() => {
-    if (!auto) return;
-    const wide = window.matchMedia("(min-width: 1024px)");
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let inView = false;
-    const io = new IntersectionObserver(([e]) => (inView = e.isIntersecting), {
-      threshold: 0.35,
-    });
-    if (section.current) io.observe(section.current);
-    const timer = window.setInterval(() => {
-      // Rows changing height would push a phone's page around, so only on wide screens
-      if (!inView || document.hidden || !wide.matches || reduce.matches) return;
-      const next = (current.current + 1) % items.length;
-      setShown(next);
-      setOpen(next);
-      setSeen((prev) => (prev.has(next) ? prev : new Set(prev).add(next)));
-    }, AUTO_MS);
-    return () => {
-      window.clearInterval(timer);
-      io.disconnect();
-    };
-  }, [auto, items.length]);
 
   // A row above may have just collapsed: keep the pressed row on screen
   useEffect(() => {
@@ -86,7 +51,6 @@ export function CloserLook({
 
   const toggle = (i: number) => {
     touched.current = true;
-    setAuto(false);
     if (open === i) {
       setOpen(null);
     } else {
@@ -97,11 +61,7 @@ export function CloserLook({
   };
 
   return (
-    <section
-      ref={section}
-      aria-labelledby={`${id}-title`}
-      className="bg-surface"
-    >
+    <section aria-labelledby={`${id}-title`} className="bg-surface">
       <div className="mx-auto max-w-[1440px] px-margin py-section">
         <h2
           id={`${id}-title`}
