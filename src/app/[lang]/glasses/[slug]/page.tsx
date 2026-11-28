@@ -106,7 +106,7 @@ export default async function GlassesDetail({ params }: PageProps<"/[lang]/glass
       </div>
 
       {/* Take a closer look: one feature at a time (models with feature pictures only) */}
-      {closerItems && <CloserLook title={dict.closerLook.title} items={closerItems} />}
+      {closerItems && <CloserLook slug={g.slug} title={dict.closerLook.title} items={closerItems} />}
 
       {/* What it does in Seoul */}
       <section

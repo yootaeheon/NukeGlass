@@ -106,8 +106,8 @@ export const SCENES = {
 
 /** Home hero film (AI-generated with Higgsfield, silent, no captions): a traveller in Seoul wearing the glasses */
 export const HERO_VIDEO = {
-  src: "/video/hero-wayfarer.mp4",
-  poster: "/video/hero-wayfarer-poster.jpg",
+  src: "/video/hero-features.mp4",
+  poster: "/video/hero-features-poster.jpg",
   width: 1280,
   height: 720,
 };
