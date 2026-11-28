@@ -14,6 +14,8 @@
   /* Second colour: persimmon. A band, icon grounds and the text selection; never body text. */
   --warm: #b85c1e;
   --warm-tint: #f8e3cc;
+  /* The studio grey behind the product pictures, so they melt into the home stage */
+  --stage: #e8e7e3;
   --danger: #b3261e;
   --field-dark: #121416;
   --field-dark-muted: #a9b0b3;
@@ -42,6 +44,9 @@
   --shadow-md: 0 2px 4px rgb(60 40 15 / 0.06), 0 14px 32px rgb(60 40 15 / 0.12);
 }
 
+/* A wide but short screen, such as a phone on its side */
+@custom-variant short (@media (max-height: 560px) and (min-width: 640px));
+
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
@@ -53,6 +58,7 @@
   --color-accent-tint: var(--accent-tint);
   --color-warm: var(--warm);
   --color-warm-tint: var(--warm-tint);
+  --color-stage: var(--stage);
   --color-danger: var(--danger);
   --color-field-dark: var(--field-dark);
   --color-field-dark-muted: var(--field-dark-muted);
@@ -387,6 +393,22 @@ details[open] .answer {
   height: 44px;
   accent-color: var(--accent);
   cursor: pointer;
+}
+
+/* Home statement: phrases light up one after another as --p goes from 0 to 1
+   (scroll-statement.tsx). Fully lit without script or with reduced motion. */
+.lit > span {
+  /* Lines break between phrases, not inside one (it still wraps if wider than the screen) */
+  display: inline-block;
+  opacity: clamp(0.22, calc(var(--p, 1) * var(--n) - var(--i)), 1);
+  transition: opacity 240ms linear;
+}
+/* Home stage: the picture's edges fade into the stage colour */
+.stage-pic {
+  mask-image:
+    linear-gradient(to right, transparent, #000 7%, #000 93%, transparent),
+    linear-gradient(to bottom, transparent, #000 7%, #000 93%, transparent);
+  mask-composite: intersect;
 }
 
 /* Closer look: the feature "working" on top of its product picture (feature-motion.tsx).

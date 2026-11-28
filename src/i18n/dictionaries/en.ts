@@ -45,13 +45,8 @@ const en = {
       "A short film of a traveller in Seoul wearing the glasses: taking a photo at a palace, following directions down a hanok lane, asking about food at a stall, turning the volume up on a train, talking hands-free by the river and putting the glasses in their charging case.",
     videoNote: "Illustrative film.",
   },
-  tryIt: [
-    { where: "Palace notice", meaning: "Visiting hours: 9 am to 6 pm." },
-    { where: "Menu", meaning: "Doenjang-jjigae, soybean paste stew." },
-    { where: "Subway sign", meaning: "Transfer to another line here." },
-    { where: "Café", meaning: "Please order at the counter." },
-  ],
   home: {
+    statement: ["Put them on,", "and the trip changes.", "Ask about the sign in front of you,", "take the photo just as you see it,", "keep music and calls by your ear.", "Your phone can stay in your pocket."],
     stageTitle: "One pair of glasses. All of this.",
     momentsTitle: "Wear them. Then forget they’re there.",
     moments: [
@@ -60,11 +55,6 @@ const en = {
       { line: "Ask about the food in front of you.", alt: "A traveller at a street-food stall looking at skewers and smiling" },
       { line: "Take a call with a coffee in each hand.", alt: "A woman by the Han River talking hands-free, holding a coffee" },
     ],
-    translateTitle: "Look at it. Ask what it says.",
-    translateBody:
-      "Look at a palace notice, a menu or a subway sign and ask Meta AI about it. The answer comes in your ear while your hands stay free. Tap a sign for an example.",
-    tryNote:
-      "Examples of what each sign says. Which languages Meta AI reads and answers in changes over time, so we check every pair before hand-over and tell you what works on the day.",
     howTitle: "Here’s how it goes",
     steps: [
       {
