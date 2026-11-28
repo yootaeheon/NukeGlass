@@ -29,3 +29,21 @@ describe("AI and no-screen disclosures", () => {
     });
   }
 });
+
+// Which languages Meta AI reads is not something we have verified, so no model's
+// "Ask Meta AI" copy may promise sign reading. Every model carries the same caveat.
+describe("Ask Meta AI copy", () => {
+  for (const [lang, dict] of Object.entries(dicts)) {
+    it(`${lang}: every model uses the same caveated wording`, () => {
+      const bodies = Object.values(dict.closerLook.models).map((m) => m.ask.body);
+      expect(bodies.length).toBeGreaterThan(0);
+      expect(new Set(bodies).size).toBe(1);
+    });
+  }
+
+  it("en: does not promise reading signs", () => {
+    for (const m of Object.values(en.closerLook.models)) {
+      expect(m.ask.body).not.toContain("palace signs");
+    }
+  });
+});

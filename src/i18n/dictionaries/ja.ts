@@ -205,7 +205,7 @@ const ja: Dictionary = {
         },
         ask: {
           label: "Meta AIに聞く",
-          body: "「Hey Meta, look and tell me what this is.」と話しかけると、グラスが前を見て耳元で答えます。宮殿の案内板、店の看板、博物館の説明などに。スマートフォンのデータ通信かWi-Fiが必要です。読み取れる言語はお渡し前に確認し、当日お伝えします。",
+          body: "「Hey Meta, look and tell me what this is.」と話しかけると、グラスが前を見て耳元で答えます。Meta AIが読める言語・答える言語は随時変わるため、お渡し前に全台で確認し、当日使える機能をご案内します。スマートフォンのデータ通信かWi-Fiが必要です。",
           alt: "正面から見たグラス。フレームの角の小さなライトが白く点灯している",
         },
         audio: {
@@ -242,7 +242,7 @@ const ja: Dictionary = {
         },
         ask: {
           label: "Meta AIに聞く",
-          body: "「Hey Meta, look and tell me what this is.」と話しかけると、グラスが前を見て耳元で答えます。宮殿の案内板、店の看板、博物館の説明などに。スマートフォンのデータ通信かWi-Fiが必要です。読み取れる言語はお渡し前に確認し、当日お伝えします。",
+          body: "「Hey Meta, look and tell me what this is.」と話しかけると、グラスが前を見て耳元で答えます。Meta AIが読める言語・答える言語は随時変わるため、お渡し前に全台で確認し、当日使える機能をご案内します。スマートフォンのデータ通信かWi-Fiが必要です。",
           alt: "正面から見たグラス。フレームの角の小さなライトが白く点灯している",
         },
         audio: {
@@ -279,7 +279,7 @@ const ja: Dictionary = {
         },
         ask: {
           label: "Meta AIに聞く",
-          body: "「Hey Meta, look and tell me what this is.」と話しかけると、グラスが前を見て耳元で答えます。宮殿の案内板、店の看板、博物館の説明などに。スマートフォンのデータ通信かWi-Fiが必要です。読み取れる言語はお渡し前に確認し、当日お伝えします。",
+          body: "「Hey Meta, look and tell me what this is.」と話しかけると、グラスが前を見て耳元で答えます。Meta AIが読める言語・答える言語は随時変わるため、お渡し前に全台で確認し、当日使える機能をご案内します。スマートフォンのデータ通信かWi-Fiが必要です。",
           alt: "正面から見たグラス。フレームの角の小さなライトが白く点灯している",
         },
         audio: {
@@ -316,7 +316,7 @@ const ja: Dictionary = {
         },
         ask: {
           label: "Meta AIに聞く",
-          body: "「Hey Meta, look and tell me what this is.」と話しかけると、グラスが前を見て耳元で答えます。宮殿の案内板、店の看板、博物館の説明などに。スマートフォンのデータ通信かWi-Fiが必要です。読み取れる言語はお渡し前に確認し、当日お伝えします。",
+          body: "「Hey Meta, look and tell me what this is.」と話しかけると、グラスが前を見て耳元で答えます。Meta AIが読める言語・答える言語は随時変わるため、お渡し前に全台で確認し、当日使える機能をご案内します。スマートフォンのデータ通信かWi-Fiが必要です。",
           alt: "正面から見たグラス。カメラ横の小さなライトが白く点灯している",
         },
         audio: {

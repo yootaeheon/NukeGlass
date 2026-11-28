@@ -188,7 +188,7 @@ const zhTw: Dictionary = {
         },
         ask: {
           label: "問 Meta AI",
-          body: "說「Hey Meta, look and tell me what this is.」，眼鏡會看一眼前方，在你耳邊回答。適合宮殿指示牌、店家招牌和博物館說明。手機需要有行動數據或 Wi-Fi。能辨識哪些語言，我們會在交付前確認，並在當天告訴你。",
+          body: "說「Hey Meta, look and tell me what this is.」，眼鏡會看一眼前方，在你耳邊回答。Meta AI 能辨識與回答的語言會持續變動，我們在交付前逐台檢查，並告訴您當天可用的功能。手機需要有行動數據或 Wi-Fi。",
           alt: "眼鏡正面，鏡框角落的小燈亮著白光",
         },
         audio: {
@@ -225,7 +225,7 @@ const zhTw: Dictionary = {
         },
         ask: {
           label: "問 Meta AI",
-          body: "說「Hey Meta, look and tell me what this is.」，眼鏡會看一眼前方，在你耳邊回答。適合宮殿指示牌、店家招牌和博物館說明。手機需要有行動數據或 Wi-Fi。能辨識哪些語言，我們會在交付前確認，並在當天告訴你。",
+          body: "說「Hey Meta, look and tell me what this is.」，眼鏡會看一眼前方，在你耳邊回答。Meta AI 能辨識與回答的語言會持續變動，我們在交付前逐台檢查，並告訴您當天可用的功能。手機需要有行動數據或 Wi-Fi。",
           alt: "眼鏡正面，鏡框角落的小燈亮著白光",
         },
         audio: {
@@ -262,7 +262,7 @@ const zhTw: Dictionary = {
         },
         ask: {
           label: "問 Meta AI",
-          body: "說「Hey Meta, look and tell me what this is.」，眼鏡會看一眼前方，在你耳邊回答。適合宮殿指示牌、店家招牌和博物館說明。手機需要有行動數據或 Wi-Fi。能辨識哪些語言，我們會在交付前確認，並在當天告訴你。",
+          body: "說「Hey Meta, look and tell me what this is.」，眼鏡會看一眼前方，在你耳邊回答。Meta AI 能辨識與回答的語言會持續變動，我們在交付前逐台檢查，並告訴您當天可用的功能。手機需要有行動數據或 Wi-Fi。",
           alt: "眼鏡正面，鏡框角落的小燈亮著白光",
         },
         audio: {
@@ -299,7 +299,7 @@ const zhTw: Dictionary = {
         },
         ask: {
           label: "問 Meta AI",
-          body: "說「Hey Meta, look and tell me what this is.」，眼鏡會看一眼前方，在你耳邊回答。適合宮殿指示牌、店家招牌和博物館說明。手機需要有行動數據或 Wi-Fi。能辨識哪些語言，我們會在交付前確認，並在當天告訴你。",
+          body: "說「Hey Meta, look and tell me what this is.」，眼鏡會看一眼前方，在你耳邊回答。Meta AI 能辨識與回答的語言會持續變動，我們在交付前逐台檢查，並告訴您當天可用的功能。手機需要有行動數據或 Wi-Fi。",
           alt: "眼鏡正面，相機旁的小燈亮著白光",
         },
         audio: {
