@@ -16,6 +16,8 @@ const ja: Dictionary = {
     close: "閉じる",
     language: "言語",
     skip: "本文へスキップ",
+    themeDark: "ダークモードに切り替え",
+    themeLight: "ライトモードに切り替え",
   },
   footer: {
     about:

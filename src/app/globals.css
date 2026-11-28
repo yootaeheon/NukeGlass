@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
-/* Tokens: docs/design/DESIGN.md */
-:root {
+/* Tokens: docs/design/DESIGN.md. .light-scope keeps the daylight colours inside the dark
+   theme, for grounds that match a light product picture (the home stage). */
+:root,
+.light-scope {
   /* Warm ivory ground and a sand surface: the page should feel like paper in daylight */
   --bg: #fbf8f2;
   --surface: #f3ede2;
@@ -22,6 +24,9 @@
   --field-accent-muted: #d4dcd9;
   /* Ground of the product renders, so pictures sit seamlessly in their tiles */
   --product: #edeee9;
+  /* Text on the accent colour, and the ground of a form field */
+  --on-accent: #ffffff;
+  --field-bg: #ffffff;
 
   --step-small: 0.875rem;
   --step-body: clamp(1rem, 0.95rem + 0.25vw, 1.1875rem);
@@ -44,6 +49,30 @@
   --shadow-md: 0 2px 4px rgb(60 40 15 / 0.06), 0 14px 32px rgb(60 40 15 / 0.12);
 }
 
+/* Dark theme: chosen with the header switch (theme-toggle.tsx) and remembered. Only the
+   colours change. Photo bands, the footer and product pictures keep their own grounds. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #101214;
+  --surface: #1b1e21;
+  --ink: #f3f0e9;
+  --muted: #a7adb0;
+  --line: #70777b;
+  --accent: #49c2a3;
+  --accent-press: #76d6bc;
+  --accent-tint: #16342c;
+  --warm: #eb9a5c;
+  --warm-tint: #3b2616;
+  --danger: #ff8a80;
+  --on-accent: #0b1512;
+  --field-bg: #16181b;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 12px rgb(0 0 0 / 0.3);
+  --shadow-md: 0 2px 4px rgb(0 0 0 / 0.3), 0 14px 32px rgb(0 0 0 / 0.5);
+}
+.light-scope {
+  color: var(--ink);
+}
+
 /* A wide but short screen, such as a phone on its side */
 @custom-variant short (@media (max-height: 560px) and (min-width: 640px));
 
@@ -60,6 +89,7 @@
   --color-warm-tint: var(--warm-tint);
   --color-stage: var(--stage);
   --color-danger: var(--danger);
+  --color-on-accent: var(--on-accent);
   --color-field-dark: var(--field-dark);
   --color-field-dark-muted: var(--field-dark-muted);
   --color-field-accent-muted: var(--field-accent-muted);
@@ -236,17 +266,17 @@ a {
   }
   .btn-primary {
     background: var(--accent);
-    color: #ffffff;
+    color: var(--on-accent);
   }
   .btn-primary:hover {
     background: var(--accent-press);
   }
   .btn-light {
     background: #ffffff;
-    color: var(--ink);
+    color: var(--field-dark);
   }
   .btn-light:hover {
-    background: var(--accent-tint);
+    background: #cfe6df;
   }
   .btn:disabled,
   .btn[aria-disabled="true"] {
@@ -299,7 +329,7 @@ a {
     width: 100%;
     min-height: 52px;
     padding: 12px 14px;
-    background: #ffffff;
+    background: var(--field-bg);
     border: 1px solid var(--line);
     border-radius: 14px;
     color: var(--ink);
@@ -551,7 +581,7 @@ details[open] .answer {
   top: 0;
   bottom: 0;
   width: 50%;
-  background: var(--surface, #f1f1ef);
+  background: var(--product);
   opacity: 0;
   animation: fm-shade 5200ms ease-in-out var(--dl, 0ms) infinite;
 }

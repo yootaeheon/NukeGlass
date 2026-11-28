@@ -88,7 +88,7 @@ export function FeatureStage({
     <section
       ref={section}
       aria-labelledby={`${id}-title`}
-      className="relative bg-stage"
+      className="light-scope relative bg-stage"
       style={{ height: `calc(${n * SCREENS_PER_FEATURE} * 100svh + 100svh)` }}
     >
       {/* On a short, wide screen the words sit beside the picture instead of above it */}

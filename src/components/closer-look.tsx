@@ -97,8 +97,8 @@ export function CloserLook({
                       aria-hidden="true"
                       className={`rounded-full grid size-7 shrink-0 place-items-center transition-colors duration-[var(--dur-base)] ${
                         isOpen
-                          ? "bg-accent text-white"
-                          : "border border-ink text-ink group-hover:bg-ink group-hover:text-white"
+                          ? "bg-accent text-on-accent"
+                          : "border border-ink text-ink group-hover:bg-ink group-hover:text-bg"
                       }`}
                     >
                       <svg
@@ -122,7 +122,7 @@ export function CloserLook({
                     className="px-4 pb-6 pl-[3.75rem]"
                   >
                     {/* Phone and tablet: the picture sits with its text */}
-                    <div className="rounded-xl relative mb-5 aspect-[3/2] overflow-hidden bg-product lg:hidden">
+                    <div className="rounded-xl relative mb-5 aspect-[3/2] overflow-hidden light-scope bg-product lg:hidden">
                       <Image
                         src={item.photo.src}
                         alt={item.alt}
@@ -145,7 +145,7 @@ export function CloserLook({
 
           {/* Desktop: one picture frame, crossfading between features */}
           <div
-            className="rounded-2xl relative hidden aspect-[3/2] overflow-hidden bg-product lg:sticky lg:top-28 lg:col-span-8 lg:block"
+            className="rounded-2xl relative hidden aspect-[3/2] overflow-hidden light-scope bg-product lg:sticky lg:top-28 lg:col-span-8 lg:block"
             data-reveal="media"
           >
             {items.map((item, i) => (

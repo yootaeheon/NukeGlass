@@ -5,9 +5,16 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { localePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/en";
+import { ThemeToggle } from "./theme-toggle";
 import { LanguageSwitcher } from "./language-switcher";
 
-export function SiteHeader({ lang, nav }: { lang: Locale; nav: Dictionary["nav"] }) {
+export function SiteHeader({
+  lang,
+  nav,
+}: {
+  lang: Locale;
+  nav: Dictionary["nav"];
+}) {
   const pathname = usePathname();
   const overHero = pathname === `/${lang}`;
   const [scrolled, setScrolled] = useState(false);
@@ -29,7 +36,8 @@ export function SiteHeader({ lang, nav }: { lang: Locale; nav: Dictionary["nav"]
       const y = window.scrollY;
       setScrolled(y > 48);
       // Never slide away while a header control has keyboard focus
-      const focusInside = header.current?.contains(document.activeElement) ?? false;
+      const focusInside =
+        header.current?.contains(document.activeElement) ?? false;
       setHidden(!focusInside && y > 320 && y > lastY.current + 4);
       if (y < lastY.current - 4 || y <= 320) setHidden(false);
       lastY.current = y;
@@ -52,7 +60,10 @@ export function SiteHeader({ lang, nav }: { lang: Locale; nav: Dictionary["nav"]
   const mobileNav = useRef<HTMLElement>(null);
   useEffect(() => {
     if (!open) return;
-    const behind = [document.getElementById("main"), document.querySelector("body > footer")];
+    const behind = [
+      document.getElementById("main"),
+      document.querySelector("body > footer"),
+    ];
     document.documentElement.style.overflow = "hidden";
     behind.forEach((el) => el?.setAttribute("inert", ""));
     mobileNav.current?.querySelector<HTMLElement>("a")?.focus();
@@ -86,10 +97,16 @@ export function SiteHeader({ lang, nav }: { lang: Locale; nav: Dictionary["nav"]
       } ${hidden && !open ? "-translate-y-full" : ""}`}
     >
       <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between gap-4 px-margin lg:h-[72px]">
-        <Link href={localePath(lang, "/")} className="brand-mark shrink-0 text-[1.5rem]">
+        <Link
+          href={localePath(lang, "/")}
+          className="brand-mark shrink-0 text-[1.5rem]"
+        >
           NukeGlass
         </Link>
-        <nav aria-label={nav.menu} className="hidden items-center gap-8 lg:flex">
+        <nav
+          aria-label={nav.menu}
+          className="hidden items-center gap-8 lg:flex"
+        >
           {links.map((item) => (
             <Link
               key={item.href}
@@ -99,13 +116,18 @@ export function SiteHeader({ lang, nav }: { lang: Locale; nav: Dictionary["nav"]
               {item.label}
             </Link>
           ))}
+          <ThemeToggle toDark={nav.themeDark} toLight={nav.themeLight} />
           <LanguageSwitcher lang={lang} label={nav.language} />
-          <Link href={localePath(lang, "/book")} className={`btn ${transparent ? "btn-light" : "btn-primary"} !min-h-11`}>
+          <Link
+            href={localePath(lang, "/book")}
+            className={`btn ${transparent ? "btn-light" : "btn-primary"} !min-h-11`}
+          >
             {nav.book}
           </Link>
         </nav>
         {/* Phone: language to the left of the Menu button */}
         <div className="flex items-center gap-1 lg:hidden">
+          <ThemeToggle toDark={nav.themeDark} toLight={nav.themeLight} />
           <LanguageSwitcher lang={lang} label={nav.language} />
           <button
             ref={menuButton}
@@ -128,8 +150,16 @@ export function SiteHeader({ lang, nav }: { lang: Locale; nav: Dictionary["nav"]
         >
           <ul className="pt-6">
             {links.map((item, i) => (
-              <li key={item.href} className="animate-[fade_500ms_var(--ease-out)_both]" style={{ animationDelay: `${i * 60}ms` }}>
-                <Link href={item.href} onClick={() => setOpen(false)} className="head flex min-h-16 items-center justify-between text-[2rem]">
+              <li
+                key={item.href}
+                className="animate-[fade_500ms_var(--ease-out)_both]"
+                style={{ animationDelay: `${i * 60}ms` }}
+              >
+                <Link
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="head flex min-h-16 items-center justify-between text-[2rem]"
+                >
                   {item.label}
                   <span className="arrow text-lead" aria-hidden="true">
                     →
@@ -138,7 +168,11 @@ export function SiteHeader({ lang, nav }: { lang: Locale; nav: Dictionary["nav"]
               </li>
             ))}
           </ul>
-          <Link href={localePath(lang, "/book")} onClick={() => setOpen(false)} className="btn btn-primary mt-auto w-full">
+          <Link
+            href={localePath(lang, "/book")}
+            onClick={() => setOpen(false)}
+            className="btn btn-primary mt-auto w-full"
+          >
             {nav.book}
           </Link>
         </nav>
