@@ -47,6 +47,10 @@ describe("parseBookingForm", () => {
     expect(parseBookingForm(form({ channel: "email", contact: "a@b.co" }), NOW).ok).toBe(true);
     expect(parseBookingForm(form({ channel: "kakaotalk", contact: "alex_kim" }), NOW).ok).toBe(true);
     expect(parseBookingForm(form({ channel: "phone", contact: "call me" }), NOW).ok).toBe(false);
+    // A phone number needs real digits: punctuation alone gives the operator nothing to call
+    expect(parseBookingForm(form({ channel: "phone", contact: "      " }), NOW).ok).toBe(false);
+    expect(parseBookingForm(form({ channel: "phone", contact: "------" }), NOW).ok).toBe(false);
+    expect(parseBookingForm(form({ channel: "phone", contact: "+82 (0)10-1234-5678" }), NOW).ok).toBe(true);
   });
 
   it("trims and bounds the name", () => {

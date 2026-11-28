@@ -52,7 +52,7 @@ export function parseBookingForm(form: { get(name: string): FormDataEntryValue |
 
   if (value.channel === "email") {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.contact) || value.contact.length > 120) errors.contact = "contact_email";
-  } else if (!/^\+?[0-9 ()-]{6,20}$/.test(value.contact) && !(value.channel === "kakaotalk" || value.channel === "line")) {
+  } else if (!isPhoneNumber(value.contact) && !(value.channel === "kakaotalk" || value.channel === "line")) {
     errors.contact = "contact_phone";
   } else if (value.contact.length < 3 || value.contact.length > 120) {
     errors.contact = "contact_id";
@@ -91,4 +91,9 @@ export function errorVars(code: ErrorCode | DateError): Record<string, number> {
     default:
       return {};
   }
+}
+
+/** Digits with optional +, spaces, brackets and hyphens, and at least six actual digits. */
+function isPhoneNumber(contact: string): boolean {
+  return /^\+?[0-9 ()-]{6,20}$/.test(contact) && contact.replace(/\D/g, "").length >= 6;
 }
