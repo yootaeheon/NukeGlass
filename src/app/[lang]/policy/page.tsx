@@ -24,7 +24,7 @@ export default async function PolicyPage({ params }: PageProps<"/[lang]/policy">
             <h1 className="display text-[clamp(2.5rem,1.6rem+3vw,4.5rem)]" data-reveal>
               {t.title}
             </h1>
-            <p className="mt-6 bg-surface p-5 text-small" data-reveal style={{ "--d": "90ms" } as React.CSSProperties}>
+            <p className="rounded-xl mt-6 bg-surface p-5 text-small" data-reveal style={{ "--d": "90ms" } as React.CSSProperties}>
               {t.draft}
             </p>
           </div>

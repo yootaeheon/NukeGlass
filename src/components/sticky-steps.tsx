@@ -30,7 +30,7 @@ export function StickySteps({ steps, photos }: { steps: Step[]; photos: Photo[] 
   return (
     <div className="grid gap-12 lg:grid-cols-12">
       <div className="hidden lg:col-span-6 lg:block">
-        <div className="sticky top-24 aspect-[4/5] max-h-[calc(100svh-8rem)] w-full overflow-hidden bg-surface">
+        <div className="rounded-2xl sticky top-24 aspect-[4/5] max-h-[calc(100svh-8rem)] w-full overflow-hidden bg-surface">
           {photos.map((p, i) => (
             <Image
               key={p.src}
@@ -59,7 +59,7 @@ export function StickySteps({ steps, photos }: { steps: Step[]; photos: Photo[] 
             data-step={i}
             className="flex min-h-[48svh] flex-col justify-center py-10 first:pt-0 lg:min-h-[70svh]"
           >
-            <div className="relative mb-8 aspect-[3/2] overflow-hidden bg-surface lg:hidden" data-reveal="media">
+            <div className="rounded-2xl relative mb-8 aspect-[3/2] overflow-hidden bg-surface lg:hidden" data-reveal="media">
               <Image src={photos[i].src} alt="" fill sizes="100vw" className="object-cover" />
             </div>
             <p

@@ -34,7 +34,7 @@ export default async function LoginPage({ params, searchParams }: PageProps<"/[l
         </p>
 
         <div className="mt-10" data-reveal style={{ "--d": "180ms" } as React.CSSProperties}>
-          {isSupabaseConfigured() ? <SignInButtons next={next} t={t} /> : <p className="bg-surface p-5">{t.notOpen}</p>}
+          {isSupabaseConfigured() ? <SignInButtons next={next} t={t} /> : <p className="rounded-xl bg-surface p-5">{t.notOpen}</p>}
           {failed && (
             <p role="alert" className="mt-4 text-danger">
               {t.failed}
@@ -42,7 +42,7 @@ export default async function LoginPage({ params, searchParams }: PageProps<"/[l
           )}
         </div>
       </div>
-      <div className="relative hidden aspect-[4/5] max-h-[calc(100svh-10rem)] w-full overflow-hidden bg-surface lg:col-span-6 lg:col-start-7 lg:block" data-reveal="media">
+      <div className="rounded-2xl relative hidden aspect-[4/5] max-h-[calc(100svh-10rem)] w-full overflow-hidden bg-surface lg:col-span-6 lg:col-start-7 lg:block" data-reveal="media">
         <Image src={PHOTOS.hanokDoors.src} alt="" fill sizes="50vw" className="object-cover" />
       </div>
     </div>

@@ -75,7 +75,7 @@ export default async function BookingsPage({ params, searchParams }: PageProps<"
       </div>
 
       {newCode && (
-        <p role="status" className="mt-8 bg-accent-tint p-5">
+        <p role="status" className="rounded-xl mt-8 bg-accent-tint p-5">
           {t.newCode} <strong className="nums tracking-[0.04em]">{newCode}</strong>
         </p>
       )}
@@ -106,7 +106,7 @@ export default async function BookingsPage({ params, searchParams }: PageProps<"
           const g = getGlasses(r.model_slug);
           const loc = getPickupLocation(r.pickup_location);
           return (
-            <li key={r.code} className="bg-surface p-6 sm:p-10">
+            <li key={r.code} className="rounded-2xl bg-surface p-6 sm:p-10">
               <p className="text-small text-muted">{t.code}</p>
               <p className="nums head mt-1 text-head tracking-[0.04em]">{r.code}</p>
               <p className={`mt-6 font-medium ${STATUS_COLOR[r.status]}`}>{t.status[r.status]}</p>
@@ -143,7 +143,7 @@ export default async function BookingsPage({ params, searchParams }: PageProps<"
               {r.status === "requested" && (
                 <details className="mt-6">
                   <summary className="link inline-flex min-h-12 cursor-pointer items-center">{t.cancelSummary}</summary>
-                  <div className="mt-3 bg-bg p-5">
+                  <div className="rounded-xl mt-3 bg-bg p-5">
                     <p>{t.cancelFree}</p>
                     <form action={cancelBooking} className="mt-4">
                       <input type="hidden" name="code" value={r.code} />

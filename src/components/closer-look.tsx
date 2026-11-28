@@ -51,7 +51,7 @@ export function CloserLook({ title, items }: { title: string; items: Item[] }) {
             {items.map((item, i) => {
               const isOpen = i === open;
               return (
-                <li key={item.key} className={`transition-colors duration-[var(--dur-base)] ${isOpen ? "bg-bg" : ""}`}>
+                <li key={item.key} className={`overflow-hidden rounded-xl transition-colors duration-[var(--dur-base)] ${isOpen ? "bg-bg" : ""}`}>
                   <button
                     ref={(el) => {
                       buttons.current[i] = el;
@@ -67,7 +67,7 @@ export function CloserLook({ title, items }: { title: string; items: Item[] }) {
                   >
                     <span
                       aria-hidden="true"
-                      className={`grid size-7 shrink-0 place-items-center transition-colors duration-[var(--dur-base)] ${
+                      className={`rounded-full grid size-7 shrink-0 place-items-center transition-colors duration-[var(--dur-base)] ${
                         isOpen ? "bg-accent text-white" : "border border-ink text-ink group-hover:bg-ink group-hover:text-white"
                       }`}
                     >
@@ -86,7 +86,7 @@ export function CloserLook({ title, items }: { title: string; items: Item[] }) {
                     className="px-4 pb-6 pl-[3.75rem]"
                   >
                     {/* Phone and tablet: the picture sits with its text */}
-                    <div className="relative mb-5 aspect-[3/2] overflow-hidden bg-product lg:hidden">
+                    <div className="rounded-xl relative mb-5 aspect-[3/2] overflow-hidden bg-product lg:hidden">
                       <Image src={item.photo.src} alt={item.alt} fill sizes="100vw" className="object-cover" />
                       {isOpen && <FeatureMotion feature={item.key} />}
                     </div>
@@ -101,7 +101,7 @@ export function CloserLook({ title, items }: { title: string; items: Item[] }) {
 
           {/* Desktop: one picture frame, crossfading between features */}
           <div
-            className="relative hidden aspect-[3/2] overflow-hidden bg-product lg:sticky lg:top-28 lg:col-span-8 lg:block"
+            className="rounded-2xl relative hidden aspect-[3/2] overflow-hidden bg-product lg:sticky lg:top-28 lg:col-span-8 lg:block"
             data-reveal="media"
           >
             {items.map((item, i) => (
