@@ -42,7 +42,7 @@ const en = {
     pause: "Pause video",
     play: "Play video",
     srDescription:
-      "A short film of a traveller in Seoul wearing the glasses: ordering at a market stall, looking at a restaurant menu and checking a price in Myeongdong.",
+      "A short film of a traveller in Seoul wearing the glasses: ordering at a market stall and browsing a shop in Myeongdong at night.",
     videoNote: "AI-generated illustrative film. The glasses have no screen: answers come as audio.",
   },
   tryIt: [
@@ -171,17 +171,17 @@ const en = {
         ask: {
           label: "Ask Meta AI",
           body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look and answer in your ear. Which languages Meta AI reads and answers in changes over time, so we check every pair before hand-over and tell you what works on the day. Your phone needs data or Wi-Fi.",
-          alt: "A traveller in Insadong touching her glasses while looking up at a Korean shop sign",
+          alt: "The glasses from the front, the small light in the corner of the frame glowing white",
         },
         audio: {
           label: "Open-ear speakers",
           body: "Speakers sit just above your ears. Music, calls and your map’s walking directions come through, and you still hear the street and the crossing signal.",
-          alt: "Side view of a man wearing the glasses on a Seoul street, his ear uncovered",
+          alt: "Underside of the arm near the ear, showing the small speaker grille",
         },
         control: {
           label: "Touch and voice",
           body: "Tap or swipe the touchpad on the right arm for music and volume, or just say “Hey Meta”. Your phone can stay in your pocket.",
-          alt: "A finger touching the side of the glasses frame",
+          alt: "Outer side of the right arm with the touchpad and the capture button on top",
         },
         battery: {
           label: "Battery and case",
