@@ -16,6 +16,8 @@ const zhCn: Dictionary = {
     close: "关闭",
     language: "语言",
     skip: "跳到正文",
+    themeDark: "切换到深色模式",
+    themeLight: "切换到浅色模式",
   },
   footer: {
     about: "为来韩旅客提供的 AI 眼镜。在仁川机场取还。本网站所有日期和时间均为首尔时间（KST）。",

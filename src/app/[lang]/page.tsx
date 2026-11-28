@@ -74,7 +74,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       <HeroVideo lang={lang} t={dict.hero} />
 
       {/* A dark room after the film: one statement, then the features in ordinary use */}
-      <div className="on-dark bg-ink text-white">
+      <div className="on-dark bg-field-dark text-white">
         <section
           aria-label={t.momentsTitle}
           className="mx-auto max-w-[1440px] px-margin py-section"

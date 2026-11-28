@@ -16,6 +16,8 @@ const zhTw: Dictionary = {
     close: "關閉",
     language: "語言",
     skip: "跳到主要內容",
+    themeDark: "切換到深色模式",
+    themeLight: "切換到淺色模式",
   },
   footer: {
     about: "為來韓旅客提供的 AI 眼鏡。在仁川機場取還。本網站所有日期與時間皆為首爾時間（KST）。",

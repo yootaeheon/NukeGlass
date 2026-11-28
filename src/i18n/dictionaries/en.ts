@@ -17,6 +17,8 @@ const en = {
     close: "Close",
     language: "Language",
     skip: "Skip to content",
+    themeDark: "Switch to dark mode",
+    themeLight: "Switch to light mode",
   },
   footer: {
     about:

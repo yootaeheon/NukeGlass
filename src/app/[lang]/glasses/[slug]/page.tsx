@@ -62,7 +62,7 @@ export default async function GlassesDetail({ params }: PageProps<"/[lang]/glass
     <>
       {/* Product */}
       <section aria-labelledby="name" className="mx-auto grid max-w-[1440px] gap-10 px-margin pb-section pt-8 lg:grid-cols-12 lg:pt-12">
-        <div className="rounded-2xl relative aspect-[3/2] overflow-hidden bg-product lg:col-span-8" data-reveal="media">
+        <div className="rounded-2xl relative aspect-[3/2] overflow-hidden light-scope bg-product lg:col-span-8" data-reveal="media">
           <Image src={PRODUCT_IMAGES[g.slug].src} alt={g.name} fill priority sizes="(min-width: 1024px) 66vw, 100vw" className="object-cover" />
         </div>
         <div className="lg:col-span-4 lg:pt-6">

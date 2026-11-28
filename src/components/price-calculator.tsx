@@ -29,7 +29,7 @@ export function PriceCalculator({
 
   return (
     <div className="grid gap-10 lg:grid-cols-12" data-ui>
-      <div className="rounded-2xl relative aspect-[3/2] self-start overflow-hidden bg-product lg:col-span-6">
+      <div className="rounded-2xl relative aspect-[3/2] self-start overflow-hidden light-scope bg-product lg:col-span-6">
         {GLASSES.map((x) => (
           <Image
             key={x.slug}
@@ -58,7 +58,7 @@ export function PriceCalculator({
                   onChange={() => setSlug(x.slug)}
                   className="peer sr-only"
                 />
-                <span className="inline-flex min-h-11 items-center rounded-full bg-bg px-4 text-small transition-colors duration-200 hover:bg-accent-tint peer-checked:bg-ink peer-checked:text-white peer-focus-visible:outline-2 peer-focus-visible:outline-accent">
+                <span className="inline-flex min-h-11 items-center rounded-full bg-bg px-4 text-small transition-colors duration-200 hover:bg-accent-tint peer-checked:bg-ink peer-checked:text-bg peer-focus-visible:outline-2 peer-focus-visible:outline-accent">
                   {x.name.replace(/^(Ray-Ban|Oakley) Meta /, "").replace(/ \(Gen 2\)$/, "")}
                 </span>
               </label>

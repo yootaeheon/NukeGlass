@@ -31,13 +31,17 @@ const notoKr = Noto_Sans_KR({
   display: "swap",
 });
 
+const THEME_SCRIPT = `try{if(localStorage.getItem("theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}`;
+
 export function generateStaticParams() {
   return LOCALES.map((l) => ({ lang: l.code }));
 }
 
 export const dynamicParams = false;
 
-export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: LayoutProps<"/[lang]">): Promise<Metadata> {
   const { lang, dict } = await resolveLang(params);
   return {
     metadataBase: siteUrl(),
@@ -51,16 +55,28 @@ export const viewport: Viewport = {
   themeColor: "#fbf8f2",
 };
 
-export default async function RootLayout({ children, params }: LayoutProps<"/[lang]">) {
+export default async function RootLayout({
+  children,
+  params,
+}: LayoutProps<"/[lang]">) {
   const { lang, dict } = await resolveLang(params);
 
   return (
     <html
       lang={localeInfo(lang).htmlLang}
       className={`${newsreader.variable} ${hanken.variable} ${notoKr.variable} antialiased`}
+      // The script below may set data-theme before React starts
+      suppressHydrationWarning
     >
+      <head>
+        {/* Apply a remembered dark theme before the first paint, so the page doesn't flash light */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body className="flex min-h-svh flex-col">
-        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-bg focus:p-3">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-bg focus:p-3"
+        >
           {dict.nav.skip}
         </a>
         <SiteHeader lang={lang} nav={dict.nav} />

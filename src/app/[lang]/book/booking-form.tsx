@@ -94,7 +94,7 @@ export function BookingForm({ lang, dict, initialModel, defaultName, minStart, m
                 onChange={() => setModel(g.slug)}
                 className="size-5 accent-accent"
               />
-              <span className="rounded-lg relative aspect-[3/2] w-20 shrink-0 overflow-hidden bg-product sm:w-24">
+              <span className="rounded-lg relative aspect-[3/2] w-20 shrink-0 overflow-hidden light-scope bg-product sm:w-24">
                 <Image src={PRODUCT_IMAGES[g.slug].src} alt="" fill sizes="96px" className="object-cover" />
               </span>
               <span className="flex-1 font-medium">{g.name}</span>
@@ -177,7 +177,7 @@ export function BookingForm({ lang, dict, initialModel, defaultName, minStart, m
           {PICKUP_SLOTS.map((s) => (
             <label key={s} className="cursor-pointer">
               <input type="radio" name="slot" value={s} checked={slot === s} onChange={() => setSlot(s)} className="peer sr-only" />
-              <span className="rounded-full nums inline-flex min-h-12 min-w-24 items-center justify-center border border-line px-4 peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent">
+              <span className="rounded-full nums inline-flex min-h-12 min-w-24 items-center justify-center border border-line px-4 peer-checked:border-accent peer-checked:bg-accent peer-checked:text-bg peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent">
                 {s}
               </span>
             </label>

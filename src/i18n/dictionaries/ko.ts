@@ -16,6 +16,8 @@ const ko: Dictionary = {
     close: "닫기",
     language: "언어",
     skip: "본문으로 건너뛰기",
+    themeDark: "어두운 화면으로 바꾸기",
+    themeLight: "밝은 화면으로 바꾸기",
   },
   footer: {
     about: "한국을 찾는 여행자를 위한 AI 글래스. 인천공항에서 받고 반납합니다. 이 사이트의 모든 날짜와 시간은 서울 시간(KST)입니다.",
