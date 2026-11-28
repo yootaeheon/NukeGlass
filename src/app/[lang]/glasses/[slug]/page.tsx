@@ -4,7 +4,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProductRail } from "@/components/product-rail";
 import { ParallaxBand } from "@/components/parallax-band";
-import { GLASSES, getGlasses } from "@/lib/glasses";
+import { CloserLook } from "@/components/closer-look";
+import { CLOSER_LOOK, CLOSER_LOOK_KEYS } from "@/lib/closer-look";
+import { GLASSES, getGlasses, type GlassesSlug } from "@/lib/glasses";
 import { PHOTOS, PRODUCT_IMAGES, SCENES, type Photo } from "@/lib/media";
 import { LOCALES, localePath } from "@/i18n/config";
 import { fmt } from "@/i18n/format";
@@ -31,6 +33,7 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/glasses/[s
 }
 
 type SpecKey = keyof Dictionary["specLabels"];
+type CloserText = Dictionary["closerLook"]["models"]["ray-ban-meta-wayfarer"];
 
 // One picture per feature, in the order of dict.features: ask, directions, photos, audio
 const FEATURE_PHOTOS: Photo[] = [PHOTOS.dancheong, SCENES.bukchonWalk, PHOTOS.palace, SCENES.marketDusk];
@@ -48,6 +51,12 @@ export default async function GlassesDetail({ params }: PageProps<"/[lang]/glass
   const faq = g.slug === "oakley-meta-vanguard" ? [...dict.modelFaq, dict.vanguardFaq] : dict.modelFaq;
   const others = GLASSES.filter((o) => o.slug !== g.slug);
   const bookHref = localePath(lang, `/book?model=${g.slug}`);
+  const closerPhotos = CLOSER_LOOK[g.slug];
+  const closerText = (dict.closerLook.models as Partial<Record<GlassesSlug, CloserText>>)[g.slug];
+  const closerItems =
+    closerPhotos && closerText
+      ? CLOSER_LOOK_KEYS.map((key) => ({ key, ...closerText[key], photo: closerPhotos[key] }))
+      : null;
 
   return (
     <>
@@ -96,8 +105,14 @@ export default async function GlassesDetail({ params }: PageProps<"/[lang]/glass
         </Link>
       </div>
 
+      {/* Take a closer look: one feature at a time (models with feature pictures only) */}
+      {closerItems && <CloserLook title={dict.closerLook.title} items={closerItems} />}
+
       {/* What it does in Seoul */}
-      <section aria-labelledby="features-title" className="mx-auto max-w-[1440px] px-margin">
+      <section
+        aria-labelledby="features-title"
+        className={`mx-auto max-w-[1440px] px-margin ${closerItems ? "pt-section" : ""}`}
+      >
         <h2 id="features-title" className="display text-display" data-reveal>
           {t.featuresTitle}
         </h2>

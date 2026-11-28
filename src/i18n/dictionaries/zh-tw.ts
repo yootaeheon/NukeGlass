@@ -37,18 +37,10 @@ const zhTw: Dictionary = {
     subA: "按日租用 Ray-Ban Meta 或 Oakley Meta AI 眼鏡。",
     subB: "詢問招牌和菜單。不用低頭，也能聽到地圖導航。",
     cta: "挑選眼鏡",
-    pause: "暫停",
-    play: "播放",
-    see: "你看到的",
-    hear: "你聽到的",
-    scene: "顯示第 {n} 個場景",
-    srDescription: "首爾旅行示範場景：在景福宮、餐廳、咖啡廳和北村巷弄，詢問招牌與菜單，並收聽步行導航。",
-    scenes: [
-      { place: "景福宮，上午 9:40", heard: "“Geunjeongjeon, the throne hall of the palace.”" },
-      { place: "鍾路的在地餐廳", heard: "“Doenjang-jjigae, soybean paste stew. 9,000 won.”" },
-      { place: "仁寺洞的咖啡廳", heard: "“Iced Americano.”" },
-      { place: "北村巷弄，地圖 App 正在導航", heard: "手機裡的步行導航，在耳邊播放。" },
-    ],
+    pause: "暫停影片",
+    play: "播放影片",
+    srDescription: "一段短片：戴著眼鏡的旅客在首爾的一天，在市場小攤點餐、看懂餐廳菜單、在明洞確認價格。",
+    videoNote: "示意影片。",
   },
   tryIt: [
     { where: "宮殿告示", meaning: "參觀時間：上午 9 點至下午 6 點。" },
@@ -61,7 +53,6 @@ const zhTw: Dictionary = {
     translateBody:
       "看著宮殿告示、菜單或地鐵標示，向 Meta AI 提問。答案在耳邊響起，雙手始終空出來。點選招牌查看範例。",
     tryNote: "以下為各招牌意思的範例。Meta AI 能辨識與回答的語言會持續變動，我們在交付前逐台檢查，並告訴您當天可用的功能。",
-    exampleAnswer: "回答範例（英文）",
     howTitle: "使用流程",
     steps: [
       { line: "首先，挑選眼鏡和日期。", detail: "按日預約。用 Google 登入，之後隨時可以查看預約。" },
@@ -143,6 +134,48 @@ const zhTw: Dictionary = {
     returnTitle: "歸還之前",
     faqTitle: "關於這款眼鏡的問題",
     othersTitle: "其他四款",
+  },
+  closerLook: {
+    title: "細看每一處。",
+    models: {
+      "ray-ban-meta-wayfarer": {
+        design: {
+          label: "Wayfarer 設計",
+          body: "經典 Wayfarer 鏡框。鏡頭、喇叭和電池都藏在鏡框裡，遠遠看去就是一副普通眼鏡。",
+          alt: "正面看到的黑色 Wayfarer 款智慧眼鏡",
+        },
+        camera: {
+          label: "1200 萬畫素鏡頭",
+          body: "超廣角鏡頭可拍 1200 萬畫素照片和 3K 影片。按一下拍攝按鈕拍照，長按錄影。錄影時正面的指示燈會亮起，讓周圍的人知道。",
+          alt: "小鏡頭的特寫",
+        },
+        ask: {
+          label: "問 Meta AI",
+          body: "說「Hey Meta, look and tell me what this is.」，眼鏡會看一眼前方，在你耳邊回答。適合宮殿指示牌、店家招牌和博物館說明。手機需要有行動數據或 Wi-Fi。",
+          alt: "在仁寺洞一邊輕觸眼鏡一邊抬頭看韓文招牌的旅客",
+        },
+        audio: {
+          label: "開放式喇叭",
+          body: "喇叭就在耳朵上方。音樂、通話和地圖 App 的步行導航都聽得到，同時也聽得見街上的聲音和過馬路的提示音。",
+          alt: "首爾街頭戴著眼鏡的男子側臉，耳朵沒有被遮住",
+        },
+        control: {
+          label: "觸控與語音",
+          body: "輕點或滑動右側鏡腳的觸控板控制音樂和音量，提問時直接說「Hey Meta」。手機可以一直放在口袋裡。",
+          alt: "手指輕觸眼鏡鏡腳側面",
+        },
+        battery: {
+          label: "電池與充電盒",
+          body: "充一次電最長可用 8 小時。景點之間把眼鏡折好放進充電盒，在包包裡就能充電。附 USB-C 傳輸線。",
+          alt: "打開的棕色充電盒裡折好的眼鏡和 USB-C 傳輸線",
+        },
+        lenses: {
+          label: "平光或太陽鏡片",
+          body: "這款配平光或太陽鏡片，不含度數。戴隱形眼鏡即可正常使用。",
+          alt: "並排的兩副眼鏡，一副平光鏡片，一副深色太陽鏡片",
+        },
+      },
+    },
   },
   specLabels: {
     camera: "鏡頭",
