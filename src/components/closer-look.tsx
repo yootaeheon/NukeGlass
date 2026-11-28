@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useId, useRef, useState } from "react";
 import type { CloserLookKey } from "@/lib/closer-look";
+import type { GlassesSlug } from "@/lib/glasses";
 import type { Photo } from "@/lib/media";
 import { FeatureMotion } from "./feature-motion";
 
@@ -11,7 +12,7 @@ type Item = { key: CloserLookKey; label: string; body: string; alt: string; phot
 // One feature open at a time; pressing the open one closes it. Desktop: the list on the
 // left, the picture on the right crossfades (it keeps the last one while all are closed).
 // Phone: the open row shows its own picture above its text.
-export function CloserLook({ title, items }: { title: string; items: Item[] }) {
+export function CloserLook({ slug, title, items }: { slug: GlassesSlug; title: string; items: Item[] }) {
   const [open, setOpen] = useState<number | null>(0);
   const [shown, setShown] = useState(0);
   // Desktop frames are stacked in one box, so lazy loading can't tell them apart:
@@ -88,7 +89,7 @@ export function CloserLook({ title, items }: { title: string; items: Item[] }) {
                     {/* Phone and tablet: the picture sits with its text */}
                     <div className="rounded-xl relative mb-5 aspect-[3/2] overflow-hidden bg-product lg:hidden">
                       <Image src={item.photo.src} alt={item.alt} fill sizes="100vw" className="object-cover" />
-                      {isOpen && <FeatureMotion feature={item.key} />}
+                      {isOpen && <FeatureMotion slug={slug} feature={item.key} />}
                     </div>
                     <p className="max-w-[46ch] animate-[fade_480ms_var(--ease-out)_both] motion-reduce:animate-none">
                       {item.body}
@@ -122,7 +123,7 @@ export function CloserLook({ title, items }: { title: string; items: Item[] }) {
                     className="object-cover"
                   />
                 )}
-                {i === shown && <FeatureMotion feature={item.key} />}
+                {i === shown && <FeatureMotion slug={slug} feature={item.key} />}
               </div>
             ))}
           </div>

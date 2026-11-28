@@ -42,7 +42,7 @@ const en = {
     pause: "Pause video",
     play: "Play video",
     srDescription:
-      "A short film of a traveller in Seoul wearing the glasses: ordering at a market stall and browsing a shop in Myeongdong at night.",
+      "A short film of a traveller in Seoul wearing the glasses: taking a photo at a palace, following directions down a hanok lane, asking about food at a stall, turning the volume up on a train, talking hands-free by the river and putting the glasses in their charging case.",
     videoNote: "Illustrative film.",
   },
   tryIt: [
@@ -192,6 +192,154 @@ const en = {
           label: "Clear or sun lenses",
           body: "This pair comes with clear or sun lenses, not your prescription. If you wear contact lenses, you are all set.",
           alt: "Two pairs side by side, one with clear lenses and one with dark sun lenses",
+        },
+      },
+      "ray-ban-meta-skyler": {
+        design: {
+          label: "Skyler design",
+          body: "A softer cat-eye shape for smaller faces. The camera, speakers and battery are built into the frame, so they pass for ordinary sunglasses.",
+          alt: "White cat-eye smart glasses with brown lenses seen from the front",
+        },
+        camera: {
+          label: "12 MP camera",
+          body: "The ultra-wide camera takes 12 MP photos and 3K video. Press the capture button for a photo, hold it for video. A light on the front tells people nearby when you are recording.",
+          alt: "Close-up of the small camera lens in the corner of the frame",
+        },
+        ask: {
+          label: "Ask Meta AI",
+          body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look and answer in your ear: palace signs, shop fronts, museum labels. Your phone needs data or Wi-Fi. We check which languages it reads before hand-over and tell you on the day.",
+          alt: "The glasses from the front, the small light in the corner of the frame glowing white",
+        },
+        audio: {
+          label: "Open-ear speakers",
+          body: "Speakers sit just above your ears. Music, calls and your map’s walking directions come through, and you still hear the street and the crossing signal.",
+          alt: "Underside of the arm near the ear, showing the small speaker grille",
+        },
+        control: {
+          label: "Touch and voice",
+          body: "Tap or swipe the touchpad on the right arm for music and volume, or just say “Hey Meta”. Your phone can stay in your pocket.",
+          alt: "Outer side of the right arm with the touchpad and the capture button on top",
+        },
+        battery: {
+          label: "Battery and case",
+          body: "Up to 8 hours on a charge. Fold them into the charging case between sights and they charge in your bag. A USB-C cable is included.",
+          alt: "The glasses folded inside an open brown charging case, with a USB-C cable",
+        },
+        lenses: {
+          label: "Clear or sun lenses",
+          body: "This pair comes with clear or sun lenses, not your prescription. If you wear contact lenses, you are all set.",
+          alt: "The front of the glasses, the brown sun lenses catching the light",
+        },
+      },
+      "ray-ban-meta-blayzer-optics": {
+        design: {
+          label: "Blayzer design",
+          body: "A square optical frame that looks like normal glasses. The camera, speakers and battery are built into the frame.",
+          alt: "Clear square smart glasses seen from the front",
+        },
+        camera: {
+          label: "12 MP camera",
+          body: "The ultra-wide camera takes 12 MP photos and 3K video. Press the capture button for a photo, hold it for video. A light on the front tells people nearby when you are recording.",
+          alt: "Close-up of the small camera lens in the corner of the frame",
+        },
+        ask: {
+          label: "Ask Meta AI",
+          body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look and answer in your ear: palace signs, shop fronts, museum labels. Your phone needs data or Wi-Fi. We check which languages it reads before hand-over and tell you on the day.",
+          alt: "The glasses from the front, the small light in the corner of the frame glowing white",
+        },
+        audio: {
+          label: "Open-ear speakers",
+          body: "Speakers sit just above your ears. Music, calls and your map’s walking directions come through, and you still hear the street and the crossing signal.",
+          alt: "Underside of the arm near the ear, showing the small speaker grille",
+        },
+        control: {
+          label: "Touch and voice",
+          body: "Tap or swipe the touchpad on the right arm for music and volume, or just say “Hey Meta”. Your phone can stay in your pocket.",
+          alt: "Outer side of the right arm with the touchpad and the capture button on top",
+        },
+        battery: {
+          label: "Battery and case",
+          body: "Up to 8 hours on a charge. Fold them into the charging case between sights and they charge in your bag. A USB-C cable is included.",
+          alt: "The glasses folded inside an open brown charging case, with a USB-C cable",
+        },
+        lenses: {
+          label: "Clear lenses",
+          body: "This pair comes with clear lenses, not your prescription. If you wear contact lenses, you are all set.",
+          alt: "The front of the glasses, the clear lenses catching the light",
+        },
+      },
+      "oakley-meta-hstn": {
+        design: {
+          label: "HSTN design",
+          body: "A bolder sport-lifestyle frame for sunny days out. The camera, speakers and battery are built into the frame.",
+          alt: "Matte black sport sunglasses with orange lenses seen from the front",
+        },
+        camera: {
+          label: "3K video camera",
+          body: "The ultra-wide camera records 3K video and takes photos. Press the capture button for a photo, hold it for video. A light on the front tells people nearby when you are recording.",
+          alt: "Close-up of the small camera lens in the corner of the frame",
+        },
+        ask: {
+          label: "Ask Meta AI",
+          body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look and answer in your ear: palace signs, shop fronts, museum labels. Your phone needs data or Wi-Fi. We check which languages it reads before hand-over and tell you on the day.",
+          alt: "The glasses from the front, the small light in the corner of the frame glowing white",
+        },
+        audio: {
+          label: "Open-ear speakers",
+          body: "Speakers sit just above your ears. Music, calls and your map’s walking directions come through, and you still hear the street and the crossing signal.",
+          alt: "Underside of the arm near the ear, showing the small speaker grille",
+        },
+        control: {
+          label: "Touch and voice",
+          body: "Tap or swipe the touchpad on the right arm for music and volume, or just say “Hey Meta”. Your phone can stay in your pocket.",
+          alt: "Outer side of the right arm with the touchpad and the capture button on top",
+        },
+        battery: {
+          label: "Battery and case",
+          body: "All-day use with the charging case. Fold them into the case between sights and they charge in your bag. A USB-C cable is included.",
+          alt: "The glasses folded inside an open brown charging case, with a USB-C cable",
+        },
+        lenses: {
+          label: "Sun lenses",
+          body: "Sun lenses, with PRIZM on some styles. They are not prescription lenses. If you wear contact lenses, you are all set.",
+          alt: "The front of the glasses, the orange mirrored lenses catching the light",
+        },
+      },
+      "oakley-meta-vanguard": {
+        design: {
+          label: "Vanguard design",
+          body: "A wraparound performance shield for hiking and running, rated IP67 against water and dust.",
+          alt: "Black wraparound sport glasses with a blue shield lens seen from the front",
+        },
+        camera: {
+          label: "12 MP camera",
+          body: "The ultra-wide camera takes 12 MP photos and records video hands-free. A light on the front tells people nearby when you are recording.",
+          alt: "Close-up of the small camera lens in the centre of the frame",
+        },
+        ask: {
+          label: "Ask Meta AI",
+          body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look and answer in your ear: palace signs, shop fronts, museum labels. Your phone needs data or Wi-Fi. We check which languages it reads before hand-over and tell you on the day.",
+          alt: "The glasses from the front, the small light beside the camera glowing white",
+        },
+        audio: {
+          label: "Open-ear speakers",
+          body: "Speakers sit just above your ears. Music, calls and your map’s walking directions come through, and you still hear the street and the crossing signal.",
+          alt: "Underside of the arm near the ear, showing the small speaker grille",
+        },
+        control: {
+          label: "Buttons and voice",
+          body: "Say “Hey Meta”, or use the controls on the frame for music, volume and the camera. Your phone can stay in your pocket.",
+          alt: "Outer side of the right arm with its controls",
+        },
+        battery: {
+          label: "Battery and case",
+          body: "We hand them over fully charged. Fold them into the charging case between trails and they charge in your bag. A USB-C cable is included.",
+          alt: "The glasses folded inside an open brown charging case, with a USB-C cable",
+        },
+        lenses: {
+          label: "PRIZM shield",
+          body: "A one-piece PRIZM shield lens for bright days. It is not a prescription lens. If you wear contact lenses, you are all set.",
+          alt: "The front of the glasses, the blue shield lens catching the light",
         },
       },
     },
