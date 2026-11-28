@@ -50,6 +50,7 @@ const ja: Dictionary = {
     { where: "カフェ", meaning: "ご注文はカウンターでお願いします。" },
   ],
   home: {
+    stageTitle: "グラスひとつで、これだけできます。",
     momentsTitle: "かけたら、かけていることも忘れます。",
     moments: [
       { line: "両手はポケットに、道案内は耳元に。", alt: "コートのポケットに手を入れて韓屋の路地を歩く旅行者" },

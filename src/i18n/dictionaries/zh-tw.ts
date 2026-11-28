@@ -49,6 +49,7 @@ const zhTw: Dictionary = {
     { where: "咖啡廳", meaning: "請在櫃檯點餐。" },
   ],
   home: {
+    stageTitle: "一副眼鏡，就能做到這些。",
     momentsTitle: "戴上之後，就會忘了它的存在。",
     moments: [
       { line: "雙手插口袋，導航在耳邊。", alt: "雙手插在大衣口袋裡走在韓屋小巷的旅客" },

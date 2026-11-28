@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { HeroVideo } from "@/components/hero-video";
-import { TryIt } from "@/components/try-it";
+import { CloserLook } from "@/components/closer-look";
+import { CLOSER_LOOK, type CloserLookKey } from "@/lib/closer-look";
 import { ProductRail } from "@/components/product-rail";
 import { StickySteps } from "@/components/sticky-steps";
 import { ParallaxBand } from "@/components/parallax-band";
@@ -35,15 +36,14 @@ const MOMENTS = [
   },
 ];
 
-const KO_WORDS = [
-  "근정전",
-  "된장찌개",
-  "갈아타는 곳",
-  "아이스 아메리카노",
-  "주문은 카운터에서",
-  "북촌로",
-  "관람 시간",
-  "출구",
+// Home shows the best-known pair doing what the glasses do; the full list is on its page
+const STAGE_MODEL = "ray-ban-meta-wayfarer";
+const STAGE_FEATURES: CloserLookKey[] = [
+  "ask",
+  "camera",
+  "audio",
+  "control",
+  "battery",
 ];
 
 // One per question, in the order of dict.home.faq
@@ -62,6 +62,11 @@ const d = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 export default async function Home({ params }: PageProps<"/[lang]">) {
   const { lang, dict } = await resolveLang(params);
   const t = dict.home;
+  const stageItems = STAGE_FEATURES.map((key) => ({
+    key,
+    ...dict.closerLook.models[STAGE_MODEL][key],
+    photo: CLOSER_LOOK[STAGE_MODEL]![key],
+  }));
 
   return (
     <>
@@ -138,55 +143,13 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         </ul>
       </section>
 
-      {/* Translation: look at it, ask */}
-      <div className="mt-section bg-surface">
-        <section
-          aria-labelledby="translate-title"
-          className="mx-auto max-w-[1440px] px-margin py-section"
-        >
-          <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
-            <h2
-              id="translate-title"
-              className="display text-display lg:col-span-7"
-              data-reveal
-            >
-              {t.translateTitle}
-            </h2>
-            <p
-              className="max-w-[46ch] text-lead lg:col-span-4 lg:col-start-9"
-              data-reveal
-              style={d(90)}
-            >
-              {t.translateBody}
-            </p>
-          </div>
-          <div className="mt-12">
-            <TryIt signs={dict.tryIt} />
-            <p className="mt-5 max-w-[70ch] text-small text-muted">
-              {t.tryNote}
-            </p>
-          </div>
-        </section>
-      </div>
-
-      {/* Korean you will meet, running past */}
-      <div
-        aria-hidden="true"
-        className="overflow-hidden bg-warm py-6 text-white"
-      >
-        <div className="marquee flex w-max gap-12 whitespace-nowrap">
-          {[...KO_WORDS, ...KO_WORDS].map((w, i) => (
-            <span
-              key={i}
-              lang="ko"
-              className="ko flex items-center gap-12 text-[clamp(1.5rem,1rem+2vw,2.75rem)]"
-            >
-              {w}
-              <span className="size-2 rounded-full bg-white/60" />
-            </span>
-          ))}
-        </div>
-      </div>
+      {/* The glasses at work: one feature after another, on the pair itself */}
+      <CloserLook
+        slug={STAGE_MODEL}
+        title={t.stageTitle}
+        items={stageItems}
+        autoPlay
+      />
 
       {/* How it works */}
       <section

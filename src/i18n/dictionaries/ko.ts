@@ -49,6 +49,7 @@ const ko: Dictionary = {
     { where: "카페", meaning: "주문은 카운터에서 해 주세요." },
   ],
   home: {
+    stageTitle: "안경 하나로, 이런 걸 해요.",
     momentsTitle: "쓰고 나면, 쓴 것도 잊어요.",
     moments: [
       { line: "두 손은 주머니에, 길 안내는 귓가에.", alt: "코트 주머니에 손을 넣고 한옥 골목을 걷는 여행자" },

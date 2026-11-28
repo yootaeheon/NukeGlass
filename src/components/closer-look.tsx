@@ -7,12 +7,32 @@ import type { GlassesSlug } from "@/lib/glasses";
 import type { Photo } from "@/lib/media";
 import { FeatureMotion } from "./feature-motion";
 
-type Item = { key: CloserLookKey; label: string; body: string; alt: string; photo: Photo };
+type Item = {
+  key: CloserLookKey;
+  label: string;
+  body: string;
+  alt: string;
+  photo: Photo;
+};
 
 // One feature open at a time; pressing the open one closes it. Desktop: the list on the
 // left, the picture on the right crossfades (it keeps the last one while all are closed).
 // Phone: the open row shows its own picture above its text.
-export function CloserLook({ slug, title, items }: { slug: GlassesSlug; title: string; items: Item[] }) {
+// autoPlay (home page, wide screens only): the features open one after another until the
+// visitor presses a row, so the glasses are seen doing each thing without any input.
+const AUTO_MS = 5200;
+
+export function CloserLook({
+  slug,
+  title,
+  items,
+  autoPlay = false,
+}: {
+  slug: GlassesSlug;
+  title: string;
+  items: Item[];
+  autoPlay?: boolean;
+}) {
   const [open, setOpen] = useState<number | null>(0);
   const [shown, setShown] = useState(0);
   // Desktop frames are stacked in one box, so lazy loading can't tell them apart:
@@ -21,16 +41,52 @@ export function CloserLook({ slug, title, items }: { slug: GlassesSlug; title: s
   const id = useId();
   const buttons = useRef<(HTMLButtonElement | null)[]>([]);
   const touched = useRef(false);
+  const section = useRef<HTMLElement>(null);
+  const [auto, setAuto] = useState(autoPlay);
+  // The timer reads the picture on show without restarting each time it changes
+  const current = useRef(0);
+  useEffect(() => {
+    current.current = shown;
+  }, [shown]);
+
+  useEffect(() => {
+    if (!auto) return;
+    const wide = window.matchMedia("(min-width: 1024px)");
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let inView = false;
+    const io = new IntersectionObserver(([e]) => (inView = e.isIntersecting), {
+      threshold: 0.35,
+    });
+    if (section.current) io.observe(section.current);
+    const timer = window.setInterval(() => {
+      // Rows changing height would push a phone's page around, so only on wide screens
+      if (!inView || document.hidden || !wide.matches || reduce.matches) return;
+      const next = (current.current + 1) % items.length;
+      setShown(next);
+      setOpen(next);
+      setSeen((prev) => (prev.has(next) ? prev : new Set(prev).add(next)));
+    }, AUTO_MS);
+    return () => {
+      window.clearInterval(timer);
+      io.disconnect();
+    };
+  }, [auto, items.length]);
 
   // A row above may have just collapsed: keep the pressed row on screen
   useEffect(() => {
     if (!touched.current || open === null) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    buttons.current[open]?.scrollIntoView({ block: "nearest", behavior: reduce ? "auto" : "smooth" });
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    buttons.current[open]?.scrollIntoView({
+      block: "nearest",
+      behavior: reduce ? "auto" : "smooth",
+    });
   }, [open]);
 
   const toggle = (i: number) => {
     touched.current = true;
+    setAuto(false);
     if (open === i) {
       setOpen(null);
     } else {
@@ -41,9 +97,17 @@ export function CloserLook({ slug, title, items }: { slug: GlassesSlug; title: s
   };
 
   return (
-    <section aria-labelledby={`${id}-title`} className="bg-surface">
+    <section
+      ref={section}
+      aria-labelledby={`${id}-title`}
+      className="bg-surface"
+    >
       <div className="mx-auto max-w-[1440px] px-margin py-section">
-        <h2 id={`${id}-title`} className="display text-[clamp(2.25rem,1.4rem+3vw,4.5rem)]" data-reveal>
+        <h2
+          id={`${id}-title`}
+          className="display text-[clamp(2.25rem,1.4rem+3vw,4.5rem)]"
+          data-reveal
+        >
           {title}
         </h2>
 
@@ -52,7 +116,10 @@ export function CloserLook({ slug, title, items }: { slug: GlassesSlug; title: s
             {items.map((item, i) => {
               const isOpen = i === open;
               return (
-                <li key={item.key} className={`overflow-hidden rounded-xl transition-colors duration-[var(--dur-base)] ${isOpen ? "bg-bg" : ""}`}>
+                <li
+                  key={item.key}
+                  className={`overflow-hidden rounded-xl transition-colors duration-[var(--dur-base)] ${isOpen ? "bg-bg" : ""}`}
+                >
                   <button
                     ref={(el) => {
                       buttons.current[i] = el;
@@ -69,10 +136,18 @@ export function CloserLook({ slug, title, items }: { slug: GlassesSlug; title: s
                     <span
                       aria-hidden="true"
                       className={`rounded-full grid size-7 shrink-0 place-items-center transition-colors duration-[var(--dur-base)] ${
-                        isOpen ? "bg-accent text-white" : "border border-ink text-ink group-hover:bg-ink group-hover:text-white"
+                        isOpen
+                          ? "bg-accent text-white"
+                          : "border border-ink text-ink group-hover:bg-ink group-hover:text-white"
                       }`}
                     >
-                      <svg viewBox="0 0 16 16" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="1.75">
+                      <svg
+                        viewBox="0 0 16 16"
+                        className="size-3.5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.75"
+                      >
                         <path d="M2.5 8h11" />
                         {!isOpen && <path d="M8 2.5v11" />}
                       </svg>
@@ -88,8 +163,16 @@ export function CloserLook({ slug, title, items }: { slug: GlassesSlug; title: s
                   >
                     {/* Phone and tablet: the picture sits with its text */}
                     <div className="rounded-xl relative mb-5 aspect-[3/2] overflow-hidden bg-product lg:hidden">
-                      <Image src={item.photo.src} alt={item.alt} fill sizes="100vw" className="object-cover" />
-                      {isOpen && <FeatureMotion slug={slug} feature={item.key} />}
+                      <Image
+                        src={item.photo.src}
+                        alt={item.alt}
+                        fill
+                        sizes="100vw"
+                        className="object-cover"
+                      />
+                      {isOpen && (
+                        <FeatureMotion slug={slug} feature={item.key} />
+                      )}
                     </div>
                     <p className="max-w-[46ch] animate-[fade_480ms_var(--ease-out)_both] motion-reduce:animate-none">
                       {item.body}
@@ -110,7 +193,9 @@ export function CloserLook({ slug, title, items }: { slug: GlassesSlug; title: s
                 key={item.key}
                 aria-hidden={i !== shown}
                 className={`absolute inset-0 transition-[opacity,transform] duration-[900ms] ease-[var(--ease-out)] motion-reduce:transition-none ${
-                  i === shown ? "scale-100 opacity-100" : "scale-[1.03] opacity-0"
+                  i === shown
+                    ? "scale-100 opacity-100"
+                    : "scale-[1.03] opacity-0"
                 }`}
               >
                 {seen.has(i) && (
@@ -123,7 +208,9 @@ export function CloserLook({ slug, title, items }: { slug: GlassesSlug; title: s
                     className="object-cover"
                   />
                 )}
-                {i === shown && <FeatureMotion slug={slug} feature={item.key} />}
+                {i === shown && (
+                  <FeatureMotion slug={slug} feature={item.key} />
+                )}
               </div>
             ))}
           </div>
