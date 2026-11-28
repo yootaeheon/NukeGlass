@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { RevealOnScroll } from "@/components/reveal-on-scroll";
 import { LOCALES, localeInfo } from "@/i18n/config";
 import { pageAlternates, resolveLang } from "@/i18n/server";
+import { siteUrl } from "@/lib/site-url";
 import "../globals.css";
 
 const newsreader = Newsreader({
@@ -29,13 +30,6 @@ const notoKr = Noto_Sans_KR({
   preload: false,
   display: "swap",
 });
-
-/** Absolute base for canonical/hreflang links. Set NEXT_PUBLIC_SITE_URL in production. */
-function siteUrl() {
-  if (process.env.NEXT_PUBLIC_SITE_URL) return new URL(process.env.NEXT_PUBLIC_SITE_URL);
-  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) return new URL(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`);
-  return new URL("http://localhost:3000");
-}
 
 export function generateStaticParams() {
   return LOCALES.map((l) => ({ lang: l.code }));
