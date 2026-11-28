@@ -39,19 +39,11 @@ const en = {
     subA: "Rent Ray-Ban Meta or Oakley Meta AI glasses by the day.",
     subB: "Ask about signs and menus. Hear your map’s directions without looking down.",
     cta: "Choose your glasses",
-    pause: "Pause",
-    play: "Play",
-    see: "You see",
-    hear: "You hear",
-    scene: "Show scene {n}",
+    pause: "Pause video",
+    play: "Play video",
     srDescription:
-      "Example scenes of a traveller in Seoul: at Gyeongbokgung Palace, a restaurant, a café and a Bukchon alley, asking about signs and menus and hearing walking directions.",
-    scenes: [
-      { place: "Gyeongbokgung Palace, 9:40 am", heard: "“Geunjeongjeon, the throne hall of the palace.”" },
-      { place: "A local restaurant, Jongno", heard: "“Doenjang-jjigae, soybean paste stew. 9,000 won.”" },
-      { place: "A café in Insadong", heard: "“Iced Americano.”" },
-      { place: "An alley in Bukchon, your map app speaking", heard: "Walking directions from your phone, in your ear." },
-    ],
+      "A short film of a traveller in Seoul wearing the glasses: ordering at a market stall, reading a restaurant menu and checking a price in Myeongdong.",
+    videoNote: "Illustrative film.",
   },
   tryIt: [
     { where: "Palace notice", meaning: "Visiting hours: 9 am to 6 pm." },
@@ -65,7 +57,6 @@ const en = {
       "Look at a palace notice, a menu or a subway sign and ask Meta AI about it. The answer comes in your ear while your hands stay free. Tap a sign for an example.",
     tryNote:
       "Examples of what each sign says. Which languages Meta AI reads and answers in changes over time, so we check every pair before hand-over and tell you what works on the day.",
-    exampleAnswer: "Example answer (English)",
     howTitle: "How it works",
     steps: [
       {
@@ -162,6 +153,48 @@ const en = {
     returnTitle: "Before you return it",
     faqTitle: "Questions about this pair",
     othersTitle: "The other four",
+  },
+  closerLook: {
+    title: "Take a closer look.",
+    models: {
+      "ray-ban-meta-wayfarer": {
+        design: {
+          label: "Wayfarer design",
+          body: "The classic Wayfarer shape. The camera, speakers and battery are built into the frame, so from across the street they look like ordinary glasses.",
+          alt: "Black Wayfarer-style smart glasses seen from the front",
+        },
+        camera: {
+          label: "12 MP camera",
+          body: "The ultra-wide camera takes 12 MP photos and 3K video. Press the capture button for a photo, hold it for video. A light on the front tells people nearby when you are recording.",
+          alt: "Close-up of the small camera lens in the corner of the frame",
+        },
+        ask: {
+          label: "Ask Meta AI",
+          body: "Say “Hey Meta, look and tell me what this is.” The glasses take a quick look and answer in your ear: palace signs, shop fronts, museum labels. Your phone needs data or Wi-Fi.",
+          alt: "A traveller in Insadong touching her glasses while looking up at a Korean shop sign",
+        },
+        audio: {
+          label: "Open-ear speakers",
+          body: "Speakers sit just above your ears. Music, calls and your map’s walking directions come through, and you still hear the street and the crossing signal.",
+          alt: "Side view of a man wearing the glasses on a Seoul street, his ear uncovered",
+        },
+        control: {
+          label: "Touch and voice",
+          body: "Tap or swipe the touchpad on the right arm for music and volume, or just say “Hey Meta”. Your phone can stay in your pocket.",
+          alt: "A finger touching the side of the glasses frame",
+        },
+        battery: {
+          label: "Battery and case",
+          body: "Up to 8 hours on a charge. Fold them into the charging case between sights and they charge in your bag. A USB-C cable is included.",
+          alt: "The glasses folded inside an open brown charging case, with a USB-C cable",
+        },
+        lenses: {
+          label: "Clear or sun lenses",
+          body: "This pair comes with clear or sun lenses, not your prescription. If you wear contact lenses, you are all set.",
+          alt: "Two pairs side by side, one with clear lenses and one with dark sun lenses",
+        },
+      },
+    },
   },
   specLabels: {
     camera: "Camera",

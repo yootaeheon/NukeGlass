@@ -63,6 +63,6 @@ Shortcut after `npx supabase login`: `node scripts/write-env-local.mjs <project-
 
 ## Media still needed
 
-- Hero video and posters (spec: `docs/design/DESIGN.md` §8). Until then the hero shows text-only scenes;
-  set `HERO_VIDEO` in `src/components/hero-scenes.tsx` when files are in `public/media/`.
+- Hero video: an AI-generated stand-in (Higgsfield) at `public/video/hero-wayfarer.mp4`, set as `HERO_VIDEO`
+  in `src/lib/media.ts`. Replace it with our own footage (spec: `docs/design/DESIGN.md` §8).
 - Product photos. Frames are line drawings until we shoot our own (brand images need permission).

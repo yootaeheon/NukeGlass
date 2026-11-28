@@ -34,9 +34,6 @@
   --dur-enter: 640ms;
 }
 
-/* Wide and tall enough for the hero lens panel to float beside the headline */
-@custom-variant tall (@media (min-width: 1024px) and (min-height: 780px));
-
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
@@ -285,21 +282,6 @@ body:has([data-bottom-bar]) footer {
   padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
 }
 
-@keyframes scene {
-  0% {
-    opacity: 0;
-    transform: scale(1.06);
-  }
-  12%,
-  88% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
 @keyframes fade {
   from {
     opacity: 0;
@@ -308,36 +290,6 @@ body:has([data-bottom-bar]) footer {
   to {
     opacity: 1;
     transform: none;
-  }
-}
-
-/* Slow drift on full-bleed photographs */
-@keyframes drift {
-  from {
-    transform: scale(1.04) translate3d(0, 0, 0);
-  }
-  to {
-    transform: scale(1.14) translate3d(-1.5%, -1%, 0);
-  }
-}
-.drift {
-  animation: drift 14s linear both;
-}
-
-/* Scene progress in the hero */
-@keyframes progress {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-/* Typed answer in the hero lens */
-@keyframes caret {
-  50% {
-    opacity: 0;
   }
 }
 
@@ -400,7 +352,6 @@ details[open] .answer {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .drift,
   .marquee,
   details[open] .answer {
     animation: none;

@@ -21,15 +21,6 @@ const commons = (file: string, width: number, height: number, title: string, by:
 });
 
 export const PHOTOS = {
-  throneHall: commons(
-    "gyeongbokgung-palace-geunjeongjeon-hall",
-    1920,
-    1280,
-    "Geunjeongjeon, Gyeongbokgung Palace",
-    "Brady Bellini",
-    "CC0",
-    "https://commons.wikimedia.org/wiki/File:Gyeongbokgung(palace)_Geunjeongjeon(hall).jpg",
-  ),
   palace: commons(
     "gyeonghoeru-royal-banquet-hall-at-gyeongbokgung-palace",
     1920,
@@ -38,15 +29,6 @@ export const PHOTOS = {
     "Frank Schulenburg",
     "CC BY-SA 4.0",
     "https://commons.wikimedia.org/wiki/File:Gyeonghoeru_(Royal_Banquet_Hall)_at_Gyeongbokgung_Palace,_Seoul.jpg",
-  ),
-  market: commons(
-    "gwangjang-market-seoul-01",
-    1920,
-    1280,
-    "Gwangjang Market, Seoul",
-    "Bgag",
-    "CC0",
-    "https://commons.wikimedia.org/wiki/File:Gwangjang_Market,_Seoul_01.jpg",
   ),
   myeongdong: commons(
     "myeongdong-at-night",
@@ -93,15 +75,6 @@ export const PHOTOS = {
     "CC BY-SA 4.0",
     "https://commons.wikimedia.org/wiki/File:Seoul-metro-425-Hoehyeon-station-platform-20181124-080256.jpg",
   ),
-  insadong: commons(
-    "seoul-jongno-district-insa-dong-insadong-gil",
-    1920,
-    1080,
-    "Insadong-gil",
-    "Dr. Thomas Liptak",
-    "CC BY-SA 4.0",
-    "https://commons.wikimedia.org/wiki/File:Seoul,_Jongno_District,_Insa-dong,_Insadong-gil.jpg",
-  ),
   namsan: commons(
     "namsan-tower-sunset-seoul",
     1920,
@@ -130,6 +103,14 @@ export const SCENES = {
   pairPhone: { src: "/scenes/pair-phone.jpg", width: 1024, height: 1024 },
   returnDesk: { src: "/scenes/return-desk.jpg", width: 1024, height: 1024 },
 } satisfies Record<string, Photo>;
+
+/** Home hero film (AI-generated with Higgsfield, silent, no captions): a traveller in Seoul wearing the glasses */
+export const HERO_VIDEO = {
+  src: "/video/hero-wayfarer.mp4",
+  poster: "/video/hero-wayfarer-poster.jpg",
+  width: 1280,
+  height: 720,
+};
 
 /** Illustrative product renders (AI-generated), one per model, on the --product ground */
 export const PRODUCT_IMAGES: Record<GlassesSlug, Photo> = {

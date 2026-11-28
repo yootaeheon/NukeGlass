@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { HeroScenes } from "@/components/hero-scenes";
+import { HeroVideo } from "@/components/hero-video";
 import { TryIt } from "@/components/try-it";
 import { ProductRail } from "@/components/product-rail";
 import { StickySteps } from "@/components/sticky-steps";
@@ -19,7 +19,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
   return (
     <>
-      <HeroScenes lang={lang} t={dict.hero} exampleAnswer={t.exampleAnswer} />
+      <HeroVideo lang={lang} t={dict.hero} />
 
       {/* The five pairs */}
       <section aria-labelledby="lineup-title" className="mx-auto max-w-[1440px] px-margin pt-section">
