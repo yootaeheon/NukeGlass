@@ -102,6 +102,11 @@ export const SCENES = {
   bukchonWalk: { src: "/scenes/bukchon-walk.jpg", width: 1536, height: 864 },
   pairPhone: { src: "/scenes/pair-phone.jpg", width: 1024, height: 1024 },
   returnDesk: { src: "/scenes/return-desk.jpg", width: 1024, height: 1024 },
+  // Stills from the hero film, for "moments" on the home page
+  momentDirections: { src: "/scenes/moment-directions.jpg", width: 1600, height: 900 },
+  momentTouch: { src: "/scenes/moment-touch.jpg", width: 1600, height: 900 },
+  momentAsk: { src: "/scenes/moment-ask.jpg", width: 1600, height: 900 },
+  momentCall: { src: "/scenes/moment-call.jpg", width: 1600, height: 900 },
 } satisfies Record<string, Photo>;
 
 /** Home hero film (AI-generated with Higgsfield, silent, no captions): a traveller in Seoul wearing the glasses */

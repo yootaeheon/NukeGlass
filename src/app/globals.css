@@ -2,14 +2,18 @@
 
 /* Tokens: docs/design/DESIGN.md */
 :root {
-  --bg: #ffffff;
-  --surface: #f2f3f1;
+  /* Warm ivory ground and a sand surface: the page should feel like paper in daylight */
+  --bg: #fbf8f2;
+  --surface: #f3ede2;
   --ink: #121416;
   --muted: #5e6366;
   --line: #8a9094;
   --accent: #0b6b57;
   --accent-press: #08523f;
   --accent-tint: #cfe6df;
+  /* Second colour: persimmon. A band, icon grounds and the text selection; never body text. */
+  --warm: #b85c1e;
+  --warm-tint: #f8e3cc;
   --danger: #b3261e;
   --field-dark: #121416;
   --field-dark-muted: #a9b0b3;
@@ -22,8 +26,8 @@
   --step-lead: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
   --step-title: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
   --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
-  --step-display: clamp(2.75rem, 0.9rem + 8.2vw, 8.5rem);
-  --step-hero: clamp(2.75rem, 1rem + 7vw, 7.5rem);
+  --step-display: clamp(2.5rem, 1rem + 6vw, 6rem);
+  --step-hero: clamp(2.5rem, 1rem + 6vw, 6rem);
 
   --margin: clamp(1.25rem, 3vw, 2rem);
   --section-gap: clamp(6rem, 4rem + 8vw, 12.5rem);
@@ -32,6 +36,10 @@
   --dur-fast: 160ms;
   --dur-base: 320ms;
   --dur-enter: 640ms;
+
+  /* Soft depth, tinted with the warm ground instead of grey */
+  --shadow-sm: 0 1px 2px rgb(60 40 15 / 0.06), 0 4px 12px rgb(60 40 15 / 0.06);
+  --shadow-md: 0 2px 4px rgb(60 40 15 / 0.06), 0 14px 32px rgb(60 40 15 / 0.12);
 }
 
 @theme inline {
@@ -43,6 +51,8 @@
   --color-accent: var(--accent);
   --color-accent-press: var(--accent-press);
   --color-accent-tint: var(--accent-tint);
+  --color-warm: var(--warm);
+  --color-warm-tint: var(--warm-tint);
   --color-danger: var(--danger);
   --color-field-dark: var(--field-dark);
   --color-field-dark-muted: var(--field-dark-muted);
@@ -71,8 +81,8 @@
 :root:lang(zh-Hans),
 :root:lang(zh-Hant),
 :root:lang(ko) {
-  --step-display: clamp(2.25rem, 0.9rem + 5.4vw, 6rem);
-  --step-hero: clamp(2.25rem, 0.9rem + 5.4vw, 6rem);
+  --step-display: clamp(2.125rem, 0.9rem + 4.4vw, 4.75rem);
+  --step-hero: clamp(2.25rem, 0.9rem + 4.8vw, 5.25rem);
 }
 
 .hero-title {
@@ -100,7 +110,7 @@ body {
 }
 
 ::selection {
-  background: var(--accent-tint);
+  background: var(--warm-tint);
   color: var(--ink);
 }
 
@@ -162,9 +172,14 @@ a {
 :root:lang(zh-Hant) .head,
 :root:lang(ko) .display,
 :root:lang(ko) .head {
-  font-weight: 700;
-  line-height: 1.18;
-  letter-spacing: -0.035em;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+/* Noto Sans KR ships 400/500/700 here; 500 keeps large Korean headings soft */
+:root:lang(ko) .display,
+:root:lang(ko) .head {
+  font-weight: 500;
 }
 :root:lang(ja),
 :root:lang(zh-Hans),
@@ -197,10 +212,21 @@ a {
     transition:
       background-color var(--dur-fast) var(--ease-out),
       color var(--dur-fast) var(--ease-out),
-      transform var(--dur-fast) var(--ease-out);
+      box-shadow var(--dur-base) var(--ease-out),
+      transform var(--dur-base) var(--ease-out);
+  }
+  .btn-primary,
+  .btn-light {
+    box-shadow: var(--shadow-sm);
+  }
+  .btn-primary:hover,
+  .btn-light:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
   }
   .btn:active {
     transform: scale(0.98);
+    box-shadow: none;
   }
   .btn-primary {
     background: var(--accent);
@@ -222,6 +248,31 @@ a {
     color: var(--line);
     cursor: not-allowed;
     transform: none;
+    box-shadow: none;
+  }
+
+  /* A tile that rises a little when pointed at: its first child is the picture */
+  .lift > :first-child {
+    transition:
+      box-shadow var(--dur-base) var(--ease-out),
+      transform var(--dur-base) var(--ease-out);
+  }
+  .lift:hover > :first-child,
+  .lift:focus-visible > :first-child {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+  }
+
+  /* Round ground for a small icon */
+  .icon-chip {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 9999px;
+    background: var(--warm-tint);
+    color: var(--warm);
   }
   @media (min-width: 1024px) {
     .btn {
@@ -501,6 +552,12 @@ details[open] .answer {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .btn-primary:hover,
+  .btn-light:hover,
+  .lift:hover > :first-child,
+  .lift:focus-visible > :first-child {
+    transform: none;
+  }
   /* The pictures explain themselves; no moving overlay */
   .fm {
     display: none;

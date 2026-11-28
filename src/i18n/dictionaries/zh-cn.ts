@@ -49,11 +49,18 @@ const zhCn: Dictionary = {
     { where: "咖啡馆", meaning: "请在柜台点单。" },
   ],
   home: {
+    momentsTitle: "戴上之后，就会忘了它的存在。",
+    moments: [
+      { line: "双手插口袋，导航在耳边。", alt: "双手插在大衣口袋里走在韩屋小巷的游客" },
+      { line: "轻点或滑动镜腿，控制音乐和音量。", alt: "在电车上轻触眼镜侧面的男子" },
+      { line: "问问眼前的食物是什么。", alt: "在小吃摊前看着串串微笑的游客" },
+      { line: "两手都拿着咖啡，也能接电话。", alt: "在汉江边拿着咖啡免手持通话的女子" },
+    ],
     translateTitle: "看着它，问一问。",
     translateBody:
       "看着宫殿告示、菜单或地铁标识，向 Meta AI 提问。答案在耳边响起，双手始终空闲。点击招牌查看示例。",
     tryNote: "以下为各招牌含义的示例。Meta AI 能识别和回答的语言会不断变化，我们在交付前逐台检查，并告诉您当天可用的功能。",
-    howTitle: "使用流程",
+    howTitle: "这样用就行",
     steps: [
       { line: "首先，选择眼镜和日期。", detail: "按天预订。用 Google 登录，之后可随时查看预订。" },
       {
@@ -69,7 +76,7 @@ const zhCn: Dictionary = {
     priceBody:
       "每次租赁附带充电盒和 USB-C 数据线。按自然日计费，取货日和归还日都计算在内；租 4–6 天享 9 折，7 天及以上享 8 折。价格以美元计。",
     seeAll: "查看全部五款",
-    faqTitle: "常见问题",
+    faqTitle: "你想问的，先回答你",
     faq: [
       { q: "需要自带手机吗？", a: "需要。眼镜与 iPhone 或 Android 上免费的 Meta AI 应用配对，并使用手机的流量或 Wi-Fi。" },
       {
