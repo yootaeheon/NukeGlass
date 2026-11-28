@@ -9,8 +9,12 @@ import type { Photo } from "./media";
 export const CLOSER_LOOK_KEYS = ["design", "camera", "ask", "audio", "control", "battery", "lenses"] as const;
 export type CloserLookKey = (typeof CLOSER_LOOK_KEYS)[number];
 
+// Bump when a picture is replaced: the image optimizer and browsers cache by URL,
+// so a new file under the old name keeps showing the old picture for hours.
+const REVISION = "v2";
+
 const pic = (slug: GlassesSlug, key: CloserLookKey): Photo => ({
-  src: `/features/${slug}/${key}.jpg`,
+  src: `/features/${slug}/${key}.${REVISION}.jpg`,
   width: 1536,
   height: 1020,
 });

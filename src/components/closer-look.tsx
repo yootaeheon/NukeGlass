@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useId, useRef, useState } from "react";
 import type { CloserLookKey } from "@/lib/closer-look";
 import type { Photo } from "@/lib/media";
+import { FeatureMotion } from "./feature-motion";
 
 type Item = { key: CloserLookKey; label: string; body: string; alt: string; photo: Photo };
 
@@ -87,6 +88,7 @@ export function CloserLook({ title, items }: { title: string; items: Item[] }) {
                     {/* Phone and tablet: the picture sits with its text */}
                     <div className="relative mb-5 aspect-[3/2] overflow-hidden bg-product lg:hidden">
                       <Image src={item.photo.src} alt={item.alt} fill sizes="100vw" className="object-cover" />
+                      {isOpen && <FeatureMotion feature={item.key} />}
                     </div>
                     <p className="max-w-[46ch] animate-[fade_480ms_var(--ease-out)_both] motion-reduce:animate-none">
                       {item.body}
@@ -120,6 +122,7 @@ export function CloserLook({ title, items }: { title: string; items: Item[] }) {
                     className="object-cover"
                   />
                 )}
+                {i === shown && <FeatureMotion feature={item.key} />}
               </div>
             ))}
           </div>
